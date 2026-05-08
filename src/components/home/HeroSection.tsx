@@ -83,6 +83,17 @@ export default function HeroSection() {
                 mode: "no-cors"
             });
 
+            await fetch('/api/send-email', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    name: formData.name,
+                    phone: `${formData.phoneCode} ${formData.phone}`,
+                    email: formData.email,
+                    service: formData.service
+                })
+            });
+
             setSubmitSuccess(true);
             setFormData({ name: "", phoneCode: "+91", phone: "", email: "", service: "" });
             setTimeout(() => setSubmitSuccess(false), 5000);
@@ -120,7 +131,8 @@ export default function HeroSection() {
                         {/* Tagline removed as it's part of the background image */}
                     </div>
 
-                    {/* Bottom tagline removed as it's part of the background image */}                </div>
+                    {/* Bottom tagline removed as it's part of the background image */}
+                </div>
 
                 {/* RIGHT 40% - Form */}
                 <div className="w-full lg:w-[30%] bg-[#3d3322] flex items-center justify-center p-6 md:p-8 lg:p-10">

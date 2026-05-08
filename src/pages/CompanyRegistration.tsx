@@ -112,6 +112,18 @@ function HeroSection() {
             params.append('Email', formData.email);
             params.append('Service', formData.service);
             await fetch(`${GOOGLE_SCRIPT_URL}?${params.toString()}`, { method: 'POST', mode: 'no-cors' });
+
+            await fetch('/api/send-email', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    name: formData.name,
+                    phone: `${formData.phoneCode} ${formData.phone}`,
+                    email: formData.email,
+                    service: formData.service
+                })
+            });
+
             setSubmitSuccess(true);
             setFormData({ name: '', phoneCode: '+91', phone: '', email: '', service: '' });
             setTimeout(() => setSubmitSuccess(false), 5000);
