@@ -1,19 +1,17 @@
-import { useState, useEffect } from 'react';
-
-const MOBILE_BREAKPOINT = 768; // px — same as Tailwind's `md`
+import { useState, useLayoutEffect } from 'react';
 
 export default function MobileOverlay() {
-  const [isMobile, setIsMobile] = useState<boolean>(
-    () => window.innerWidth < MOBILE_BREAKPOINT
-  );
+  // Start with true so the overlay renders on first paint on mobile;
+  // useLayoutEffect runs synchronously before the browser paints.
+  const [isMobile, setIsMobile] = useState<boolean>(true);
 
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < MOBILE_BREAKPOINT);
-    };
+  useLayoutEffect(() => {
+    const mq = window.matchMedia('(max-width: 767px)');
+    setIsMobile(mq.matches);
 
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches);
+    mq.addEventListener('change', handler);
+    return () => mq.removeEventListener('change', handler);
   }, []);
 
   if (!isMobile) return null;
@@ -22,13 +20,13 @@ export default function MobileOverlay() {
     <div
       style={{
         position: 'fixed',
-        inset: 0,
-        zIndex: 9999,
-        backgroundColor: '#000',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
+        top: 0,
+        left: 0,
+        width: '100vw',
+        height: '100vh',
+        zIndex: 99999,
         overflow: 'hidden',
+        backgroundColor: '#000',
       }}
     >
       <img
@@ -38,7 +36,8 @@ export default function MobileOverlay() {
           width: '100%',
           height: '100%',
           objectFit: 'cover',
-          objectPosition: 'center',
+          objectPosition: 'center top',
+          display: 'block',
         }}
       />
     </div>
