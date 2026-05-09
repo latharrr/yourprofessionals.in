@@ -352,12 +352,45 @@ export default function Header() {
             <div className={`absolute top-[calc(100%+0.5rem)] right-4 md:right-8 w-80 bg-white/95 backdrop-blur-md rounded-2xl z-50 transform transition-all duration-200 origin-top-right lg:hidden flex flex-col shadow-2xl border border-gray-100 overflow-hidden ${isMenuOpen ? 'scale-100 opacity-100' : 'scale-95 opacity-0 pointer-events-none'}`}>
                 <div className="flex flex-col overflow-y-auto max-h-[70vh]">
                     <div className="px-6 py-4 border-b border-gray-50">
-                        <div className="relative">
-                            <input type="text" placeholder="Search..." className="w-full bg-gray-50 border border-gray-200 rounded-full px-4 py-2 text-sm focus:outline-none focus:border-[var(--color-brand-secondary)]" />
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-4 h-4 absolute right-3 top-1/2 -translate-y-1/2 text-gray-400">
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
-                            </svg>
-                        </div>
+                        <form onSubmit={(e) => {
+                            e.preventDefault();
+                            if (searchQuery.trim()) {
+                                const match = Object.values(SERVICES).find(s =>
+                                    s.title.toLowerCase().includes(searchQuery.toLowerCase())
+                                );
+                                const target = match ?? (searchResults[0] ? SERVICES[searchResults[0].slug] : null);
+                                if (target) { navigate(`/${target.slug}`); }
+                                setSearchQuery('');
+                                setSearchResults([]);
+                                setIsMenuOpen(false);
+                            }
+                        }}>
+                            <div className="relative">
+                                <input
+                                    type="text"
+                                    placeholder="Search services..."
+                                    value={searchQuery}
+                                    onChange={(e) => handleSearchChange(e.target.value)}
+                                    className="w-full bg-gray-50 border border-gray-200 rounded-full px-4 py-2 pr-9 text-sm focus:outline-none focus:border-[var(--color-brand-secondary)]"
+                                />
+                                <button type="submit" className="absolute right-3 top-1/2 -translate-y-1/2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-4 h-4 text-gray-400 hover:text-[var(--color-brand-secondary)]">
+                                        <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </form>
+                        {searchResults.length > 0 && searchQuery.length >= 2 && (
+                            <div className="mt-2 bg-white rounded-xl shadow-lg border border-gray-100 max-h-52 overflow-y-auto">
+                                {searchResults.map(item => (
+                                    <Link key={item.slug} to={`/${item.slug}`}
+                                        onClick={() => { setIsMenuOpen(false); setSearchQuery(''); setSearchResults([]); }}
+                                        className="block px-4 py-2.5 text-sm text-gray-700 hover:text-[var(--color-brand-secondary)] hover:bg-amber-50 transition-colors border-b border-gray-50 last:border-b-0">
+                                        {item.label}
+                                    </Link>
+                                ))}
+                            </div>
+                        )}
                     </div>
                     {/* Nav Sections with nested sub-tabs */}
                     {NAV_MENUS.map(menu => (

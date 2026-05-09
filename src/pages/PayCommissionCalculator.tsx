@@ -1,11 +1,12 @@
-import { useState, useMemo } from 'react';
+﻿import { useState, useMemo } from 'react';
 import Header from '../components/layout/Header';
 import Footer from '../components/layout/Footer';
+import SEO from '../components/common/SEO';
 
 function formatINR(value: number): string {
-  if (value >= 10000000) return `₹${(value / 10000000).toFixed(2)} Cr`;
-  if (value >= 100000) return `₹${(value / 100000).toFixed(2)} L`;
-  return `₹${value.toLocaleString('en-IN', { maximumFractionDigits: 0 })}`;
+  if (value >= 10000000) return `â‚¹${(value / 10000000).toFixed(2)} Cr`;
+  if (value >= 100000) return `â‚¹${(value / 100000).toFixed(2)} L`;
+  return `â‚¹${value.toLocaleString('en-IN', { maximumFractionDigits: 0 })}`;
 }
 
 const PAY_LEVELS: { level: number; label: string; minPay: number; maxPay: number }[] = [
@@ -33,7 +34,7 @@ const PAY_LEVELS: { level: number; label: string; minPay: number; maxPay: number
 const TIMELINE_EVENTS = [
   { date: 'January 2025', title: 'Commission Constituted', description: 'The Union Cabinet approved the formation of the 8th Central Pay Commission under the chairmanship of a retired official.' },
   { date: 'April 2025', title: 'Terms of Reference Finalised', description: 'The government published detailed terms of reference covering pay scales, allowances, pension, and performance-linked incentives.' },
-  { date: '2025–2026', title: 'Data Collection & Stakeholder Consultation', description: 'The commission gathers memoranda from employee unions, government departments, and independent economists.' },
+  { date: '2025â€“2026', title: 'Data Collection & Stakeholder Consultation', description: 'The commission gathers memoranda from employee unions, government departments, and independent economists.' },
   { date: 'Late 2026', title: 'Draft Report Expected', description: 'An interim or draft report with preliminary recommendations is anticipated before the end of 2026.' },
   { date: 'Mid 2027', title: 'Final Report Submission', description: 'The commission is expected to submit its final recommendations to the government by mid-2027.' },
   { date: 'January 2028', title: 'Expected Implementation', description: 'Revised pay scales are likely to take effect from 1 January 2028 for all central government employees.' },
@@ -54,15 +55,15 @@ const FAQ_DATA = [
   },
   {
     q: 'How is the new basic pay calculated under the 8th Pay Commission?',
-    a: 'The new basic pay is calculated by multiplying your current basic pay by the fitment factor. For example, if your current basic pay is ₹56,100 and the fitment factor is 2.86x, your expected new basic pay would be ₹56,100 × 2.86 = ₹1,60,446.',
+    a: 'The new basic pay is calculated by multiplying your current basic pay by the fitment factor. For example, if your current basic pay is â‚¹56,100 and the fitment factor is 2.86x, your expected new basic pay would be â‚¹56,100 Ã— 2.86 = â‚¹1,60,446.',
   },
   {
     q: 'Will the 8th Pay Commission revise pensions as well?',
-    a: 'Yes, pension revision is a core part of every pay commission\'s mandate. The 8th Pay Commission is expected to recommend revised pension amounts for retirees, potentially applying a similar fitment factor. The minimum pension under the 7th CPC was ₹9,000 per month — it may rise significantly.',
+    a: 'Yes, pension revision is a core part of every pay commission\'s mandate. The 8th Pay Commission is expected to recommend revised pension amounts for retirees, potentially applying a similar fitment factor. The minimum pension under the 7th CPC was â‚¹9,000 per month â€” it may rise significantly.',
   },
   {
     q: 'What is the expected minimum basic salary after the 8th Pay Commission?',
-    a: 'If a fitment factor of 2.86x is applied, the current minimum basic pay of ₹18,000 (Level 1) would increase to approximately ₹51,480. Some employee unions have demanded a minimum basic pay of ₹26,000 before the fitment factor is applied.',
+    a: 'If a fitment factor of 2.86x is applied, the current minimum basic pay of â‚¹18,000 (Level 1) would increase to approximately â‚¹51,480. Some employee unions have demanded a minimum basic pay of â‚¹26,000 before the fitment factor is applied.',
   },
   {
     q: 'How does the 8th Pay Commission affect HRA and DA?',
@@ -119,7 +120,12 @@ export default function PayCommissionCalculator() {
 
   return (
     <div className="min-h-screen flex flex-col font-sans">
-      <Header />
+                  <SEO
+                title="8th Pay Commission Salary Calculator 2025"
+                description="Free 8th Pay Commission Salary Calculator — estimate your revised basic pay, HRA, TA and gross salary under the 8th Pay Commission recommendations for 2025."
+                canonical="/8th-pay-commission-calculator"
+            />
+<Header />
       <main className="flex-grow pt-28">
         {/* Hero */}
         <section className="bg-gradient-to-br from-[#090a3d] via-[#0f1163] to-[#1a1c6e] text-white py-12 md:py-20 relative overflow-hidden">
@@ -129,7 +135,7 @@ export default function PayCommissionCalculator() {
           </div>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
             <span className="inline-block bg-white/10 text-amber-300 text-sm font-semibold px-4 py-1.5 rounded-full mb-5 backdrop-blur-sm border border-white/10">
-              Free Online Tool — 2025
+              Free Online Tool â€” 2025
             </span>
             <h1 className="text-3xl md:text-5xl font-bold mb-4">
               8th Pay Commission <span className="text-[var(--color-brand-secondary)]">Salary Calculator</span>
@@ -151,11 +157,11 @@ export default function PayCommissionCalculator() {
                 {/* Current Basic Pay */}
                 <div className="mb-6">
                   <label className="block text-sm font-semibold text-gray-700 mb-2">
-                    Current Basic Pay (₹)
+                    Current Basic Pay (â‚¹)
                   </label>
                   <input
                     type="text"
-                    value={`₹${basicPay.toLocaleString('en-IN')}`}
+                    value={`â‚¹${basicPay.toLocaleString('en-IN')}`}
                     onChange={(e) => handleBasicPayInput(e.target.value)}
                     className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm font-semibold text-[#090a3d] focus:outline-none focus:border-[var(--color-brand-secondary)] focus:ring-2 focus:ring-[var(--color-brand-secondary)]/20 transition-all"
                   />
@@ -169,8 +175,8 @@ export default function PayCommissionCalculator() {
                     className="w-full mt-2 accent-[#090a3d] cursor-pointer"
                   />
                   <div className="flex justify-between text-xs text-gray-400 mt-1">
-                    <span>₹18,000</span>
-                    <span>₹2,50,000</span>
+                    <span>â‚¹18,000</span>
+                    <span>â‚¹2,50,000</span>
                   </div>
                 </div>
 
@@ -189,7 +195,7 @@ export default function PayCommissionCalculator() {
                   >
                     {PAY_LEVELS.map((p) => (
                       <option key={p.level} value={p.level}>
-                        Level {p.label} — ₹{p.minPay.toLocaleString('en-IN')} to ₹{p.maxPay.toLocaleString('en-IN')}
+                        Level {p.label} â€” â‚¹{p.minPay.toLocaleString('en-IN')} to â‚¹{p.maxPay.toLocaleString('en-IN')}
                       </option>
                     ))}
                   </select>
@@ -251,11 +257,11 @@ export default function PayCommissionCalculator() {
                             : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
                         }`}
                       >
-                        {cat} — {cat === 'X' ? '27%' : cat === 'Y' ? '18%' : '9%'}
+                        {cat} â€” {cat === 'X' ? '27%' : cat === 'Y' ? '18%' : '9%'}
                       </button>
                     ))}
                   </div>
-                  <p className="text-xs text-gray-400 mt-2">X: Metro cities · Y: Other large cities · Z: All other locations</p>
+                  <p className="text-xs text-gray-400 mt-2">X: Metro cities Â· Y: Other large cities Â· Z: All other locations</p>
                 </div>
               </div>
 
@@ -285,7 +291,7 @@ export default function PayCommissionCalculator() {
                   {[
                     { label: 'Basic Pay', current: results.currentBasic, expected: results.newBasic },
                     { label: `DA (${daRate}%)`, current: results.currentDA, expected: results.newDA },
-                    { label: `HRA (${hraPercent}% — City ${hraCategory})`, current: results.currentHRA, expected: results.newHRA },
+                    { label: `HRA (${hraPercent}% â€” City ${hraCategory})`, current: results.currentHRA, expected: results.newHRA },
                   ].map((row) => (
                     <div key={row.label} className="grid grid-cols-3 border-b border-gray-100 hover:bg-gray-50 transition-colors">
                       <div className="p-4 text-sm font-medium text-gray-700">{row.label}</div>
@@ -329,13 +335,13 @@ export default function PayCommissionCalculator() {
               </h2>
               <div className="prose prose-lg text-gray-600 space-y-4">
                 <p>
-                  The 8th Central Pay Commission is a government-appointed panel tasked with reviewing and recommending revisions to the pay structure, allowances, and pension of central government employees in India. Constituted by the Union Cabinet in January 2025, it follows a long-standing tradition — since Independence, India has set up pay commissions roughly every ten years to ensure government salaries keep pace with inflation, economic growth, and private-sector compensation trends.
+                  The 8th Central Pay Commission is a government-appointed panel tasked with reviewing and recommending revisions to the pay structure, allowances, and pension of central government employees in India. Constituted by the Union Cabinet in January 2025, it follows a long-standing tradition â€” since Independence, India has set up pay commissions roughly every ten years to ensure government salaries keep pace with inflation, economic growth, and private-sector compensation trends.
                 </p>
                 <p>
                   The commission will examine the existing pay matrix introduced by the 7th CPC in 2016, evaluate the cost of living across different cities, study pay parity with the private sector, and suggest a revised framework that is fair, transparent, and fiscally sustainable. Its recommendations will directly affect approximately 50 lakh serving central government employees and over 65 lakh pensioners, making it one of the most consequential policy decisions affecting India's public-sector workforce.
                 </p>
                 <p>
-                  Historically, every pay commission has introduced a "fitment factor" — a multiplier applied to the existing basic pay to arrive at the revised basic pay under the new structure. The commission also revisits allowances such as Dearness Allowance (DA), House Rent Allowance (HRA), Transport Allowance, and special duty allowances.
+                  Historically, every pay commission has introduced a "fitment factor" â€” a multiplier applied to the existing basic pay to arrive at the revised basic pay under the new structure. The commission also revisits allowances such as Dearness Allowance (DA), House Rent Allowance (HRA), Transport Allowance, and special duty allowances.
                 </p>
               </div>
             </div>
@@ -353,9 +359,9 @@ export default function PayCommissionCalculator() {
             </p>
             <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
               {[
-                { commission: '6th CPC', year: '2006', factor: '1.86x', minPay: '₹7,000', desc: 'Introduced the concept of grade pay along with a fitment factor of 1.86x. It replaced the previous pay band system.' },
-                { commission: '7th CPC', year: '2016', factor: '2.57x', minPay: '₹18,000', desc: 'Replaced grade pay with a pay matrix. Applied a 2.57x fitment factor, raising the minimum basic pay from ₹7,000 to ₹18,000.' },
-                { commission: '8th CPC', year: '2028 (Est.)', factor: '2.86x*', minPay: '₹51,480*', desc: 'Expected to introduce a revised pay matrix with a fitment factor between 1.86x and 3.68x. The median estimate of 2.86x is widely discussed.' },
+                { commission: '6th CPC', year: '2006', factor: '1.86x', minPay: 'â‚¹7,000', desc: 'Introduced the concept of grade pay along with a fitment factor of 1.86x. It replaced the previous pay band system.' },
+                { commission: '7th CPC', year: '2016', factor: '2.57x', minPay: 'â‚¹18,000', desc: 'Replaced grade pay with a pay matrix. Applied a 2.57x fitment factor, raising the minimum basic pay from â‚¹7,000 to â‚¹18,000.' },
+                { commission: '8th CPC', year: '2028 (Est.)', factor: '2.86x*', minPay: 'â‚¹51,480*', desc: 'Expected to introduce a revised pay matrix with a fitment factor between 1.86x and 3.68x. The median estimate of 2.86x is widely discussed.' },
               ].map((item) => (
                 <div key={item.commission} className="bg-white rounded-2xl shadow-lg p-6 border border-gray-100 hover:shadow-xl transition-shadow">
                   <div className="flex items-center gap-3 mb-4">
@@ -426,12 +432,12 @@ export default function PayCommissionCalculator() {
             </p>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
               {[
-                { icon: '💰', title: 'Revised Minimum Pay', desc: 'The minimum basic pay is expected to rise from ₹18,000 to approximately ₹51,480 (at 2.86x). Employee unions have demanded a pre-fitment base of ₹26,000.' },
-                { icon: '📊', title: 'New Pay Matrix Structure', desc: 'A modernised pay matrix with updated pay cells for each level is anticipated, potentially incorporating performance-based increments alongside annual step increases.' },
-                { icon: '🏠', title: 'HRA Rationalisation', desc: 'While HRA percentages (27%, 18%, 9%) may remain unchanged, the city classification list is expected to be updated to reflect current urbanisation patterns.' },
-                { icon: '🏦', title: 'Pension Revision', desc: 'All pensioners under the old pension scheme (OPS) are expected to receive revised pension amounts. The minimum pension may increase from ₹9,000 to over ₹25,000 per month.' },
-                { icon: '📈', title: 'Performance-Linked Pay', desc: 'The commission may recommend linking a portion of salary increments to performance metrics, encouraging productivity and efficiency in government departments.' },
-                { icon: '🔄', title: 'DA Merger & Reset', desc: 'At implementation, the accumulated Dearness Allowance is expected to be merged into the new basic pay, and the DA percentage will reset to 0% — a standard practice with every pay commission.' },
+                { icon: 'ðŸ’°', title: 'Revised Minimum Pay', desc: 'The minimum basic pay is expected to rise from â‚¹18,000 to approximately â‚¹51,480 (at 2.86x). Employee unions have demanded a pre-fitment base of â‚¹26,000.' },
+                { icon: 'ðŸ“Š', title: 'New Pay Matrix Structure', desc: 'A modernised pay matrix with updated pay cells for each level is anticipated, potentially incorporating performance-based increments alongside annual step increases.' },
+                { icon: 'ðŸ ', title: 'HRA Rationalisation', desc: 'While HRA percentages (27%, 18%, 9%) may remain unchanged, the city classification list is expected to be updated to reflect current urbanisation patterns.' },
+                { icon: 'ðŸ¦', title: 'Pension Revision', desc: 'All pensioners under the old pension scheme (OPS) are expected to receive revised pension amounts. The minimum pension may increase from â‚¹9,000 to over â‚¹25,000 per month.' },
+                { icon: 'ðŸ“ˆ', title: 'Performance-Linked Pay', desc: 'The commission may recommend linking a portion of salary increments to performance metrics, encouraging productivity and efficiency in government departments.' },
+                { icon: 'ðŸ”„', title: 'DA Merger & Reset', desc: 'At implementation, the accumulated Dearness Allowance is expected to be merged into the new basic pay, and the DA percentage will reset to 0% â€” a standard practice with every pay commission.' },
               ].map((item) => (
                 <div key={item.title} className="bg-white rounded-2xl shadow-md p-6 border border-gray-100 hover:shadow-xl transition-shadow">
                   <div className="w-12 h-12 bg-amber-50 rounded-xl flex items-center justify-center text-2xl mb-4">
@@ -452,7 +458,7 @@ export default function PayCommissionCalculator() {
               8th Pay Commission <span className="text-[var(--color-brand-secondary)]">Timeline</span>
             </h2>
             <p className="text-gray-500 text-center mb-10 max-w-2xl mx-auto">
-              A roadmap of key milestones — from constitution to expected implementation.
+              A roadmap of key milestones â€” from constitution to expected implementation.
             </p>
             <div className="max-w-3xl mx-auto space-y-0">
               {TIMELINE_EVENTS.map((event, i) => (
@@ -483,8 +489,8 @@ export default function PayCommissionCalculator() {
             </p>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
               {[
-                { step: '1', title: 'Enter Basic Pay', desc: 'Use the slider or type your current basic pay from your salary slip. It ranges from ₹18,000 (Level 1) to ₹2,50,000 (Level 18).' },
-                { step: '2', title: 'Select Pay Level', desc: 'Choose your pay level (1–18) from the dropdown. This automatically sets the basic pay to the entry-level amount for that level.' },
+                { step: '1', title: 'Enter Basic Pay', desc: 'Use the slider or type your current basic pay from your salary slip. It ranges from â‚¹18,000 (Level 1) to â‚¹2,50,000 (Level 18).' },
+                { step: '2', title: 'Select Pay Level', desc: 'Choose your pay level (1â€“18) from the dropdown. This automatically sets the basic pay to the entry-level amount for that level.' },
                 { step: '3', title: 'Adjust Parameters', desc: 'Set the expected fitment factor (default 2.86x), your current DA rate (default 53%), and select your HRA city category (X, Y, or Z).' },
                 { step: '4', title: 'View Results', desc: 'The calculator instantly shows your projected new basic pay, allowances, gross salary, and the total increase in both amount and percentage.' },
               ].map((item) => (
@@ -555,7 +561,7 @@ export default function PayCommissionCalculator() {
               href="/contact"
               className="inline-block bg-[var(--color-brand-secondary)] hover:bg-[#a17500] text-white font-bold px-8 py-3.5 rounded-xl transition-all shadow-md hover:shadow-lg text-sm"
             >
-              Talk to Our Experts →
+              Talk to Our Experts â†’
             </a>
           </div>
         </section>
@@ -564,3 +570,4 @@ export default function PayCommissionCalculator() {
     </div>
   );
 }
+

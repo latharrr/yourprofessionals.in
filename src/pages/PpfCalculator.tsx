@@ -1,9 +1,10 @@
-import { useState, useMemo } from 'react';
+﻿import { useState, useMemo } from 'react';
 import Header from '../components/layout/Header';
 import Footer from '../components/layout/Footer';
+import SEO from '../components/common/SEO';
 
 const formatCurrency = (val: number) =>
-  '₹' + val.toLocaleString('en-IN', { maximumFractionDigits: 0 });
+  'â‚¹' + val.toLocaleString('en-IN', { maximumFractionDigits: 0 });
 
 const formatPercent = (val: number) => val.toFixed(1) + '%';
 
@@ -37,20 +38,20 @@ const ANNUAL_PRESETS = [500, 12000, 50000, 100000, 150000];
 const PERIOD_PRESETS = [15, 20, 25, 30, 50];
 
 const PPF_RATE_HISTORY = [
-  { period: 'Apr 2020 – Present', rate: '7.1%' },
-  { period: 'Oct 2018 – Mar 2020', rate: '8.0% → 7.9%' },
-  { period: 'Jan 2018 – Sep 2018', rate: '7.6%' },
-  { period: 'Jul 2017 – Dec 2017', rate: '7.8%' },
-  { period: 'Apr 2016 – Jun 2017', rate: '8.0% → 8.1%' },
-  { period: 'Apr 2013 – Mar 2016', rate: '8.7%' },
-  { period: 'Dec 2011 – Mar 2013', rate: '8.6%' },
-  { period: 'Apr 2010 – Nov 2011', rate: '8.0%' },
+  { period: 'Apr 2020 â€“ Present', rate: '7.1%' },
+  { period: 'Oct 2018 â€“ Mar 2020', rate: '8.0% â†’ 7.9%' },
+  { period: 'Jan 2018 â€“ Sep 2018', rate: '7.6%' },
+  { period: 'Jul 2017 â€“ Dec 2017', rate: '7.8%' },
+  { period: 'Apr 2016 â€“ Jun 2017', rate: '8.0% â†’ 8.1%' },
+  { period: 'Apr 2013 â€“ Mar 2016', rate: '8.7%' },
+  { period: 'Dec 2011 â€“ Mar 2013', rate: '8.6%' },
+  { period: 'Apr 2010 â€“ Nov 2011', rate: '8.0%' },
 ];
 
 const FAQS = [
   {
     q: 'What is the minimum and maximum deposit in a PPF account?',
-    a: 'The minimum annual deposit required to keep a PPF account active is ₹500. The maximum deposit allowed per financial year is ₹1,50,000. Deposits can be made in a lump sum or in up to 12 instalments during the year.',
+    a: 'The minimum annual deposit required to keep a PPF account active is â‚¹500. The maximum deposit allowed per financial year is â‚¹1,50,000. Deposits can be made in a lump sum or in up to 12 instalments during the year.',
   },
   {
     q: 'Can I withdraw money from my PPF account before maturity?',
@@ -58,7 +59,7 @@ const FAQS = [
   },
   {
     q: 'What happens if I miss a year\'s deposit?',
-    a: 'If you fail to deposit the minimum ₹500 in a financial year, your account becomes inactive (dormant). To revive it, you must pay the ₹500 minimum for each defaulted year along with a penalty of ₹50 per defaulted year. The account continues to earn interest even while dormant.',
+    a: 'If you fail to deposit the minimum â‚¹500 in a financial year, your account becomes inactive (dormant). To revive it, you must pay the â‚¹500 minimum for each defaulted year along with a penalty of â‚¹50 per defaulted year. The account continues to earn interest even while dormant.',
   },
   {
     q: 'Can I take a loan against my PPF balance?',
@@ -74,15 +75,15 @@ const FAQS = [
   },
   {
     q: 'How does PPF compare to Fixed Deposits for tax saving?',
-    a: 'Both PPF and tax-saving FDs qualify for Section 80C deduction up to ₹1.5 lakh. However, PPF offers triple tax exemption (EEE) — the investment, interest earned, and maturity amount are all tax-free. FD interest is taxable as per your income slab. PPF also offers a longer lock-in (15 years vs 5 years for tax FDs) but typically delivers better post-tax returns.',
+    a: 'Both PPF and tax-saving FDs qualify for Section 80C deduction up to â‚¹1.5 lakh. However, PPF offers triple tax exemption (EEE) â€” the investment, interest earned, and maturity amount are all tax-free. FD interest is taxable as per your income slab. PPF also offers a longer lock-in (15 years vs 5 years for tax FDs) but typically delivers better post-tax returns.',
   },
   {
     q: 'What happens to the PPF account after 15 years?',
-    a: 'After the initial 15-year maturity period, you have three options: (1) Withdraw the entire amount tax-free, (2) Extend in blocks of 5 years with continued contributions, or (3) Extend without contributions — the existing balance continues earning interest, and you can make one withdrawal per year up to 60% of the opening balance at the start of the extension period.',
+    a: 'After the initial 15-year maturity period, you have three options: (1) Withdraw the entire amount tax-free, (2) Extend in blocks of 5 years with continued contributions, or (3) Extend without contributions â€” the existing balance continues earning interest, and you can make one withdrawal per year up to 60% of the opening balance at the start of the extension period.',
   },
   {
     q: 'Can I open more than one PPF account?',
-    a: 'No, an individual can hold only one PPF account in their name. If a second account is discovered, it will be merged or deactivated. However, you can also open one PPF account in the name of each of your minor children, operated by you as a guardian. The combined annual deposit across all accounts (self + minor children) is capped at ₹1,50,000.',
+    a: 'No, an individual can hold only one PPF account in their name. If a second account is discovered, it will be merged or deactivated. However, you can also open one PPF account in the name of each of your minor children, operated by you as a guardian. The combined annual deposit across all accounts (self + minor children) is capped at â‚¹1,50,000.',
   },
   {
     q: 'When should I deposit money for maximum interest benefit?',
@@ -91,11 +92,11 @@ const FAQS = [
 ];
 
 const COMPARISON_DATA = [
-  { feature: 'Returns (Approx.)', ppf: '7.1% (Govt. set)', fd: '6–7.5% (Bank)', elss: '12–15% (Market)', nps: '8–10% (Mixed)' },
+  { feature: 'Returns (Approx.)', ppf: '7.1% (Govt. set)', fd: '6â€“7.5% (Bank)', elss: '12â€“15% (Market)', nps: '8â€“10% (Mixed)' },
   { feature: 'Lock-in Period', ppf: '15 years', fd: '5 years (Tax)', elss: '3 years', nps: 'Till age 60' },
-  { feature: 'Tax on Returns', ppf: 'Fully exempt', fd: 'Taxable', elss: '10% LTCG > ₹1L', nps: 'Partial tax' },
+  { feature: 'Tax on Returns', ppf: 'Fully exempt', fd: 'Taxable', elss: '10% LTCG > â‚¹1L', nps: 'Partial tax' },
   { feature: 'Risk Level', ppf: 'Zero (Govt.)', fd: 'Very Low', elss: 'High (Equity)', nps: 'Moderate' },
-  { feature: 'Section 80C', ppf: '✓ Up to ₹1.5L', fd: '✓ Up to ₹1.5L', elss: '✓ Up to ₹1.5L', nps: '✓ Up to ₹2L' },
+  { feature: 'Section 80C', ppf: 'âœ“ Up to â‚¹1.5L', fd: 'âœ“ Up to â‚¹1.5L', elss: 'âœ“ Up to â‚¹1.5L', nps: 'âœ“ Up to â‚¹2L' },
   { feature: 'Premature Exit', ppf: 'After 7 years*', fd: 'Penalty applies', elss: 'Not allowed', nps: 'Partial at 60%' },
 ];
 
@@ -114,7 +115,12 @@ export default function PpfCalculator() {
 
   return (
     <div className="min-h-screen flex flex-col font-sans bg-gray-50">
-      <Header />
+                  <SEO
+                title="PPF Calculator – Public Provident Fund Returns Calculator"
+                description="Free PPF Calculator — calculate your Public Provident Fund maturity amount, interest earned, and year-wise balance. Plan your long-term tax-saving investments."
+                canonical="/ppf-calculator"
+            />
+<Header />
       <main className="flex-grow pt-28">
         {/* Hero */}
         <section className="relative overflow-hidden bg-gradient-to-br from-[#090a3d] via-[#0f1058] to-[#1a1b6b] text-white py-16 md:py-24">
@@ -144,7 +150,7 @@ export default function PpfCalculator() {
             {/* Inputs */}
             <div className="bg-white rounded-2xl shadow-xl p-6 md:p-8 border border-gray-100">
               <h2 className="text-xl font-bold text-[#090a3d] mb-6 flex items-center gap-2">
-                <span className="w-8 h-8 rounded-lg bg-[#090a3d] text-white flex items-center justify-center text-sm">₹</span>
+                <span className="w-8 h-8 rounded-lg bg-[#090a3d] text-white flex items-center justify-center text-sm">â‚¹</span>
                 Enter Your Details
               </h2>
 
@@ -153,7 +159,7 @@ export default function PpfCalculator() {
                 <div className="flex justify-between items-center mb-2">
                   <label className="text-sm font-medium text-gray-700">Annual Investment</label>
                   <div className="flex items-center gap-1 bg-gray-50 border border-gray-200 rounded-lg px-3 py-1.5">
-                    <span className="text-sm text-gray-500">₹</span>
+                    <span className="text-sm text-gray-500">â‚¹</span>
                     <input
                       type="number"
                       min={500}
@@ -177,8 +183,8 @@ export default function PpfCalculator() {
                   className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-[var(--color-brand-secondary)]"
                 />
                 <div className="flex justify-between text-xs text-gray-400 mt-1">
-                  <span>₹500</span>
-                  <span>₹1,50,000</span>
+                  <span>â‚¹500</span>
+                  <span>â‚¹1,50,000</span>
                 </div>
                 <div className="flex flex-wrap gap-2 mt-3">
                   {ANNUAL_PRESETS.map(p => (
@@ -187,7 +193,7 @@ export default function PpfCalculator() {
                       onClick={() => setAnnual(p)}
                       className={`px-3 py-1 rounded-full text-xs font-medium transition-all ${annual === p ? 'bg-[var(--color-brand-secondary)] text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'}`}
                     >
-                      ₹{p.toLocaleString('en-IN')}
+                      â‚¹{p.toLocaleString('en-IN')}
                     </button>
                   ))}
                 </div>
@@ -280,7 +286,7 @@ export default function PpfCalculator() {
               {/* Summary */}
               <div className="bg-white rounded-2xl shadow-xl p-6 md:p-8 border border-gray-100">
                 <h3 className="text-lg font-bold text-[#090a3d] mb-5 flex items-center gap-2">
-                  <span className="w-7 h-7 rounded-lg bg-[var(--color-brand-secondary)]/20 text-[var(--color-brand-secondary)] flex items-center justify-center text-xs">📊</span>
+                  <span className="w-7 h-7 rounded-lg bg-[var(--color-brand-secondary)]/20 text-[var(--color-brand-secondary)] flex items-center justify-center text-xs">ðŸ“Š</span>
                   Investment Summary
                 </h3>
                 <div className="space-y-4">
@@ -385,7 +391,7 @@ export default function PpfCalculator() {
                 onClick={() => setShowAllRows(v => !v)}
                 className="mt-4 text-sm font-medium text-[var(--color-brand-secondary)] hover:underline"
               >
-                {showAllRows ? 'Show less ↑' : `Show all ${result.table.length} years ↓`}
+                {showAllRows ? 'Show less â†‘' : `Show all ${result.table.length} years â†“`}
               </button>
             )}
           </div>
@@ -403,7 +409,7 @@ export default function PpfCalculator() {
                 PPF accounts can be opened at any designated post office or nationalised bank branch. The scheme mandates a minimum lock-in period of 15 years, which can be extended indefinitely in blocks of 5 years. The interest rate is set quarterly by the Ministry of Finance and is currently 7.1% per annum (since April 2020), compounded annually.
               </p>
               <p>
-                One of the most compelling features of PPF is its <strong>EEE (Exempt-Exempt-Exempt)</strong> tax status — your annual contributions qualify for deduction under Section 80C of the Income Tax Act (up to ₹1,50,000), the interest earned is completely tax-free, and the maturity amount is also exempt from tax. This triple tax benefit makes PPF unmatched among comparable fixed-income instruments in India.
+                One of the most compelling features of PPF is its <strong>EEE (Exempt-Exempt-Exempt)</strong> tax status â€” your annual contributions qualify for deduction under Section 80C of the Income Tax Act (up to â‚¹1,50,000), the interest earned is completely tax-free, and the maturity amount is also exempt from tax. This triple tax benefit makes PPF unmatched among comparable fixed-income instruments in India.
               </p>
             </div>
           </div>
@@ -444,32 +450,32 @@ export default function PpfCalculator() {
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {[
                 {
-                  icon: '💰',
+                  icon: 'ðŸ’°',
                   title: 'Deposit Limits',
-                  desc: 'Minimum ₹500 per year to keep the account active. Maximum deposit capped at ₹1,50,000 per financial year. Contributions can be made in a single lump sum or up to 12 instalments.',
+                  desc: 'Minimum â‚¹500 per year to keep the account active. Maximum deposit capped at â‚¹1,50,000 per financial year. Contributions can be made in a single lump sum or up to 12 instalments.',
                 },
                 {
-                  icon: '🔒',
+                  icon: 'ðŸ”’',
                   title: '15-Year Lock-in',
                   desc: 'The mandatory tenure is 15 financial years from the year of account opening. After maturity, extend in blocks of 5 years with or without fresh contributions, indefinitely.',
                 },
                 {
-                  icon: '🏦',
+                  icon: 'ðŸ¦',
                   title: 'Partial Withdrawal',
                   desc: 'Allowed from the 7th financial year. Withdraw up to 50% of the balance at the end of the 4th preceding year. Only one withdrawal is permitted per financial year.',
                 },
                 {
-                  icon: '📋',
+                  icon: 'ðŸ“‹',
                   title: 'Loan Facility',
                   desc: 'Available between the 3rd and 6th financial year. Borrow up to 25% of the balance at end of the 2nd preceding year. Interest charged at PPF rate + 1%.',
                 },
                 {
-                  icon: '👤',
+                  icon: 'ðŸ‘¤',
                   title: 'Eligibility',
                   desc: 'Any Indian resident individual can open a PPF account. Accounts can be opened for minor children (operated by parent/guardian). Only one account per individual is allowed.',
                 },
                 {
-                  icon: '📍',
+                  icon: 'ðŸ“',
                   title: 'Where to Open',
                   desc: 'Open at any nationalised bank, select private banks, India Post offices, or through authorised online banking platforms. Account transfers between branches are supported.',
                 },
@@ -496,20 +502,20 @@ export default function PpfCalculator() {
                 {
                   stage: 'Investment',
                   tag: 'Section 80C',
-                  desc: 'Annual contributions up to ₹1,50,000 are eligible for tax deduction under Section 80C of the Income Tax Act. This can reduce your taxable income by up to ₹1.5 lakh every year, saving up to ₹46,800 in taxes (at 30% slab + cess).',
-                  status: '✅ Exempt',
+                  desc: 'Annual contributions up to â‚¹1,50,000 are eligible for tax deduction under Section 80C of the Income Tax Act. This can reduce your taxable income by up to â‚¹1.5 lakh every year, saving up to â‚¹46,800 in taxes (at 30% slab + cess).',
+                  status: 'âœ… Exempt',
                 },
                 {
                   stage: 'Interest Earned',
                   tag: 'Section 10',
                   desc: 'The interest accrued in your PPF account each year is completely exempt from income tax. Unlike fixed deposits or savings accounts where interest is taxable, PPF interest grows your wealth without any tax deduction.',
-                  status: '✅ Exempt',
+                  status: 'âœ… Exempt',
                 },
                 {
                   stage: 'Maturity Amount',
                   tag: 'Section 10(11)',
-                  desc: 'The entire maturity proceeds — your principal plus all accumulated interest — are fully tax-free upon withdrawal. There is no capital gains tax, no TDS, and no wealth tax applicable on the PPF corpus.',
-                  status: '✅ Exempt',
+                  desc: 'The entire maturity proceeds â€” your principal plus all accumulated interest â€” are fully tax-free upon withdrawal. There is no capital gains tax, no TDS, and no wealth tax applicable on the PPF corpus.',
+                  status: 'âœ… Exempt',
                 },
               ].map((item, i) => (
                 <div key={i} className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:bg-white/15 transition-all">
@@ -570,7 +576,7 @@ export default function PpfCalculator() {
                 {
                   step: '01',
                   title: 'Set Annual Investment',
-                  desc: 'Use the slider or type in the amount you plan to invest in your PPF account each year. The range is ₹500 (minimum) to ₹1,50,000 (maximum allowed by law).',
+                  desc: 'Use the slider or type in the amount you plan to invest in your PPF account each year. The range is â‚¹500 (minimum) to â‚¹1,50,000 (maximum allowed by law).',
                 },
                 {
                   step: '02',
@@ -580,7 +586,7 @@ export default function PpfCalculator() {
                 {
                   step: '03',
                   title: 'Set Interest Rate',
-                  desc: 'The calculator defaults to the current rate of 7.1%. Adjust this to model different scenarios — for conservative estimates use a lower rate; for historical average, try 8%.',
+                  desc: 'The calculator defaults to the current rate of 7.1%. Adjust this to model different scenarios â€” for conservative estimates use a lower rate; for historical average, try 8%.',
                 },
                 {
                   step: '04',
@@ -643,3 +649,4 @@ export default function PpfCalculator() {
     </div>
   );
 }
+

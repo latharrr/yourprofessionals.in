@@ -1,43 +1,45 @@
+import { Link } from 'react-router-dom';
+
 export default function Services() {
     const services = [
         {
             title: "Company Formation",
-            description: "Build web-based solutions that enhance customer experience.",
+            description: "Register your Private Limited, LLP, OPC or Partnership Firm with end-to-end expert guidance and fast turnaround.",
             linkText: "Learn more",
             icon: "🏢",
-            link: "/company-registration"
+            link: "/private-limited-company-registration"
         },
         {
             title: "Company Secretarial Services",
-            description: "Make data-driven decisions and utilize technology to reach business goals.",
+            description: "Complete secretarial support including board meetings, ROC filings, and statutory compliance by qualified CS professionals.",
             linkText: "Learn more",
             icon: "📊",
             link: "/company-secretarial-services"
         },
         {
             title: "Virtual Office Address",
-            description: "Foster customer relationships by effectively serving your market.",
+            description: "Get a prestigious business address in major cities for GST registration, banking, and official correspondence.",
             linkText: "Learn more",
             icon: "📍",
             link: "/virtual-office"
         },
         {
             title: "Annual Compliance Services",
-            description: "Turn your ideas into modern products with our design experts.",
+            description: "Stay compliant year-round with comprehensive annual filing packages for all company types — never miss a deadline.",
             linkText: "Learn more",
             icon: "📋",
             link: "/annual-compliance-services"
         },
         {
             title: "Payroll Services",
-            description: "Expand your business across the globe with minimal effort.",
+            description: "Streamline employee payroll, TDS calculations, PF/ESI contributions, and payslip generation with full-service payroll support.",
             linkText: "Learn more",
             icon: "💸",
             link: "/payroll-services"
         },
         {
             title: "Bookkeeping Services",
-            description: "Steering user behaviours with creative design, data insights & technology.",
+            description: "Accurate, timely bookkeeping and accounting services to keep your financial records organised and audit-ready.",
             linkText: "Learn more",
             icon: "📒",
             link: "/bookkeeping-services"
@@ -66,18 +68,18 @@ export default function Services() {
                             <p className="text-gray-600 mb-6 leading-relaxed">
                                 {service.description}
                             </p>
-                            <a href={service.link} className="font-semibold flex items-center justify-center gap-2 text-[#090a3d] hover:text-[var(--color-brand-secondary)] transition-colors">
+                            <Link to={service.link} className="font-semibold flex items-center justify-center gap-2 text-[#090a3d] hover:text-[var(--color-brand-secondary)] transition-colors">
                                 {service.linkText}
                                 <span className="text-xl">→</span>
-                            </a>
+                            </Link>
                         </div>
                     ))}
                 </div>
 
                 <div className="text-center mt-12">
-                    <button className="bg-[#090a3d] text-white px-8 py-3 rounded hover:bg-blue-900 transition-all font-semibold shadow-lg text-sm">
+                    <Link to="/company-registration" className="inline-block bg-[#090a3d] text-white px-8 py-3 rounded hover:bg-blue-900 transition-all font-semibold shadow-lg text-sm">
                         See All Services
-                    </button>
+                    </Link>
                 </div>
             </div>
         </section>

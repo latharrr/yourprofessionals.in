@@ -1,15 +1,16 @@
-import { useState, useMemo } from 'react';
+﻿import { useState, useMemo } from 'react';
 import Header from '../components/layout/Header';
 import Footer from '../components/layout/Footer';
+import SEO from '../components/common/SEO';
 
 function formatCurrency(value: number): string {
-    if (value >= 10000000) return `₹${(value / 10000000).toFixed(2)} Cr`;
-    if (value >= 100000) return `₹${(value / 100000).toFixed(2)} L`;
-    return `₹${value.toLocaleString('en-IN', { maximumFractionDigits: 0 })}`;
+    if (value >= 10000000) return `â‚¹${(value / 10000000).toFixed(2)} Cr`;
+    if (value >= 100000) return `â‚¹${(value / 100000).toFixed(2)} L`;
+    return `â‚¹${value.toLocaleString('en-IN', { maximumFractionDigits: 0 })}`;
 }
 
 function formatCurrencyExact(value: number): string {
-    return `₹${value.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+    return `â‚¹${value.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
 }
 
 function daysBetween(from: Date, to: Date): number {
@@ -26,18 +27,18 @@ function toDateInputValue(d: Date): string {
 const AMOUNT_PRESETS = [50000, 100000, 500000, 1000000, 5000000];
 
 const GST_RETURN_DATES = [
-    { returnType: 'GSTR-1', frequency: 'Monthly', dueDate: '11th of next month', applicability: 'Turnover > ₹5 Cr or opted for monthly filing' },
-    { returnType: 'GSTR-1', frequency: 'Quarterly (IFF)', dueDate: '13th of month after quarter', applicability: 'Turnover ≤ ₹5 Cr under QRMP scheme' },
-    { returnType: 'GSTR-3B', frequency: 'Monthly', dueDate: '20th of next month', applicability: 'Turnover > ₹5 Cr' },
-    { returnType: 'GSTR-3B', frequency: 'Quarterly', dueDate: '22nd/24th of month after quarter', applicability: 'Turnover ≤ ₹5 Cr under QRMP scheme' },
+    { returnType: 'GSTR-1', frequency: 'Monthly', dueDate: '11th of next month', applicability: 'Turnover > â‚¹5 Cr or opted for monthly filing' },
+    { returnType: 'GSTR-1', frequency: 'Quarterly (IFF)', dueDate: '13th of month after quarter', applicability: 'Turnover â‰¤ â‚¹5 Cr under QRMP scheme' },
+    { returnType: 'GSTR-3B', frequency: 'Monthly', dueDate: '20th of next month', applicability: 'Turnover > â‚¹5 Cr' },
+    { returnType: 'GSTR-3B', frequency: 'Quarterly', dueDate: '22nd/24th of month after quarter', applicability: 'Turnover â‰¤ â‚¹5 Cr under QRMP scheme' },
     { returnType: 'GSTR-9', frequency: 'Annual', dueDate: '31st December of next FY', applicability: 'All regular taxpayers' },
-    { returnType: 'GSTR-9C', frequency: 'Annual', dueDate: '31st December of next FY', applicability: 'Turnover > ₹5 Cr (self-certified reconciliation)' },
+    { returnType: 'GSTR-9C', frequency: 'Annual', dueDate: '31st December of next FY', applicability: 'Turnover > â‚¹5 Cr (self-certified reconciliation)' },
 ];
 
 const FAQS = [
     {
         q: 'How is GST interest calculated?',
-        a: 'GST interest is calculated on the outstanding tax amount from the day after the due date until the actual date of payment. The formula is: Interest = Tax Amount × Rate × Number of Days / 365. The rate is 18% p.a. for late payment and 24% p.a. for excess ITC claimed.',
+        a: 'GST interest is calculated on the outstanding tax amount from the day after the due date until the actual date of payment. The formula is: Interest = Tax Amount Ã— Rate Ã— Number of Days / 365. The rate is 18% p.a. for late payment and 24% p.a. for excess ITC claimed.',
     },
     {
         q: 'What is the interest rate for late filing of GST returns?',
@@ -49,7 +50,7 @@ const FAQS = [
     },
     {
         q: 'Is GST interest calculated on gross or net tax liability?',
-        a: 'Following the amendment effective from 01 September 2020, GST interest under Section 50(1) is calculated on the net tax liability — that is, the tax payable after adjusting eligible Input Tax Credit. This was clarified by the GST Council to reduce the burden on taxpayers.',
+        a: 'Following the amendment effective from 01 September 2020, GST interest under Section 50(1) is calculated on the net tax liability â€” that is, the tax payable after adjusting eligible Input Tax Credit. This was clarified by the GST Council to reduce the burden on taxpayers.',
     },
     {
         q: 'Can GST interest be waived?',
@@ -57,7 +58,7 @@ const FAQS = [
     },
     {
         q: 'Is there any late fee in addition to GST interest?',
-        a: 'Yes. In addition to interest, a late fee of ₹50 per day (₹25 CGST + ₹25 SGST) is charged for late filing of returns, subject to a maximum cap. For nil returns, the late fee is ₹20 per day. Interest and late fees are separate penalties and both apply simultaneously.',
+        a: 'Yes. In addition to interest, a late fee of â‚¹50 per day (â‚¹25 CGST + â‚¹25 SGST) is charged for late filing of returns, subject to a maximum cap. For nil returns, the late fee is â‚¹20 per day. Interest and late fees are separate penalties and both apply simultaneously.',
     },
     {
         q: 'From which date is GST interest calculated?',
@@ -65,7 +66,7 @@ const FAQS = [
     },
     {
         q: 'How do I pay GST interest on the GST portal?',
-        a: 'GST interest is auto-calculated and shown in the return filing form. When filing GSTR-3B, the portal computes the interest based on the delay and displays it in the "Interest" column. You must pay this interest along with the tax liability before filing the return. The interest amount cannot be paid using ITC — it must be paid in cash.',
+        a: 'GST interest is auto-calculated and shown in the return filing form. When filing GSTR-3B, the portal computes the interest based on the delay and displays it in the "Interest" column. You must pay this interest along with the tax liability before filing the return. The interest amount cannot be paid using ITC â€” it must be paid in cash.',
     },
 ];
 
@@ -95,7 +96,12 @@ export default function GstInterestCalculator() {
 
     return (
         <div className="min-h-screen flex flex-col font-sans">
-            <Header />
+                        <SEO
+                title="GST Interest & Penalty Calculator – Calculate Online"
+                description="Calculate GST interest and penalty on late returns and tax payments. Free online tool for accurate GST interest computation as per GST Act."
+                canonical="/gst-interest-calculator"
+            />
+<Header />
             <main className="flex-grow pt-28">
                 {/* Hero */}
                 <section className="bg-gradient-to-br from-[#090a3d] via-[#0f1163] to-[#1a1c6e] text-white py-12 md:py-20 relative overflow-hidden">
@@ -129,7 +135,7 @@ export default function GstInterestCalculator() {
                                     <div className="flex justify-between items-center mb-2">
                                         <label className="text-sm font-semibold text-gray-700">GST Amount Due</label>
                                         <div className="flex items-center gap-1 bg-gray-50 border border-gray-200 rounded-lg px-3 py-1.5">
-                                            <span className="text-sm text-gray-500">₹</span>
+                                            <span className="text-sm text-gray-500">â‚¹</span>
                                             <input
                                                 type="number"
                                                 value={taxAmount}
@@ -148,8 +154,8 @@ export default function GstInterestCalculator() {
                                         className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-[var(--color-brand-secondary)]"
                                     />
                                     <div className="flex justify-between text-xs text-gray-400 mt-1">
-                                        <span>₹1,000</span>
-                                        <span>₹1 Cr</span>
+                                        <span>â‚¹1,000</span>
+                                        <span>â‚¹1 Cr</span>
                                     </div>
                                     <div className="flex flex-wrap gap-2 mt-3">
                                         {AMOUNT_PRESETS.map(p => (
@@ -202,7 +208,7 @@ export default function GstInterestCalculator() {
                                             />
                                             <div>
                                                 <span className="text-sm font-bold text-[#090a3d] block">Late Filing</span>
-                                                <span className="text-xs text-gray-500">18% p.a. — Section 50(1)</span>
+                                                <span className="text-xs text-gray-500">18% p.a. â€” Section 50(1)</span>
                                             </div>
                                         </label>
                                         <label
@@ -217,7 +223,7 @@ export default function GstInterestCalculator() {
                                             />
                                             <div>
                                                 <span className="text-sm font-bold text-[#090a3d] block">Excess ITC Claimed</span>
-                                                <span className="text-xs text-gray-500">24% p.a. — Section 50(3)</span>
+                                                <span className="text-xs text-gray-500">24% p.a. â€” Section 50(3)</span>
                                             </div>
                                         </label>
                                     </div>
@@ -285,10 +291,10 @@ export default function GstInterestCalculator() {
                                             <div className="bg-gray-50 rounded-xl p-4 mt-2 border border-gray-100">
                                                 <p className="text-xs text-gray-400 uppercase tracking-wider font-semibold mb-2">Formula</p>
                                                 <p className="text-sm font-mono text-[#090a3d] leading-relaxed">
-                                                    Interest = Tax × Rate × Days ÷ 365
+                                                    Interest = Tax Ã— Rate Ã— Days Ã· 365
                                                 </p>
                                                 <p className="text-sm font-mono text-gray-500 mt-1">
-                                                    = {formatCurrencyExact(taxAmount)} × {result.rate}% × {result.delayDays} ÷ 365
+                                                    = {formatCurrencyExact(taxAmount)} Ã— {result.rate}% Ã— {result.delayDays} Ã· 365
                                                 </p>
                                                 <p className="text-sm font-mono text-[var(--color-brand-secondary)] font-bold mt-1">
                                                     = {formatCurrencyExact(result.interest)}
@@ -297,7 +303,7 @@ export default function GstInterestCalculator() {
                                         </div>
                                     ) : (
                                         <div className="text-center py-6">
-                                            <span className="text-4xl block mb-3">✅</span>
+                                            <span className="text-4xl block mb-3">âœ…</span>
                                             <p className="text-sm text-gray-500">No delay detected. Payment date is on or before the due date. No interest is applicable.</p>
                                         </div>
                                     )}
@@ -319,7 +325,7 @@ export default function GstInterestCalculator() {
                                 GST interest is a statutory charge levied under <strong className="text-[#090a3d]">Section 50 of the Central Goods and Services Tax (CGST) Act, 2017</strong> when a registered taxpayer fails to pay the Goods and Services Tax within the prescribed due date. It serves as compensation to the government for the delayed receipt of tax revenue.
                             </p>
                             <p>
-                                Unlike penalties or late fees, GST interest is automatically applicable the moment a payment deadline is missed — no separate notice or assessment order is required. The interest is calculated on a <strong className="text-[#090a3d]">simple interest basis</strong> from the day after the due date until the actual date of payment, and must be paid in cash through the electronic cash ledger. It cannot be set off against Input Tax Credit.
+                                Unlike penalties or late fees, GST interest is automatically applicable the moment a payment deadline is missed â€” no separate notice or assessment order is required. The interest is calculated on a <strong className="text-[#090a3d]">simple interest basis</strong> from the day after the due date until the actual date of payment, and must be paid in cash through the electronic cash ledger. It cannot be set off against Input Tax Credit.
                             </p>
                             <p>
                                 The amount of interest depends on two factors: the nature of the default (late payment vs. excess ITC) and the number of days the payment is delayed. Taxpayers are expected to self-assess and pay the interest voluntarily while filing their returns.
@@ -338,17 +344,17 @@ export default function GstInterestCalculator() {
                         <div className="grid md:grid-cols-3 gap-6">
                             {[
                                 {
-                                    icon: '⏰',
+                                    icon: 'â°',
                                     title: 'Late Payment of GST',
                                     desc: 'When you file GSTR-3B after the due date and pay the tax liability late, interest at 18% p.a. applies on the net tax amount from the day after the deadline until the date of actual payment.',
                                 },
                                 {
-                                    icon: '⚠️',
+                                    icon: 'âš ï¸',
                                     title: 'Excess ITC Claimed & Utilised',
                                     desc: 'If you claim more Input Tax Credit than you are legitimately entitled to and use it to reduce your output tax liability, a higher interest rate of 24% p.a. is charged on the excess ITC amount.',
                                 },
                                 {
-                                    icon: '🔄',
+                                    icon: 'ðŸ”„',
                                     title: 'Undue Reduction of Output Tax',
                                     desc: 'When the output tax liability is wrongly reduced through incorrect reporting, misclassification of supplies, or wrong tax rate application, interest at 24% p.a. is levied on the shortfall amount.',
                                 },
@@ -377,14 +383,14 @@ export default function GstInterestCalculator() {
                                     <span className="bg-blue-100 text-blue-700 text-2xl font-bold px-4 py-2 rounded-xl">18%</span>
                                     <div>
                                         <h3 className="text-lg font-bold text-[#090a3d]">Late Payment</h3>
-                                        <p className="text-xs text-gray-500">Section 50(1) — CGST Act</p>
+                                        <p className="text-xs text-gray-500">Section 50(1) â€” CGST Act</p>
                                     </div>
                                 </div>
                                 <ul className="space-y-2 text-sm text-gray-600">
-                                    <li className="flex items-start gap-2"><span className="text-blue-500 mt-0.5">●</span>Applies when GST is paid after the return due date</li>
-                                    <li className="flex items-start gap-2"><span className="text-blue-500 mt-0.5">●</span>Calculated on net tax liability (after ITC adjustment)</li>
-                                    <li className="flex items-start gap-2"><span className="text-blue-500 mt-0.5">●</span>Covers CGST, SGST/UTGST, and IGST components separately</li>
-                                    <li className="flex items-start gap-2"><span className="text-blue-500 mt-0.5">●</span>Most common scenario faced by taxpayers</li>
+                                    <li className="flex items-start gap-2"><span className="text-blue-500 mt-0.5">â—</span>Applies when GST is paid after the return due date</li>
+                                    <li className="flex items-start gap-2"><span className="text-blue-500 mt-0.5">â—</span>Calculated on net tax liability (after ITC adjustment)</li>
+                                    <li className="flex items-start gap-2"><span className="text-blue-500 mt-0.5">â—</span>Covers CGST, SGST/UTGST, and IGST components separately</li>
+                                    <li className="flex items-start gap-2"><span className="text-blue-500 mt-0.5">â—</span>Most common scenario faced by taxpayers</li>
                                 </ul>
                             </div>
                             {/* 24% Card */}
@@ -393,14 +399,14 @@ export default function GstInterestCalculator() {
                                     <span className="bg-red-100 text-red-700 text-2xl font-bold px-4 py-2 rounded-xl">24%</span>
                                     <div>
                                         <h3 className="text-lg font-bold text-[#090a3d]">Excess ITC / Undue Claim</h3>
-                                        <p className="text-xs text-gray-500">Section 50(3) — CGST Act</p>
+                                        <p className="text-xs text-gray-500">Section 50(3) â€” CGST Act</p>
                                     </div>
                                 </div>
                                 <ul className="space-y-2 text-sm text-gray-600">
-                                    <li className="flex items-start gap-2"><span className="text-red-500 mt-0.5">●</span>Applies when excess ITC is claimed and utilised</li>
-                                    <li className="flex items-start gap-2"><span className="text-red-500 mt-0.5">●</span>Applies when output tax liability is unduly reduced</li>
-                                    <li className="flex items-start gap-2"><span className="text-red-500 mt-0.5">●</span>Higher rate acts as a deterrent against fraudulent claims</li>
-                                    <li className="flex items-start gap-2"><span className="text-red-500 mt-0.5">●</span>May also attract penalty proceedings under Section 73/74</li>
+                                    <li className="flex items-start gap-2"><span className="text-red-500 mt-0.5">â—</span>Applies when excess ITC is claimed and utilised</li>
+                                    <li className="flex items-start gap-2"><span className="text-red-500 mt-0.5">â—</span>Applies when output tax liability is unduly reduced</li>
+                                    <li className="flex items-start gap-2"><span className="text-red-500 mt-0.5">â—</span>Higher rate acts as a deterrent against fraudulent claims</li>
+                                    <li className="flex items-start gap-2"><span className="text-red-500 mt-0.5">â—</span>May also attract penalty proceedings under Section 73/74</li>
                                 </ul>
                             </div>
                         </div>
@@ -453,12 +459,12 @@ export default function GstInterestCalculator() {
                         </div>
                         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
                             {[
-                                { icon: '📅', title: 'Set Calendar Reminders', desc: 'Mark GST return due dates at least 5 days in advance. Use digital calendar alerts for GSTR-1 and GSTR-3B deadlines every month to never miss a filing window.' },
-                                { icon: '📊', title: 'Maintain Regular Books', desc: 'Keep your purchase and sales registers updated in real time. Monthly reconciliation of invoices with GSTR-2A/2B data helps identify mismatches early and prevents last-minute filing rushes.' },
-                                { icon: '💰', title: 'Maintain Sufficient Cash Balance', desc: 'Ensure your electronic cash ledger has adequate funds before the due date. Deposit money at least 2–3 days before the deadline to account for bank processing delays.' },
-                                { icon: '🔍', title: 'Verify ITC Claims Carefully', desc: 'Cross-check every ITC claim against GSTR-2B auto-populated data. Avoid claiming credit on ineligible items listed under Section 17(5) such as personal vehicles, food, and outdoor catering.' },
-                                { icon: '🤝', title: 'Hire a Professional', desc: 'Engage a qualified GST practitioner or chartered accountant to handle your compliance. Professional oversight significantly reduces the risk of errors, wrong ITC claims, and missed deadlines.' },
-                                { icon: '🔧', title: 'Use GST-Compliant Software', desc: 'Adopt accounting software that auto-generates GST returns, tracks due dates, and flags discrepancies. Automated tools eliminate manual errors and streamline your entire filing process.' },
+                                { icon: 'ðŸ“…', title: 'Set Calendar Reminders', desc: 'Mark GST return due dates at least 5 days in advance. Use digital calendar alerts for GSTR-1 and GSTR-3B deadlines every month to never miss a filing window.' },
+                                { icon: 'ðŸ“Š', title: 'Maintain Regular Books', desc: 'Keep your purchase and sales registers updated in real time. Monthly reconciliation of invoices with GSTR-2A/2B data helps identify mismatches early and prevents last-minute filing rushes.' },
+                                { icon: 'ðŸ’°', title: 'Maintain Sufficient Cash Balance', desc: 'Ensure your electronic cash ledger has adequate funds before the due date. Deposit money at least 2â€“3 days before the deadline to account for bank processing delays.' },
+                                { icon: 'ðŸ”', title: 'Verify ITC Claims Carefully', desc: 'Cross-check every ITC claim against GSTR-2B auto-populated data. Avoid claiming credit on ineligible items listed under Section 17(5) such as personal vehicles, food, and outdoor catering.' },
+                                { icon: 'ðŸ¤', title: 'Hire a Professional', desc: 'Engage a qualified GST practitioner or chartered accountant to handle your compliance. Professional oversight significantly reduces the risk of errors, wrong ITC claims, and missed deadlines.' },
+                                { icon: 'ðŸ”§', title: 'Use GST-Compliant Software', desc: 'Adopt accounting software that auto-generates GST returns, tracks due dates, and flags discrepancies. Automated tools eliminate manual errors and streamline your entire filing process.' },
                             ].map((tip, i) => (
                                 <div key={i} className="bg-gray-50 rounded-2xl p-6 border border-gray-100 hover:shadow-lg hover:border-amber-200 transition-all">
                                     <span className="text-3xl mb-3 block">{tip.icon}</span>
@@ -479,7 +485,7 @@ export default function GstInterestCalculator() {
                         </div>
                         <div className="space-y-6">
                             {[
-                                { step: '01', title: 'Enter the GST Amount Due', desc: 'Type the outstanding tax amount or use the slider to set a value between ₹1,000 and ₹10 Crore. You can also select from preset amounts for quick input.' },
+                                { step: '01', title: 'Enter the GST Amount Due', desc: 'Type the outstanding tax amount or use the slider to set a value between â‚¹1,000 and â‚¹10 Crore. You can also select from preset amounts for quick input.' },
                                 { step: '02', title: 'Select the Due Date', desc: 'Choose the original due date for your GST return (e.g., 20th of the month for GSTR-3B). This is the deadline by which the tax should have been paid.' },
                                 { step: '03', title: 'Enter the Payment Date', desc: 'Select the actual date on which you paid or plan to pay the outstanding GST amount. The calculator computes interest from the day after the due date up to this date.' },
                                 { step: '04', title: 'Choose the Interest Type', desc: 'Select "Late Filing" for standard delayed payments (18% p.a.) or "Excess ITC Claimed" for cases where excess Input Tax Credit was claimed and utilised (24% p.a.).' },
@@ -543,3 +549,4 @@ export default function GstInterestCalculator() {
         </div>
     );
 }
+

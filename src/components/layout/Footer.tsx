@@ -104,10 +104,23 @@ export default function Footer() {
                 </div>
 
                 <div className="pt-8 border-t border-gray-700/50 flex flex-col items-center gap-4">
-                    <button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="w-12 h-12 bg-yellow-500 rounded-full flex items-center justify-center mb-2 hover:bg-yellow-400 transition-colors cursor-pointer">
-                        ⬆
+                    <button
+                        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                        aria-label="Scroll to top"
+                        className="w-12 h-12 bg-[var(--color-brand-secondary)] rounded-full flex items-center justify-center mb-2 hover:bg-[#a17500] transition-colors cursor-pointer shadow-lg"
+                    >
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-5 h-5 text-white">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
+                        </svg>
                     </button>
-                    <p className="text-gray-400 text-sm">© 2026 Your Professionals. All Rights Reserved.</p>
+                    <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm text-gray-400">
+                        <Link to="/contact" className="hover:text-[var(--color-brand-secondary)] transition-colors">Contact Us</Link>
+                        <span className="hidden sm:inline text-gray-600">·</span>
+                        <a href="mailto:info@yourprofessional.in" className="hover:text-[var(--color-brand-secondary)] transition-colors">info@yourprofessional.in</a>
+                        <span className="hidden sm:inline text-gray-600">·</span>
+                        <a href="tel:+917011936958" className="hover:text-[var(--color-brand-secondary)] transition-colors">+91-7011936958</a>
+                    </div>
+                    <p className="text-gray-500 text-sm text-center">© {new Date().getFullYear()} Your Professionals. All Rights Reserved.</p>
                 </div>
             </div>
         </footer>

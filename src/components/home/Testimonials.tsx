@@ -125,12 +125,12 @@ export default function Testimonials() {
 
                     <div
                         ref={scrollRef}
-                        className="flex gap-6 overflow-hidden scroll-smooth w-full"
+                        className="flex gap-6 overflow-x-auto overflow-y-hidden scroll-smooth w-full snap-x snap-proximity scrollbar-hide"
                     >
                     {testimonials.map((testimonial, idx) => (
                         <div
                             key={idx}
-                            className="min-w-[calc(100%-0px)] md:min-w-[calc(50%-12px)] lg:min-w-[calc(33.333%-16px)] bg-white p-8 rounded-2xl shadow-lg border border-gray-200 flex flex-col hover:shadow-xl transition-shadow"
+                            className="min-w-[calc(100%-0px)] md:min-w-[calc(50%-12px)] lg:min-w-[calc(33.333%-16px)] snap-start bg-white p-8 rounded-2xl shadow-lg border border-gray-200 flex flex-col hover:shadow-xl transition-shadow"
                         >
                             <div className="flex items-center gap-4 mb-6">
                                 <img

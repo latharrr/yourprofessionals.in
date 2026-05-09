@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useParams, Navigate } from 'react-router-dom';
 import Header from '../components/layout/Header';
 import Footer from '../components/layout/Footer';
+import SEO from '../components/common/SEO';
 import { SERVICES, type ServiceData } from '../data/services';
 
 const SERVICES_LIST = [
@@ -324,7 +325,7 @@ function WhyChooseUsSection() {
     ];
     return (
         <Section id="why-choose-us" className="bg-[#090a3d]">
-            <SectionTitle badge="Why Your Professionals need to shown prominently" title="Why Choose Us?" />
+            <SectionTitle badge="Our Commitment" title="Why Choose Us?" />
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {reasons.map((r, i) => (
                     <div key={i} className="bg-white/5 backdrop-blur-sm border border-white/10 p-6 rounded-2xl hover:bg-white/10 transition-colors">
@@ -345,8 +346,43 @@ export default function RegistrationPage() {
 
     if (!data) return <Navigate to="/" replace />;
 
+    const serviceSchema = {
+        '@context': 'https://schema.org',
+        '@type': 'Service',
+        'name': data.title,
+        'description': data.subtitle,
+        'provider': {
+            '@type': 'Organization',
+            'name': 'Your Professionals',
+            'url': 'https://www.yourprofessional.in',
+            'telephone': '+91-7011936958',
+            'email': 'info@yourprofessional.in',
+        },
+        'areaServed': 'IN',
+        'serviceType': data.title,
+        'url': `https://www.yourprofessional.in/${slug}`,
+    };
+
+    const faqSchema = data.faqs.length > 0 ? {
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        'mainEntity': data.faqs.map(faq => ({
+            '@type': 'Question',
+            'name': faq.q,
+            'acceptedAnswer': { '@type': 'Answer', 'text': faq.a },
+        })),
+    } : null;
+
+    const schemas = faqSchema ? [serviceSchema, faqSchema] : [serviceSchema];
+
     return (
         <div className="min-h-screen flex flex-col font-sans">
+            <SEO
+                title={`${data.title} – Fast & Reliable | Your Professionals`}
+                description={`${data.subtitle} Expert CA & CS support. Transparent pricing. Free consultation. Get started today with Your Professionals.`}
+                canonical={`/${slug}`}
+                schema={schemas}
+            />
             <Header />
             <main className="flex-grow">
                 <HeroSection data={data} />

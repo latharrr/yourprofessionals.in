@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Header from '../components/layout/Header';
 import Footer from '../components/layout/Footer';
+import SEO from '../components/common/SEO';
 
 export default function ContactUs() {
     const [formData, setFormData] = useState({
@@ -25,6 +26,11 @@ export default function ContactUs() {
 
     return (
         <div className="min-h-screen flex flex-col font-sans">
+            <SEO
+                title="Contact Us – Talk to Our Business Experts"
+                description="Get instant support from Your Professionals. Call, WhatsApp, or email our CA & CS experts for company registration, GST, trademark, compliance and more. Free consultation available."
+                canonical="/contact"
+            />
             <Header />
             <main className="flex-grow pt-28">
                 {/* Hero Section */}

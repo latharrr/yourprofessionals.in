@@ -1,6 +1,7 @@
-import { useState, useMemo } from 'react';
+﻿import { useState, useMemo } from 'react';
 import Header from '../components/layout/Header';
 import Footer from '../components/layout/Footer';
+import SEO from '../components/common/SEO';
 
 type Regime = 'old' | 'new';
 type AgeGroup = 'below60' | '60to80' | 'above80';
@@ -13,16 +14,16 @@ interface SlabBreakdown {
 }
 
 function formatINR(value: number): string {
-    if (value >= 10000000) return `₹${(value / 10000000).toFixed(2)} Cr`;
-    if (value >= 100000) return `₹${(value / 100000).toFixed(2)} L`;
-    return `₹${Math.round(value).toLocaleString('en-IN')}`;
+    if (value >= 10000000) return `â‚¹${(value / 10000000).toFixed(2)} Cr`;
+    if (value >= 100000) return `â‚¹${(value / 100000).toFixed(2)} L`;
+    return `â‚¹${Math.round(value).toLocaleString('en-IN')}`;
 }
 
 function formatSlabRange(from: number, to: number | null): string {
-    const f = from >= 100000 ? `₹${(from / 100000).toFixed(from % 100000 === 0 ? 0 : 1)}L` : `₹${from.toLocaleString('en-IN')}`;
+    const f = from >= 100000 ? `â‚¹${(from / 100000).toFixed(from % 100000 === 0 ? 0 : 1)}L` : `â‚¹${from.toLocaleString('en-IN')}`;
     if (to === null) return `Above ${f}`;
-    const t = to >= 100000 ? `₹${(to / 100000).toFixed(to % 100000 === 0 ? 0 : 1)}L` : `₹${to.toLocaleString('en-IN')}`;
-    return `${f} – ${t}`;
+    const t = to >= 100000 ? `â‚¹${(to / 100000).toFixed(to % 100000 === 0 ? 0 : 1)}L` : `â‚¹${to.toLocaleString('en-IN')}`;
+    return `${f} â€“ ${t}`;
 }
 
 function getOldRegimeSlabs(ageGroup: AgeGroup): { from: number; to: number | null; rate: number }[] {
@@ -151,7 +152,12 @@ export default function IncomeTaxCalculator() {
 
     return (
         <div className="min-h-screen flex flex-col font-sans">
-            <Header />
+                        <SEO
+                title="Income Tax Calculator FY 2025-26 – Compute Tax Online"
+                description="Free online income tax calculator for FY 2025-26 / AY 2026-27. Compare old vs new tax regime. Calculate your exact income tax liability in seconds."
+                canonical="/income-tax-calculator"
+            />
+<Header />
             <main className="flex-grow pt-28">
                 {/* Hero */}
                 <section className="bg-gradient-to-br from-[#090a3d] via-[#0f1163] to-[#1a1c6e] text-white py-12 md:py-20 relative overflow-hidden">
@@ -161,7 +167,7 @@ export default function IncomeTaxCalculator() {
                     </div>
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
                         <span className="inline-block bg-white/10 text-amber-300 text-sm font-semibold px-4 py-1.5 rounded-full mb-5 backdrop-blur-sm border border-white/10">
-                            Free Online Tool • FY 2025-26
+                            Free Online Tool â€¢ FY 2025-26
                         </span>
                         <h1 className="text-3xl md:text-5xl font-bold mb-4">
                             Income Tax Calculator <span className="text-[var(--color-brand-secondary)]">India</span>
@@ -196,7 +202,7 @@ export default function IncomeTaxCalculator() {
                                     <div className="flex justify-between items-center mb-2">
                                         <label className="text-sm font-semibold text-gray-700">Annual Income (Gross)</label>
                                         <div className="flex items-center gap-1 bg-gray-50 border border-gray-200 rounded-lg px-3 py-1.5">
-                                            <span className="text-sm text-gray-500">₹</span>
+                                            <span className="text-sm text-gray-500">â‚¹</span>
                                             <input type="number" value={income}
                                                 onChange={e => setIncome(Math.max(0, Math.min(50000000, Number(e.target.value))))}
                                                 className="w-28 text-sm font-semibold text-right bg-transparent focus:outline-none" />
@@ -205,7 +211,7 @@ export default function IncomeTaxCalculator() {
                                     <input type="range" min={0} max={50000000} step={50000} value={income}
                                         onChange={e => setIncome(Number(e.target.value))}
                                         className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-[var(--color-brand-secondary)]" />
-                                    <div className="flex justify-between text-xs text-gray-400 mt-1"><span>₹0</span><span>₹5 Cr</span></div>
+                                    <div className="flex justify-between text-xs text-gray-400 mt-1"><span>â‚¹0</span><span>â‚¹5 Cr</span></div>
                                     <div className="flex flex-wrap gap-2 mt-3">
                                         {INCOME_PRESETS.map(p => (
                                             <button key={p} onClick={() => setIncome(p)}
@@ -246,9 +252,9 @@ export default function IncomeTaxCalculator() {
                                         {/* 80C */}
                                         <div className="mb-4">
                                             <div className="flex justify-between items-center mb-1.5">
-                                                <label className="text-xs font-semibold text-gray-600">Section 80C <span className="text-gray-400">(max ₹1.5L)</span></label>
+                                                <label className="text-xs font-semibold text-gray-600">Section 80C <span className="text-gray-400">(max â‚¹1.5L)</span></label>
                                                 <div className="flex items-center gap-1 bg-white border border-gray-200 rounded-lg px-2 py-1">
-                                                    <span className="text-xs text-gray-500">₹</span>
+                                                    <span className="text-xs text-gray-500">â‚¹</span>
                                                     <input type="number" value={deductions80C}
                                                         onChange={e => setDeductions80C(Math.max(0, Math.min(150000, Number(e.target.value))))}
                                                         className="w-20 text-xs font-semibold text-right bg-transparent focus:outline-none" />
@@ -262,9 +268,9 @@ export default function IncomeTaxCalculator() {
                                         {/* 80D */}
                                         <div className="mb-4">
                                             <div className="flex justify-between items-center mb-1.5">
-                                                <label className="text-xs font-semibold text-gray-600">Section 80D – Health Insurance <span className="text-gray-400">(max ₹75K)</span></label>
+                                                <label className="text-xs font-semibold text-gray-600">Section 80D â€“ Health Insurance <span className="text-gray-400">(max â‚¹75K)</span></label>
                                                 <div className="flex items-center gap-1 bg-white border border-gray-200 rounded-lg px-2 py-1">
-                                                    <span className="text-xs text-gray-500">₹</span>
+                                                    <span className="text-xs text-gray-500">â‚¹</span>
                                                     <input type="number" value={deductions80D}
                                                         onChange={e => setDeductions80D(Math.max(0, Math.min(75000, Number(e.target.value))))}
                                                         className="w-20 text-xs font-semibold text-right bg-transparent focus:outline-none" />
@@ -280,7 +286,7 @@ export default function IncomeTaxCalculator() {
                                             <div className="flex justify-between items-center mb-1.5">
                                                 <label className="text-xs font-semibold text-gray-600">HRA Exemption</label>
                                                 <div className="flex items-center gap-1 bg-white border border-gray-200 rounded-lg px-2 py-1">
-                                                    <span className="text-xs text-gray-500">₹</span>
+                                                    <span className="text-xs text-gray-500">â‚¹</span>
                                                     <input type="number" value={hra}
                                                         onChange={e => setHra(Math.max(0, Number(e.target.value)))}
                                                         className="w-20 text-xs font-semibold text-right bg-transparent focus:outline-none" />
@@ -297,7 +303,7 @@ export default function IncomeTaxCalculator() {
                                 <div className="flex items-center gap-2 px-4 py-3 bg-blue-50 rounded-lg border border-blue-100">
                                     <svg className="w-4 h-4 text-blue-500 shrink-0" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
                                     <p className="text-xs text-blue-700">
-                                        Standard Deduction: <strong>{regime === 'new' ? '₹75,000' : '₹50,000'}</strong> applied automatically
+                                        Standard Deduction: <strong>{regime === 'new' ? 'â‚¹75,000' : 'â‚¹50,000'}</strong> applied automatically
                                     </p>
                                 </div>
                             </div>
@@ -314,7 +320,7 @@ export default function IncomeTaxCalculator() {
                                         </div>
                                         <div className="flex justify-between items-center py-2.5 border-b border-gray-100">
                                             <span className="text-sm text-gray-500">Total Deductions</span>
-                                            <span className="text-sm font-bold text-green-600">− {formatINR(result.totalDeductions)}</span>
+                                            <span className="text-sm font-bold text-green-600">âˆ’ {formatINR(result.totalDeductions)}</span>
                                         </div>
                                         <div className="flex justify-between items-center py-2.5 border-b border-gray-100">
                                             <span className="text-sm text-gray-500">Taxable Income</span>
@@ -327,7 +333,7 @@ export default function IncomeTaxCalculator() {
                                         {result.rebate > 0 && (
                                             <div className="flex justify-between items-center py-2.5 border-b border-gray-100">
                                                 <span className="text-sm text-gray-500">Rebate u/s 87A</span>
-                                                <span className="text-sm font-bold text-green-600">− {formatINR(result.rebate)}</span>
+                                                <span className="text-sm font-bold text-green-600">âˆ’ {formatINR(result.rebate)}</span>
                                             </div>
                                         )}
                                         <div className="flex justify-between items-center py-2.5 border-b border-gray-100">
@@ -358,11 +364,11 @@ export default function IncomeTaxCalculator() {
                                             <p className="text-sm font-semibold text-center">
                                                 {savings > 0 ? (
                                                     <span className="text-green-700">
-                                                        🎉 You save <strong>{formatINR(savings)}</strong> with the {regime === 'new' ? 'New' : 'Old'} Regime!
+                                                        ðŸŽ‰ You save <strong>{formatINR(savings)}</strong> with the {regime === 'new' ? 'New' : 'Old'} Regime!
                                                     </span>
                                                 ) : (
                                                     <span className="text-amber-700">
-                                                        💡 You could save <strong>{formatINR(Math.abs(savings))}</strong> by switching to the {regime === 'new' ? 'Old' : 'New'} Regime
+                                                        ðŸ’¡ You could save <strong>{formatINR(Math.abs(savings))}</strong> by switching to the {regime === 'new' ? 'Old' : 'New'} Regime
                                                     </span>
                                                 )}
                                             </p>
@@ -387,7 +393,7 @@ export default function IncomeTaxCalculator() {
                                                     <tr key={i} className="border-b border-gray-50">
                                                         <td className="py-2.5 text-gray-700 font-medium">{formatSlabRange(slab.from, slab.to)}</td>
                                                         <td className="py-2.5 text-center text-gray-600">{slab.rate === 0 ? 'Nil' : `${slab.rate}%`}</td>
-                                                        <td className="py-2.5 text-right font-semibold text-gray-800">{slab.tax > 0 ? formatINR(slab.tax) : '–'}</td>
+                                                        <td className="py-2.5 text-right font-semibold text-gray-800">{slab.tax > 0 ? formatINR(slab.tax) : 'â€“'}</td>
                                                     </tr>
                                                 ))}
                                             </tbody>
@@ -411,7 +417,7 @@ export default function IncomeTaxCalculator() {
                         <h2 className="text-3xl md:text-4xl font-bold text-[#090a3d] mb-6">What is Income Tax?</h2>
                         <div className="prose prose-gray max-w-none text-gray-600 leading-relaxed space-y-4">
                             <p>Income Tax is a direct tax levied by the Government of India on the earnings of individuals, Hindu Undivided Families (HUFs), firms, and other entities during a financial year. It is governed by the <strong>Income Tax Act, 1961</strong> and administered by the Central Board of Direct Taxes (CBDT).</p>
-                            <p>Every person whose total income exceeds the basic exemption limit is required to file an Income Tax Return (ITR) and pay tax at the rates prescribed for the relevant assessment year. The tax is calculated on a slab basis — meaning different portions of your income are taxed at progressively higher rates.</p>
+                            <p>Every person whose total income exceeds the basic exemption limit is required to file an Income Tax Return (ITR) and pay tax at the rates prescribed for the relevant assessment year. The tax is calculated on a slab basis â€” meaning different portions of your income are taxed at progressively higher rates.</p>
                             <p>Income tax revenues form a significant portion of the government's total revenue and are used to fund public infrastructure, defence, healthcare, education, and social welfare programmes. Understanding how income tax works empowers you to plan your finances better, claim legitimate deductions, and reduce your overall tax liability legally.</p>
                         </div>
                     </div>
@@ -427,26 +433,26 @@ export default function IncomeTaxCalculator() {
                                 <div className="absolute top-0 right-0 bg-[var(--color-brand-secondary)] text-white text-xs font-bold px-3 py-1 rounded-bl-lg">Default</div>
                                 <h3 className="text-xl font-bold text-[#090a3d] mb-4">New Tax Regime</h3>
                                 <ul className="space-y-3 text-sm text-gray-600">
-                                    <li className="flex items-start gap-2"><span className="text-green-500 mt-0.5">✓</span>Lower tax rates across all income levels</li>
-                                    <li className="flex items-start gap-2"><span className="text-green-500 mt-0.5">✓</span>Standard deduction of ₹75,000</li>
-                                    <li className="flex items-start gap-2"><span className="text-green-500 mt-0.5">✓</span>No investment planning required</li>
-                                    <li className="flex items-start gap-2"><span className="text-green-500 mt-0.5">✓</span>Rebate u/s 87A for income up to ₹12 lakh</li>
-                                    <li className="flex items-start gap-2"><span className="text-green-500 mt-0.5">✓</span>Simpler filing, fewer documents</li>
-                                    <li className="flex items-start gap-2"><span className="text-red-400 mt-0.5">✗</span>Most deductions and exemptions not available</li>
-                                    <li className="flex items-start gap-2"><span className="text-red-400 mt-0.5">✗</span>No HRA, 80C, 80D, LTA exemptions</li>
+                                    <li className="flex items-start gap-2"><span className="text-green-500 mt-0.5">âœ“</span>Lower tax rates across all income levels</li>
+                                    <li className="flex items-start gap-2"><span className="text-green-500 mt-0.5">âœ“</span>Standard deduction of â‚¹75,000</li>
+                                    <li className="flex items-start gap-2"><span className="text-green-500 mt-0.5">âœ“</span>No investment planning required</li>
+                                    <li className="flex items-start gap-2"><span className="text-green-500 mt-0.5">âœ“</span>Rebate u/s 87A for income up to â‚¹12 lakh</li>
+                                    <li className="flex items-start gap-2"><span className="text-green-500 mt-0.5">âœ“</span>Simpler filing, fewer documents</li>
+                                    <li className="flex items-start gap-2"><span className="text-red-400 mt-0.5">âœ—</span>Most deductions and exemptions not available</li>
+                                    <li className="flex items-start gap-2"><span className="text-red-400 mt-0.5">âœ—</span>No HRA, 80C, 80D, LTA exemptions</li>
                                 </ul>
                             </div>
                             {/* Old Regime Card */}
                             <div className="bg-white rounded-2xl p-6 md:p-8 border border-gray-100 shadow-lg">
                                 <h3 className="text-xl font-bold text-[#090a3d] mb-4">Old Tax Regime</h3>
                                 <ul className="space-y-3 text-sm text-gray-600">
-                                    <li className="flex items-start gap-2"><span className="text-green-500 mt-0.5">✓</span>Claim over 70 deductions and exemptions</li>
-                                    <li className="flex items-start gap-2"><span className="text-green-500 mt-0.5">✓</span>Section 80C, 80D, 80E, 80G, 80TTA</li>
-                                    <li className="flex items-start gap-2"><span className="text-green-500 mt-0.5">✓</span>HRA exemption for salaried employees</li>
-                                    <li className="flex items-start gap-2"><span className="text-green-500 mt-0.5">✓</span>Home loan interest deduction (Sec 24b)</li>
-                                    <li className="flex items-start gap-2"><span className="text-green-500 mt-0.5">✓</span>Leave Travel Allowance (LTA) benefit</li>
-                                    <li className="flex items-start gap-2"><span className="text-red-400 mt-0.5">✗</span>Higher tax rates compared to new regime</li>
-                                    <li className="flex items-start gap-2"><span className="text-red-400 mt-0.5">✗</span>Requires active tax planning and record-keeping</li>
+                                    <li className="flex items-start gap-2"><span className="text-green-500 mt-0.5">âœ“</span>Claim over 70 deductions and exemptions</li>
+                                    <li className="flex items-start gap-2"><span className="text-green-500 mt-0.5">âœ“</span>Section 80C, 80D, 80E, 80G, 80TTA</li>
+                                    <li className="flex items-start gap-2"><span className="text-green-500 mt-0.5">âœ“</span>HRA exemption for salaried employees</li>
+                                    <li className="flex items-start gap-2"><span className="text-green-500 mt-0.5">âœ“</span>Home loan interest deduction (Sec 24b)</li>
+                                    <li className="flex items-start gap-2"><span className="text-green-500 mt-0.5">âœ“</span>Leave Travel Allowance (LTA) benefit</li>
+                                    <li className="flex items-start gap-2"><span className="text-red-400 mt-0.5">âœ—</span>Higher tax rates compared to new regime</li>
+                                    <li className="flex items-start gap-2"><span className="text-red-400 mt-0.5">âœ—</span>Requires active tax planning and record-keeping</li>
                                 </ul>
                             </div>
                         </div>
@@ -476,13 +482,13 @@ export default function IncomeTaxCalculator() {
                                     </thead>
                                     <tbody>
                                         {[
-                                            ['Up to ₹4,00,000', 'Nil'],
-                                            ['₹4,00,001 – ₹8,00,000', '5%'],
-                                            ['₹8,00,001 – ₹12,00,000', '10%'],
-                                            ['₹12,00,001 – ₹16,00,000', '15%'],
-                                            ['₹16,00,001 – ₹20,00,000', '20%'],
-                                            ['₹20,00,001 – ₹24,00,000', '25%'],
-                                            ['Above ₹24,00,000', '30%'],
+                                            ['Up to â‚¹4,00,000', 'Nil'],
+                                            ['â‚¹4,00,001 â€“ â‚¹8,00,000', '5%'],
+                                            ['â‚¹8,00,001 â€“ â‚¹12,00,000', '10%'],
+                                            ['â‚¹12,00,001 â€“ â‚¹16,00,000', '15%'],
+                                            ['â‚¹16,00,001 â€“ â‚¹20,00,000', '20%'],
+                                            ['â‚¹20,00,001 â€“ â‚¹24,00,000', '25%'],
+                                            ['Above â‚¹24,00,000', '30%'],
                                         ].map(([slab, rate], i) => (
                                             <tr key={i} className="border-t border-gray-50">
                                                 <td className="px-6 py-2.5 text-gray-700">{slab}</td>
@@ -508,10 +514,10 @@ export default function IncomeTaxCalculator() {
                                     </thead>
                                     <tbody>
                                         {[
-                                            ['Up to ₹2,50,000', 'Nil'],
-                                            ['₹2,50,001 – ₹5,00,000', '5%'],
-                                            ['₹5,00,001 – ₹10,00,000', '20%'],
-                                            ['Above ₹10,00,000', '30%'],
+                                            ['Up to â‚¹2,50,000', 'Nil'],
+                                            ['â‚¹2,50,001 â€“ â‚¹5,00,000', '5%'],
+                                            ['â‚¹5,00,001 â€“ â‚¹10,00,000', '20%'],
+                                            ['Above â‚¹10,00,000', '30%'],
                                         ].map(([slab, rate], i) => (
                                             <tr key={i} className="border-t border-gray-50">
                                                 <td className="px-6 py-2.5 text-gray-700">{slab}</td>
@@ -521,8 +527,8 @@ export default function IncomeTaxCalculator() {
                                     </tbody>
                                 </table>
                                 <div className="px-6 py-3 bg-gray-50 text-xs text-gray-500">
-                                    <p><strong>Senior Citizens (60-80):</strong> Nil up to ₹3L</p>
-                                    <p><strong>Super Senior Citizens (80+):</strong> Nil up to ₹5L</p>
+                                    <p><strong>Senior Citizens (60-80):</strong> Nil up to â‚¹3L</p>
+                                    <p><strong>Super Senior Citizens (80+):</strong> Nil up to â‚¹5L</p>
                                 </div>
                             </div>
                         </div>
@@ -536,36 +542,36 @@ export default function IncomeTaxCalculator() {
                         <div className="grid md:grid-cols-2 gap-8">
                             <div className="bg-white rounded-2xl p-6 md:p-8 shadow-lg border border-gray-100">
                                 <div className="flex items-center gap-3 mb-5">
-                                    <span className="w-10 h-10 bg-amber-100 rounded-lg flex items-center justify-center text-xl">📋</span>
+                                    <span className="w-10 h-10 bg-amber-100 rounded-lg flex items-center justify-center text-xl">ðŸ“‹</span>
                                     <div>
                                         <h3 className="text-lg font-bold text-[#090a3d]">Section 80C</h3>
-                                        <p className="text-xs text-gray-500">Maximum deduction: ₹1,50,000</p>
+                                        <p className="text-xs text-gray-500">Maximum deduction: â‚¹1,50,000</p>
                                     </div>
                                 </div>
                                 <ul className="space-y-2.5 text-sm text-gray-600">
-                                    <li className="flex items-start gap-2"><span className="text-[var(--color-brand-secondary)] font-bold">•</span>Employee Provident Fund (EPF) contributions</li>
-                                    <li className="flex items-start gap-2"><span className="text-[var(--color-brand-secondary)] font-bold">•</span>Public Provident Fund (PPF) deposits</li>
-                                    <li className="flex items-start gap-2"><span className="text-[var(--color-brand-secondary)] font-bold">•</span>Equity Linked Savings Scheme (ELSS) mutual funds</li>
-                                    <li className="flex items-start gap-2"><span className="text-[var(--color-brand-secondary)] font-bold">•</span>National Savings Certificate (NSC)</li>
-                                    <li className="flex items-start gap-2"><span className="text-[var(--color-brand-secondary)] font-bold">•</span>Life insurance premium payments</li>
-                                    <li className="flex items-start gap-2"><span className="text-[var(--color-brand-secondary)] font-bold">•</span>5-year tax-saving fixed deposits</li>
-                                    <li className="flex items-start gap-2"><span className="text-[var(--color-brand-secondary)] font-bold">•</span>Home loan principal repayment</li>
-                                    <li className="flex items-start gap-2"><span className="text-[var(--color-brand-secondary)] font-bold">•</span>Tuition fees for children (up to 2 children)</li>
+                                    <li className="flex items-start gap-2"><span className="text-[var(--color-brand-secondary)] font-bold">â€¢</span>Employee Provident Fund (EPF) contributions</li>
+                                    <li className="flex items-start gap-2"><span className="text-[var(--color-brand-secondary)] font-bold">â€¢</span>Public Provident Fund (PPF) deposits</li>
+                                    <li className="flex items-start gap-2"><span className="text-[var(--color-brand-secondary)] font-bold">â€¢</span>Equity Linked Savings Scheme (ELSS) mutual funds</li>
+                                    <li className="flex items-start gap-2"><span className="text-[var(--color-brand-secondary)] font-bold">â€¢</span>National Savings Certificate (NSC)</li>
+                                    <li className="flex items-start gap-2"><span className="text-[var(--color-brand-secondary)] font-bold">â€¢</span>Life insurance premium payments</li>
+                                    <li className="flex items-start gap-2"><span className="text-[var(--color-brand-secondary)] font-bold">â€¢</span>5-year tax-saving fixed deposits</li>
+                                    <li className="flex items-start gap-2"><span className="text-[var(--color-brand-secondary)] font-bold">â€¢</span>Home loan principal repayment</li>
+                                    <li className="flex items-start gap-2"><span className="text-[var(--color-brand-secondary)] font-bold">â€¢</span>Tuition fees for children (up to 2 children)</li>
                                 </ul>
                             </div>
                             <div className="bg-white rounded-2xl p-6 md:p-8 shadow-lg border border-gray-100">
                                 <div className="flex items-center gap-3 mb-5">
-                                    <span className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center text-xl">🏥</span>
+                                    <span className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center text-xl">ðŸ¥</span>
                                     <div>
                                         <h3 className="text-lg font-bold text-[#090a3d]">Section 80D</h3>
-                                        <p className="text-xs text-gray-500">Maximum deduction: ₹25K – ₹75K</p>
+                                        <p className="text-xs text-gray-500">Maximum deduction: â‚¹25K â€“ â‚¹75K</p>
                                     </div>
                                 </div>
                                 <ul className="space-y-2.5 text-sm text-gray-600">
-                                    <li className="flex items-start gap-2"><span className="text-[var(--color-brand-secondary)] font-bold">•</span>Health insurance premium for self and family: up to ₹25,000</li>
-                                    <li className="flex items-start gap-2"><span className="text-[var(--color-brand-secondary)] font-bold">•</span>Health insurance for parents: additional ₹25,000 (₹50,000 if senior citizen)</li>
-                                    <li className="flex items-start gap-2"><span className="text-[var(--color-brand-secondary)] font-bold">•</span>Preventive health check-up: ₹5,000 (within the overall limit)</li>
-                                    <li className="flex items-start gap-2"><span className="text-[var(--color-brand-secondary)] font-bold">•</span>Senior citizens without insurance can claim up to ₹50,000 for medical expenses</li>
+                                    <li className="flex items-start gap-2"><span className="text-[var(--color-brand-secondary)] font-bold">â€¢</span>Health insurance premium for self and family: up to â‚¹25,000</li>
+                                    <li className="flex items-start gap-2"><span className="text-[var(--color-brand-secondary)] font-bold">â€¢</span>Health insurance for parents: additional â‚¹25,000 (â‚¹50,000 if senior citizen)</li>
+                                    <li className="flex items-start gap-2"><span className="text-[var(--color-brand-secondary)] font-bold">â€¢</span>Preventive health check-up: â‚¹5,000 (within the overall limit)</li>
+                                    <li className="flex items-start gap-2"><span className="text-[var(--color-brand-secondary)] font-bold">â€¢</span>Senior citizens without insurance can claim up to â‚¹50,000 for medical expenses</li>
                                 </ul>
                                 <div className="mt-5 p-3 bg-blue-50 rounded-lg">
                                     <p className="text-xs text-blue-700"><strong>Note:</strong> These deductions are available only under the Old Tax Regime. The New Regime does not allow Section 80C or 80D deductions.</p>
@@ -581,14 +587,14 @@ export default function IncomeTaxCalculator() {
                         <h2 className="text-3xl md:text-4xl font-bold text-[#090a3d] text-center mb-12">Benefits of Using an Income Tax Calculator</h2>
                         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
                             {[
-                                { icon: '⚡', title: 'Instant Results', desc: 'Get your complete tax liability calculated in real time as you adjust inputs — no waiting, no manual maths.' },
-                                { icon: '🔄', title: 'Compare Regimes', desc: 'Instantly see which regime saves more tax for your specific income and deductions before filing your ITR.' },
-                                { icon: '🎯', title: 'Plan Deductions', desc: 'Experiment with different 80C and 80D investment amounts to find the optimal tax-saving combination.' },
-                                { icon: '📊', title: 'Slab Transparency', desc: 'View a detailed slab-wise breakdown showing exactly how much tax applies at each income level.' },
-                                { icon: '💰', title: 'Budget Planning', desc: 'Know your monthly tax outgo to plan salary budgets, EMIs, and savings more accurately.' },
-                                { icon: '🛡️', title: 'Error-Free Calculations', desc: 'Avoid manual calculation mistakes with automatic cess, rebate, and surcharge computations.' },
-                                { icon: '📅', title: 'Updated for FY 2025-26', desc: 'Incorporates the latest slab rates, standard deductions, and rebate limits announced in Budget 2025.' },
-                                { icon: '🆓', title: 'Free & Private', desc: 'No login required. Your financial data stays in your browser and is never sent to any server.' },
+                                { icon: 'âš¡', title: 'Instant Results', desc: 'Get your complete tax liability calculated in real time as you adjust inputs â€” no waiting, no manual maths.' },
+                                { icon: 'ðŸ”„', title: 'Compare Regimes', desc: 'Instantly see which regime saves more tax for your specific income and deductions before filing your ITR.' },
+                                { icon: 'ðŸŽ¯', title: 'Plan Deductions', desc: 'Experiment with different 80C and 80D investment amounts to find the optimal tax-saving combination.' },
+                                { icon: 'ðŸ“Š', title: 'Slab Transparency', desc: 'View a detailed slab-wise breakdown showing exactly how much tax applies at each income level.' },
+                                { icon: 'ðŸ’°', title: 'Budget Planning', desc: 'Know your monthly tax outgo to plan salary budgets, EMIs, and savings more accurately.' },
+                                { icon: 'ðŸ›¡ï¸', title: 'Error-Free Calculations', desc: 'Avoid manual calculation mistakes with automatic cess, rebate, and surcharge computations.' },
+                                { icon: 'ðŸ“…', title: 'Updated for FY 2025-26', desc: 'Incorporates the latest slab rates, standard deductions, and rebate limits announced in Budget 2025.' },
+                                { icon: 'ðŸ†“', title: 'Free & Private', desc: 'No login required. Your financial data stays in your browser and is never sent to any server.' },
                             ].map((benefit, i) => (
                                 <div key={i} className="bg-gray-50 rounded-xl p-5 border border-gray-100 hover:shadow-md hover:border-amber-200 transition-all">
                                     <span className="text-2xl mb-2 block">{benefit.icon}</span>
@@ -608,7 +614,7 @@ export default function IncomeTaxCalculator() {
                             {[
                                 { step: '1', title: 'Choose Your Tax Regime', desc: 'Select between the New Regime (default from FY 2023-24) and the Old Regime using the tabs at the top of the calculator.' },
                                 { step: '2', title: 'Enter Your Annual Income', desc: 'Use the slider or type your gross annual salary directly. Quick presets are available for common income levels.' },
-                                { step: '3', title: 'Select Age Group (Old Regime)', desc: 'If using the Old Regime, choose your age bracket — Below 60, Senior Citizen (60-80), or Super Senior Citizen (80+).' },
+                                { step: '3', title: 'Select Age Group (Old Regime)', desc: 'If using the Old Regime, choose your age bracket â€” Below 60, Senior Citizen (60-80), or Super Senior Citizen (80+).' },
                                 { step: '4', title: 'Add Deductions (Old Regime)', desc: 'Enter your Section 80C investments, 80D health insurance premium, and HRA exemption to reduce taxable income.' },
                                 { step: '5', title: 'Review Your Tax Summary', desc: 'The results panel shows your taxable income, slab-wise tax breakdown, rebate, cess, total liability, and effective tax rate.' },
                                 { step: '6', title: 'Compare & Optimise', desc: 'Switch between regimes to see which one saves you more tax. Adjust deductions to find the optimal tax-saving strategy.' },
@@ -633,7 +639,7 @@ export default function IncomeTaxCalculator() {
                             {[
                                 {
                                     q: 'What is the difference between Old and New Tax Regime?',
-                                    a: 'The New Tax Regime offers lower tax rates but removes most deductions and exemptions like 80C, 80D, and HRA. The Old Regime retains higher rates but allows you to claim over 70 deductions and exemptions. The best choice depends on your total eligible deductions — use this calculator to compare both.',
+                                    a: 'The New Tax Regime offers lower tax rates but removes most deductions and exemptions like 80C, 80D, and HRA. The Old Regime retains higher rates but allows you to claim over 70 deductions and exemptions. The best choice depends on your total eligible deductions â€” use this calculator to compare both.',
                                 },
                                 {
                                     q: 'Is the New Regime mandatory from FY 2025-26?',
@@ -641,7 +647,7 @@ export default function IncomeTaxCalculator() {
                                 },
                                 {
                                     q: 'What is the rebate under Section 87A?',
-                                    a: 'Under the New Regime, if your taxable income is up to ₹12,00,000, you receive a rebate of up to ₹60,000, making your tax liability effectively zero for incomes up to ₹12 lakh. Under the Old Regime, the rebate applies for taxable income up to ₹5,00,000 (maximum rebate ₹12,500).',
+                                    a: 'Under the New Regime, if your taxable income is up to â‚¹12,00,000, you receive a rebate of up to â‚¹60,000, making your tax liability effectively zero for incomes up to â‚¹12 lakh. Under the Old Regime, the rebate applies for taxable income up to â‚¹5,00,000 (maximum rebate â‚¹12,500).',
                                 },
                                 {
                                     q: 'What is Health and Education Cess?',
@@ -649,19 +655,19 @@ export default function IncomeTaxCalculator() {
                                 },
                                 {
                                     q: 'How is the Standard Deduction applied?',
-                                    a: 'For salaried individuals and pensioners, a flat standard deduction is subtracted from gross income before computing tax. It is ₹75,000 under the New Regime and ₹50,000 under the Old Regime for FY 2025-26. No bills or proofs are required to claim it.',
+                                    a: 'For salaried individuals and pensioners, a flat standard deduction is subtracted from gross income before computing tax. It is â‚¹75,000 under the New Regime and â‚¹50,000 under the Old Regime for FY 2025-26. No bills or proofs are required to claim it.',
                                 },
                                 {
                                     q: 'Can I claim HRA and 80C in the New Regime?',
-                                    a: 'No. The New Tax Regime does not allow deductions under Section 80C, 80D, HRA exemption, LTA, or most other common exemptions. Only the standard deduction of ₹75,000 and employer NPS contribution (80CCD(2)) are available.',
+                                    a: 'No. The New Tax Regime does not allow deductions under Section 80C, 80D, HRA exemption, LTA, or most other common exemptions. Only the standard deduction of â‚¹75,000 and employer NPS contribution (80CCD(2)) are available.',
                                 },
                                 {
                                     q: 'Who should choose the Old Regime?',
-                                    a: 'The Old Regime typically benefits taxpayers who have significant deductions — for example, those paying home loan EMIs (Section 24b), investing the full ₹1.5 lakh in 80C instruments, paying health insurance premiums, and claiming HRA. If your total deductions exceed approximately ₹3.75 lakh, the Old Regime may save you more tax.',
+                                    a: 'The Old Regime typically benefits taxpayers who have significant deductions â€” for example, those paying home loan EMIs (Section 24b), investing the full â‚¹1.5 lakh in 80C instruments, paying health insurance premiums, and claiming HRA. If your total deductions exceed approximately â‚¹3.75 lakh, the Old Regime may save you more tax.',
                                 },
                                 {
                                     q: 'Does this calculator include surcharge?',
-                                    a: 'This calculator computes tax based on applicable slabs, rebate u/s 87A, and 4% Health & Education Cess. For very high incomes (above ₹50 lakh), a surcharge may apply. Consult a tax professional for precise calculations involving surcharge and marginal relief.',
+                                    a: 'This calculator computes tax based on applicable slabs, rebate u/s 87A, and 4% Health & Education Cess. For very high incomes (above â‚¹50 lakh), a surcharge may apply. Consult a tax professional for precise calculations involving surcharge and marginal relief.',
                                 },
                                 {
                                     q: 'How accurate is this calculator?',
@@ -699,3 +705,4 @@ export default function IncomeTaxCalculator() {
         </div>
     );
 }
+

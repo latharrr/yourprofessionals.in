@@ -1,12 +1,12 @@
 export default function FeaturedIn() {
-    const brandNames = ["Company Registration", "GST", " Income Tax", "ROC Filings", "Advisory "];
+    const brandNames = ["Company Registration", "GST", "Income Tax", "ROC Filings", "Advisory", "Trademark", "Compliance", "FSSAI"];
 
     return (
         <section className="py-10 bg-white overflow-hidden">
             <div className="container mx-auto px-4 md:px-8">
-                <h2 className="text-3xl font-bold text-[#090a3d] text-center mb-10">
-                    Contact Us
-                </h2>
+                <p className="text-center text-sm font-bold tracking-widest uppercase text-[var(--color-brand-secondary)] mb-6">
+                    Our Core Services
+                </p>
 
                 {/* Infinite scroll marquee effect container */}
                 <div className="relative w-full overflow-hidden flex whitespace-nowrap">

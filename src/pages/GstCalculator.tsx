@@ -1,6 +1,7 @@
-import { useState, useMemo } from 'react';
+﻿import { useState, useMemo } from 'react';
 import Header from '../components/layout/Header';
 import Footer from '../components/layout/Footer';
+import SEO from '../components/common/SEO';
 
 const GST_RATES = [0, 0.25, 3, 5, 12, 18, 28];
 
@@ -25,7 +26,12 @@ export default function GstCalculator() {
 
     return (
         <div className="min-h-screen flex flex-col font-sans">
-            <Header />
+                        <SEO
+                title="GST Calculator – Calculate GST Online Free"
+                description="Free online GST Calculator — compute GST for all tax slabs (5%, 12%, 18%, 28%) instantly. Calculate GST-inclusive and GST-exclusive amounts for your business."
+                canonical="/gst-calculator"
+            />
+<Header />
             <main className="flex-grow pt-28">
                 <section className="bg-gradient-to-br from-[#090a3d] via-[#0f1163] to-[#1a1c6e] text-white py-12 md:py-20 relative overflow-hidden">
                     <div className="absolute inset-0 opacity-10"><div className="absolute top-10 left-10 w-72 h-72 bg-[var(--color-brand-secondary)] rounded-full blur-3xl" /><div className="absolute bottom-10 right-10 w-96 h-96 bg-blue-500 rounded-full blur-3xl" /></div>
@@ -75,7 +81,7 @@ export default function GstCalculator() {
                                     <div className="flex justify-between items-center py-3"><span className="text-sm font-semibold text-gray-700">Total Amount</span><span className="text-2xl font-bold text-[var(--color-brand-secondary)]">{fmt(result.total)}</span></div>
                                 </div>
                                 <div className="mt-5 bg-gray-50 rounded-xl p-4 text-xs text-gray-500">
-                                    <strong>Formula:</strong> {mode === 'exclusive' ? `GST = Amount × ${rate}% = ${fmt(result.gst)}` : `Taxable = Amount ÷ (1 + ${rate}%) = ${fmt(result.original)}`}
+                                    <strong>Formula:</strong> {mode === 'exclusive' ? `GST = Amount Ã— ${rate}% = ${fmt(result.gst)}` : `Taxable = Amount Ã· (1 + ${rate}%) = ${fmt(result.original)}`}
                                 </div>
                             </div>
                         </div>
@@ -178,3 +184,4 @@ export default function GstCalculator() {
         </div>
     );
 }
+

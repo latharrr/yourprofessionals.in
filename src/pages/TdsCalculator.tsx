@@ -1,6 +1,7 @@
-import { useState, useMemo } from 'react';
+﻿import { useState, useMemo } from 'react';
 import Header from '../components/layout/Header';
 import Footer from '../components/layout/Footer';
+import SEO from '../components/common/SEO';
 
 const PAYMENT_TYPES = [
     { label: 'Salary', section: '192', rate: 10, threshold: 250000 },
@@ -17,33 +18,33 @@ const PAYMENT_TYPES = [
 
 const TDS_RATE_CHART = [
     { section: '192', nature: 'Salary', rate: 'Slab Rates', threshold: 'As per income tax slab' },
-    { section: '193', nature: 'Interest on Securities', rate: '10%', threshold: '₹10,000' },
-    { section: '194', nature: 'Dividends', rate: '10%', threshold: '₹5,000' },
-    { section: '194A', nature: 'Interest other than Securities (Banks)', rate: '10%', threshold: '₹40,000 (₹50,000 for seniors)' },
-    { section: '194B', nature: 'Winning from Lottery / Puzzles', rate: '30%', threshold: '₹10,000' },
-    { section: '194BB', nature: 'Winning from Horse Race', rate: '30%', threshold: '₹10,000' },
-    { section: '194C', nature: 'Payment to Contractors (Individual/HUF)', rate: '1%', threshold: '₹30,000 single / ₹1,00,000 aggregate' },
-    { section: '194C', nature: 'Payment to Contractors (Others)', rate: '2%', threshold: '₹30,000 single / ₹1,00,000 aggregate' },
-    { section: '194D', nature: 'Insurance Commission', rate: '5%', threshold: '₹15,000' },
-    { section: '194DA', nature: 'Life Insurance Policy Payout', rate: '5%', threshold: '₹1,00,000' },
+    { section: '193', nature: 'Interest on Securities', rate: '10%', threshold: 'â‚¹10,000' },
+    { section: '194', nature: 'Dividends', rate: '10%', threshold: 'â‚¹5,000' },
+    { section: '194A', nature: 'Interest other than Securities (Banks)', rate: '10%', threshold: 'â‚¹40,000 (â‚¹50,000 for seniors)' },
+    { section: '194B', nature: 'Winning from Lottery / Puzzles', rate: '30%', threshold: 'â‚¹10,000' },
+    { section: '194BB', nature: 'Winning from Horse Race', rate: '30%', threshold: 'â‚¹10,000' },
+    { section: '194C', nature: 'Payment to Contractors (Individual/HUF)', rate: '1%', threshold: 'â‚¹30,000 single / â‚¹1,00,000 aggregate' },
+    { section: '194C', nature: 'Payment to Contractors (Others)', rate: '2%', threshold: 'â‚¹30,000 single / â‚¹1,00,000 aggregate' },
+    { section: '194D', nature: 'Insurance Commission', rate: '5%', threshold: 'â‚¹15,000' },
+    { section: '194DA', nature: 'Life Insurance Policy Payout', rate: '5%', threshold: 'â‚¹1,00,000' },
     { section: '194E', nature: 'Payment to Non-resident Sportsperson', rate: '20%', threshold: 'Nil' },
-    { section: '194H', nature: 'Commission / Brokerage', rate: '5%', threshold: '₹15,000' },
-    { section: '194I', nature: 'Rent on Plant & Machinery', rate: '2%', threshold: '₹2,40,000' },
-    { section: '194I', nature: 'Rent on Land / Building / Furniture', rate: '10%', threshold: '₹2,40,000' },
-    { section: '194J', nature: 'Professional / Technical Fees', rate: '10%', threshold: '₹30,000' },
-    { section: '194J', nature: 'Technical Services (FTS) to certain payees', rate: '2%', threshold: '₹30,000' },
-    { section: '194IA', nature: 'Transfer of Immovable Property', rate: '1%', threshold: '₹50,00,000' },
-    { section: '194IB', nature: 'Rent by Individual / HUF', rate: '5%', threshold: '₹50,000 per month' },
-    { section: '194M', nature: 'Payment to Commission / Contract (by Individual/HUF)', rate: '5%', threshold: '₹50,00,000' },
-    { section: '194N', nature: 'Cash Withdrawal', rate: '2%', threshold: '₹1,00,00,000' },
-    { section: '194O', nature: 'E-commerce Participant', rate: '1%', threshold: '₹5,00,000' },
-    { section: '194Q', nature: 'Purchase of Goods', rate: '0.1%', threshold: '₹50,00,000' },
+    { section: '194H', nature: 'Commission / Brokerage', rate: '5%', threshold: 'â‚¹15,000' },
+    { section: '194I', nature: 'Rent on Plant & Machinery', rate: '2%', threshold: 'â‚¹2,40,000' },
+    { section: '194I', nature: 'Rent on Land / Building / Furniture', rate: '10%', threshold: 'â‚¹2,40,000' },
+    { section: '194J', nature: 'Professional / Technical Fees', rate: '10%', threshold: 'â‚¹30,000' },
+    { section: '194J', nature: 'Technical Services (FTS) to certain payees', rate: '2%', threshold: 'â‚¹30,000' },
+    { section: '194IA', nature: 'Transfer of Immovable Property', rate: '1%', threshold: 'â‚¹50,00,000' },
+    { section: '194IB', nature: 'Rent by Individual / HUF', rate: '5%', threshold: 'â‚¹50,000 per month' },
+    { section: '194M', nature: 'Payment to Commission / Contract (by Individual/HUF)', rate: '5%', threshold: 'â‚¹50,00,000' },
+    { section: '194N', nature: 'Cash Withdrawal', rate: '2%', threshold: 'â‚¹1,00,00,000' },
+    { section: '194O', nature: 'E-commerce Participant', rate: '1%', threshold: 'â‚¹5,00,000' },
+    { section: '194Q', nature: 'Purchase of Goods', rate: '0.1%', threshold: 'â‚¹50,00,000' },
 ];
 
 function formatINR(value: number): string {
-    if (value >= 10000000) return `₹${(value / 10000000).toFixed(2)} Cr`;
-    if (value >= 100000) return `₹${(value / 100000).toFixed(2)} L`;
-    return `₹${value.toLocaleString('en-IN', { maximumFractionDigits: 0 })}`;
+    if (value >= 10000000) return `â‚¹${(value / 10000000).toFixed(2)} Cr`;
+    if (value >= 100000) return `â‚¹${(value / 100000).toFixed(2)} L`;
+    return `â‚¹${value.toLocaleString('en-IN', { maximumFractionDigits: 0 })}`;
 }
 
 function monthsBetween(dueYear: number, dueMonth: number, paidYear: number, paidMonth: number): number {
@@ -91,7 +92,12 @@ export default function TdsCalculator() {
 
     return (
         <div className="min-h-screen flex flex-col font-sans">
-            <Header />
+                        <SEO
+                title="TDS Calculator – Calculate TDS on Salary & Payments"
+                description="Free TDS Calculator — calculate Tax Deducted at Source on salary, professional fees, rent, and contractor payments. Know your exact TDS liability."
+                canonical="/tds-calculator"
+            />
+<Header />
             <main className="flex-grow pt-28">
                 {/* Hero */}
                 <section className="bg-gradient-to-br from-[#090a3d] via-[#0f1163] to-[#1a1c6e] text-white py-12 md:py-20 relative overflow-hidden">
@@ -138,7 +144,7 @@ export default function TdsCalculator() {
                                         <select value={paymentTypeIdx} onChange={e => setPaymentTypeIdx(Number(e.target.value))}
                                             className="w-full border border-gray-200 rounded-lg px-4 py-2.5 text-sm text-gray-700 bg-white focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-secondary)] focus:border-transparent">
                                             {PAYMENT_TYPES.map((t, i) => (
-                                                <option key={i} value={i}>Section {t.section} — {t.label}</option>
+                                                <option key={i} value={i}>Section {t.section} â€” {t.label}</option>
                                             ))}
                                         </select>
                                     </div>
@@ -148,14 +154,14 @@ export default function TdsCalculator() {
                                         <div className="flex justify-between items-center mb-2">
                                             <label className="text-sm font-semibold text-gray-700">Payment Amount</label>
                                             <div className="flex items-center gap-1 bg-gray-50 border border-gray-200 rounded-lg px-3 py-1.5">
-                                                <span className="text-sm text-gray-500">₹</span>
+                                                <span className="text-sm text-gray-500">â‚¹</span>
                                                 <input type="number" value={paymentAmount} onChange={e => setPaymentAmount(Math.max(0, Number(e.target.value)))}
                                                     className="w-28 text-sm font-semibold text-right bg-transparent focus:outline-none" />
                                             </div>
                                         </div>
                                         <input type="range" min={10000} max={10000000} step={10000} value={paymentAmount} onChange={e => setPaymentAmount(Number(e.target.value))}
                                             className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-[var(--color-brand-secondary)]" />
-                                        <div className="flex justify-between text-xs text-gray-400 mt-1"><span>₹10K</span><span>₹1 Cr</span></div>
+                                        <div className="flex justify-between text-xs text-gray-400 mt-1"><span>â‚¹10K</span><span>â‚¹1 Cr</span></div>
                                     </div>
 
                                     {/* PAN Toggle */}
@@ -179,7 +185,7 @@ export default function TdsCalculator() {
                                     {/* Section Info */}
                                     <div className="bg-blue-50 rounded-xl p-4 border border-blue-100">
                                         <p className="text-xs text-blue-700">
-                                            <span className="font-bold">Section {selectedType.section}:</span> {selectedType.label} — Standard rate is {selectedType.rate}%.
+                                            <span className="font-bold">Section {selectedType.section}:</span> {selectedType.label} â€” Standard rate is {selectedType.rate}%.
                                             Threshold limit: {formatINR(selectedType.threshold)}.
                                         </p>
                                     </div>
@@ -253,14 +259,14 @@ export default function TdsCalculator() {
                                         <div className="flex justify-between items-center mb-2">
                                             <label className="text-sm font-semibold text-gray-700">TDS Amount Due</label>
                                             <div className="flex items-center gap-1 bg-gray-50 border border-gray-200 rounded-lg px-3 py-1.5">
-                                                <span className="text-sm text-gray-500">₹</span>
+                                                <span className="text-sm text-gray-500">â‚¹</span>
                                                 <input type="number" value={tdsAmountDue} onChange={e => setTdsAmountDue(Math.max(0, Number(e.target.value)))}
                                                     className="w-28 text-sm font-semibold text-right bg-transparent focus:outline-none" />
                                             </div>
                                         </div>
                                         <input type="range" min={1000} max={5000000} step={1000} value={tdsAmountDue} onChange={e => setTdsAmountDue(Number(e.target.value))}
                                             className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-[var(--color-brand-secondary)]" />
-                                        <div className="flex justify-between text-xs text-gray-400 mt-1"><span>₹1K</span><span>₹50 L</span></div>
+                                        <div className="flex justify-between text-xs text-gray-400 mt-1"><span>â‚¹1K</span><span>â‚¹50 L</span></div>
                                     </div>
 
                                     {/* Due Date */}
@@ -361,10 +367,10 @@ export default function TdsCalculator() {
                                         <h3 className="text-lg font-bold text-[#090a3d] mb-4">Calculation Breakdown</h3>
                                         <div className="bg-gray-50 rounded-xl p-5 text-center mb-4">
                                             <p className="font-mono text-sm font-bold text-[#090a3d]">
-                                                Interest = TDS Amount × Rate × Months
+                                                Interest = TDS Amount Ã— Rate Ã— Months
                                             </p>
                                             <p className="font-mono text-sm text-gray-600 mt-2">
-                                                = {formatINR(tdsAmountDue)} × {interestResult.ratePerMonth}% × {interestResult.months}
+                                                = {formatINR(tdsAmountDue)} Ã— {interestResult.ratePerMonth}% Ã— {interestResult.months}
                                             </p>
                                             <p className="font-mono text-lg font-bold text-red-600 mt-2">
                                                 = {formatINR(interestResult.interestAmount)}
@@ -383,7 +389,7 @@ export default function TdsCalculator() {
                 {/* Common TDS Rates Reference */}
                 <section className="py-16 bg-white">
                     <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-                        <h2 className="text-3xl md:text-4xl font-bold text-[#090a3d] text-center mb-4">TDS Rate Chart — FY 2025-26</h2>
+                        <h2 className="text-3xl md:text-4xl font-bold text-[#090a3d] text-center mb-4">TDS Rate Chart â€” FY 2025-26</h2>
                         <p className="text-gray-500 text-center mb-10 max-w-2xl mx-auto">Comprehensive table of TDS rates applicable under various sections of the Income Tax Act for the financial year 2025-26.</p>
                         <div className="overflow-x-auto rounded-2xl border border-gray-200 shadow-lg">
                             <table className="w-full text-sm">
@@ -419,7 +425,7 @@ export default function TdsCalculator() {
                         <h2 className="text-3xl md:text-4xl font-bold text-[#090a3d] mb-6">What is TDS?</h2>
                         <div className="prose prose-gray max-w-none text-gray-600 leading-relaxed space-y-4">
                             <p><strong>Tax Deducted at Source (TDS)</strong> is a mechanism introduced by the Income Tax Department of India to collect tax at the very point where income is generated. Instead of waiting for the taxpayer to compute and pay tax at the end of the financial year, the government requires the payer to deduct a percentage of the payment as tax before releasing the balance to the recipient.</p>
-                            <p>For example, when your employer pays your salary, they deduct TDS based on your income tax slab and deposit it directly with the government. Similarly, when a business pays rent above ₹2,40,000 per year, it must deduct TDS at 10% before making the payment. The recipient can later claim credit for TDS deducted while filing their income tax return.</p>
+                            <p>For example, when your employer pays your salary, they deduct TDS based on your income tax slab and deposit it directly with the government. Similarly, when a business pays rent above â‚¹2,40,000 per year, it must deduct TDS at 10% before making the payment. The recipient can later claim credit for TDS deducted while filing their income tax return.</p>
                             <p>TDS applies to various types of payments including salary, interest on fixed deposits, rent, professional fees, commission, dividends, and many others. Each type of payment has a specific TDS section, rate, and threshold limit prescribed under the Income Tax Act, 1961.</p>
                         </div>
                     </div>
@@ -432,19 +438,19 @@ export default function TdsCalculator() {
                         <div className="bg-white rounded-2xl p-6 md:p-8 shadow-lg border border-gray-100 mb-8">
                             <p className="text-gray-600 mb-4">The TDS calculator uses a straightforward formula to compute the tax deducted at source:</p>
                             <div className="bg-gray-50 rounded-xl p-5 text-center mb-4">
-                                <p className="font-mono text-lg font-bold text-[#090a3d]">TDS Amount = Payment Amount × TDS Rate ÷ 100</p>
+                                <p className="font-mono text-lg font-bold text-[#090a3d]">TDS Amount = Payment Amount Ã— TDS Rate Ã· 100</p>
                             </div>
                             <ul className="space-y-2 text-sm text-gray-600">
                                 <li className="flex items-start gap-2"><span className="font-mono font-bold text-[var(--color-brand-secondary)]">Payment Amount</span> = Gross amount paid to the deductee</li>
                                 <li className="flex items-start gap-2"><span className="font-mono font-bold text-[var(--color-brand-secondary)]">TDS Rate</span> = Applicable rate under the relevant section</li>
-                                <li className="flex items-start gap-2"><span className="font-mono font-bold text-[var(--color-brand-secondary)]">Net Amount</span> = Payment Amount − TDS Amount</li>
+                                <li className="flex items-start gap-2"><span className="font-mono font-bold text-[var(--color-brand-secondary)]">Net Amount</span> = Payment Amount âˆ’ TDS Amount</li>
                             </ul>
                         </div>
                         <div className="bg-white rounded-2xl p-6 md:p-8 shadow-lg border border-gray-100">
                             <h3 className="text-lg font-bold text-[#090a3d] mb-4">Interest on Late TDS Formula</h3>
                             <p className="text-gray-600 mb-4">When TDS is not deducted or deposited on time, interest under Section 201(1A) is calculated as:</p>
                             <div className="bg-gray-50 rounded-xl p-5 text-center mb-4">
-                                <p className="font-mono text-lg font-bold text-[#090a3d]">Interest = TDS Amount × Rate per Month × No. of Months</p>
+                                <p className="font-mono text-lg font-bold text-[#090a3d]">Interest = TDS Amount Ã— Rate per Month Ã— No. of Months</p>
                             </div>
                             <div className="grid sm:grid-cols-2 gap-4 mt-4">
                                 <div className="bg-amber-50 rounded-xl p-4 border border-amber-100">
@@ -466,22 +472,22 @@ export default function TdsCalculator() {
                         <h2 className="text-3xl md:text-4xl font-bold text-[#090a3d] text-center mb-12">TDS Due Dates</h2>
                         <div className="grid md:grid-cols-2 gap-6">
                             <div className="bg-white rounded-2xl p-6 border border-gray-100 hover:shadow-lg transition-shadow">
-                                <span className="text-3xl mb-3 block">📅</span>
+                                <span className="text-3xl mb-3 block">ðŸ“…</span>
                                 <h3 className="text-lg font-bold text-[#090a3d] mb-2">Monthly TDS Deposit</h3>
                                 <p className="text-sm text-gray-500 leading-relaxed">TDS deducted during any month (April to February) must be deposited with the government by the <strong className="text-[#090a3d]">7th of the following month</strong>. For instance, TDS deducted in June must be deposited by 7th July.</p>
                             </div>
                             <div className="bg-white rounded-2xl p-6 border border-gray-100 hover:shadow-lg transition-shadow">
-                                <span className="text-3xl mb-3 block">📆</span>
+                                <span className="text-3xl mb-3 block">ðŸ“†</span>
                                 <h3 className="text-lg font-bold text-[#090a3d] mb-2">March TDS Deposit</h3>
-                                <p className="text-sm text-gray-500 leading-relaxed">TDS deducted in the month of March has a special deadline — it must be deposited by <strong className="text-[#090a3d]">30th April</strong> of the same year. This extended date accommodates year-end accounting.</p>
+                                <p className="text-sm text-gray-500 leading-relaxed">TDS deducted in the month of March has a special deadline â€” it must be deposited by <strong className="text-[#090a3d]">30th April</strong> of the same year. This extended date accommodates year-end accounting.</p>
                             </div>
                             <div className="bg-white rounded-2xl p-6 border border-gray-100 hover:shadow-lg transition-shadow">
-                                <span className="text-3xl mb-3 block">📝</span>
+                                <span className="text-3xl mb-3 block">ðŸ“</span>
                                 <h3 className="text-lg font-bold text-[#090a3d] mb-2">Quarterly TDS Returns</h3>
                                 <p className="text-sm text-gray-500 leading-relaxed">TDS returns must be filed quarterly: <strong className="text-[#090a3d]">31st July</strong> (Q1), <strong className="text-[#090a3d]">31st October</strong> (Q2), <strong className="text-[#090a3d]">31st January</strong> (Q3), and <strong className="text-[#090a3d]">31st May</strong> (Q4). Forms 24Q (salary) and 26Q (non-salary) apply.</p>
                             </div>
                             <div className="bg-white rounded-2xl p-6 border border-gray-100 hover:shadow-lg transition-shadow">
-                                <span className="text-3xl mb-3 block">📄</span>
+                                <span className="text-3xl mb-3 block">ðŸ“„</span>
                                 <h3 className="text-lg font-bold text-[#090a3d] mb-2">TDS Certificates</h3>
                                 <p className="text-sm text-gray-500 leading-relaxed">Form 16 (salary) must be issued by <strong className="text-[#090a3d]">15th June</strong> annually. Form 16A (non-salary) must be issued within <strong className="text-[#090a3d]">15 days</strong> from the due date of filing the TDS return for each quarter.</p>
                             </div>
@@ -496,21 +502,21 @@ export default function TdsCalculator() {
                         <div className="grid md:grid-cols-3 gap-6">
                             {[
                                 {
-                                    icon: '⏳',
+                                    icon: 'â³',
                                     title: 'Interest u/s 201(1A)',
                                     desc: 'Interest at 1% per month for late deduction and 1.5% per month for late deposit of TDS is levied. Part of a month is counted as a full month, making even small delays costly.',
                                     color: 'amber',
                                 },
                                 {
-                                    icon: '⚠️',
+                                    icon: 'âš ï¸',
                                     title: 'Penalty u/s 271C',
                                     desc: 'If a person fails to deduct TDS (wholly or partly), a penalty equal to the amount of TDS not deducted can be imposed by the Joint Commissioner. This can be up to 100% of the TDS amount.',
                                     color: 'red',
                                 },
                                 {
-                                    icon: '📋',
+                                    icon: 'ðŸ“‹',
                                     title: 'Late Filing Fee u/s 234E',
-                                    desc: 'A fee of ₹200 per day is charged for delay in filing TDS returns, subject to a maximum of the total TDS amount. This fee applies from the due date until the actual filing date.',
+                                    desc: 'A fee of â‚¹200 per day is charged for delay in filing TDS returns, subject to a maximum of the total TDS amount. This fee applies from the due date until the actual filing date.',
                                     color: 'blue',
                                 },
                             ].map((item, i) => (
@@ -531,7 +537,7 @@ export default function TdsCalculator() {
                         <div className="space-y-4">
                             {[
                                 { step: '1', title: 'Choose Calculator Mode', desc: 'Select "TDS Calculator" to compute TDS on a payment, or "TDS Interest Calculator" to calculate interest on delayed TDS deposits.' },
-                                { step: '2', title: 'Select Payment Type', desc: 'Pick the applicable section from the dropdown — salary (192), rent (194I), professional fees (194J), contractor payment (194C), and more.' },
+                                { step: '2', title: 'Select Payment Type', desc: 'Pick the applicable section from the dropdown â€” salary (192), rent (194I), professional fees (194J), contractor payment (194C), and more.' },
                                 { step: '3', title: 'Enter Payment Amount', desc: 'Use the slider or type the gross payment amount. The calculator instantly shows TDS based on the applicable rate for the selected section.' },
                                 { step: '4', title: 'Toggle PAN Status', desc: 'Select whether the payee has furnished their PAN. Without PAN, TDS is deducted at a higher rate of 20% under Section 206AA.' },
                                 { step: '5', title: 'View TDS Breakdown', desc: 'Instantly see the TDS rate, TDS amount deducted, net amount receivable, and a visual comparison of with-PAN vs without-PAN deductions.' },
@@ -560,11 +566,11 @@ export default function TdsCalculator() {
                                 { q: 'What happens if the payee does not have a PAN?', a: 'Under Section 206AA, if the payee fails to furnish their Permanent Account Number (PAN), TDS is deducted at the rate of 20% or the applicable rate under the relevant section, whichever is higher. This makes PAN submission essential to avoid excess TDS deduction.' },
                                 { q: 'Can TDS be refunded if excess tax is deducted?', a: 'Yes. If TDS deducted exceeds your actual tax liability for the financial year, you can claim a refund by filing your Income Tax Return (ITR). The excess amount will be refunded by the Income Tax Department after processing your return, usually within a few months.' },
                                 { q: 'What is the difference between TDS and TCS?', a: 'TDS (Tax Deducted at Source) is deducted by the payer from payments made to the recipient. TCS (Tax Collected at Source) is collected by the seller from the buyer at the time of sale of specified goods. Both are advance tax collection mechanisms but apply to different transaction types.' },
-                                { q: 'Is TDS applicable on all payments?', a: 'No. TDS applies only to specified payments that exceed prescribed threshold limits. For example, TDS on rent applies only when annual rent exceeds ₹2,40,000. If the payment is below the threshold, no TDS needs to be deducted. The specific thresholds vary by section.' },
+                                { q: 'Is TDS applicable on all payments?', a: 'No. TDS applies only to specified payments that exceed prescribed threshold limits. For example, TDS on rent applies only when annual rent exceeds â‚¹2,40,000. If the payment is below the threshold, no TDS needs to be deducted. The specific thresholds vary by section.' },
                                 { q: 'How is interest calculated on late TDS payment?', a: 'Interest under Section 201(1A) is calculated at 1% per month (or part thereof) for late deduction, and 1.5% per month (or part thereof) for late deposit after deduction. The interest is simple interest computed on a monthly basis, with any part of a month being treated as a full month.' },
                                 { q: 'What is Form 26AS and how does it relate to TDS?', a: 'Form 26AS is your annual tax statement that consolidates all TDS deducted against your PAN during a financial year. It reflects TDS from salary, bank interest, rent, and other sources. You should verify your Form 26AS before filing ITR to ensure all TDS credits are accurately reflected.' },
                                 { q: 'Can I request lower TDS deduction?', a: 'Yes. If you believe your total income will be below the taxable limit, you can submit Form 15G (below 60 years) or Form 15H (senior citizens) to the payer to avoid TDS on interest income. For other incomes, you can apply to the Assessing Officer for a lower deduction certificate under Section 197.' },
-                                { q: 'What are the consequences of not filing TDS returns?', a: 'Late filing of TDS returns attracts a fee of ₹200 per day under Section 234E (capped at the TDS amount). Additionally, the Assessing Officer may levy a penalty between ₹10,000 and ₹1,00,000 under Section 271H. Persistent non-compliance can also lead to prosecution under Section 276B.' },
+                                { q: 'What are the consequences of not filing TDS returns?', a: 'Late filing of TDS returns attracts a fee of â‚¹200 per day under Section 234E (capped at the TDS amount). Additionally, the Assessing Officer may levy a penalty between â‚¹10,000 and â‚¹1,00,000 under Section 271H. Persistent non-compliance can also lead to prosecution under Section 276B.' },
                             ].map((faq, i) => (
                                 <div key={i} className="bg-gray-50 rounded-xl border border-gray-100 overflow-hidden">
                                     <button
@@ -598,3 +604,4 @@ export default function TdsCalculator() {
         </div>
     );
 }
+

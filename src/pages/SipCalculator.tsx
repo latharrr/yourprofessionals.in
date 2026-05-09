@@ -1,11 +1,12 @@
-import { useState, useMemo } from 'react';
+﻿import { useState, useMemo } from 'react';
 import Header from '../components/layout/Header';
 import Footer from '../components/layout/Footer';
+import SEO from '../components/common/SEO';
 
 function formatCurrency(value: number): string {
-    if (value >= 10000000) return `₹${(value / 10000000).toFixed(2)} Cr`;
-    if (value >= 100000) return `₹${(value / 100000).toFixed(2)} L`;
-    return `₹${value.toLocaleString('en-IN', { maximumFractionDigits: 0 })}`;
+    if (value >= 10000000) return `â‚¹${(value / 10000000).toFixed(2)} Cr`;
+    if (value >= 100000) return `â‚¹${(value / 100000).toFixed(2)} L`;
+    return `â‚¹${value.toLocaleString('en-IN', { maximumFractionDigits: 0 })}`;
 }
 
 function calculateSIP(monthly: number, annualRate: number, years: number) {
@@ -75,7 +76,12 @@ export default function SipCalculator() {
 
     return (
         <div className="min-h-screen flex flex-col font-sans">
-            <Header />
+                        <SEO
+                title="SIP Calculator – Plan Mutual Fund Investments Free"
+                description="Free SIP Calculator online — calculate the future value of your Systematic Investment Plan with monthly contributions. Plan your wealth creation with accurate projections."
+                canonical="/sip-calculator"
+            />
+<Header />
             <main className="flex-grow pt-28">
                 {/* Hero */}
                 <section className="bg-gradient-to-br from-[#090a3d] via-[#0f1163] to-[#1a1c6e] text-white py-12 md:py-20 relative overflow-hidden">
@@ -91,7 +97,7 @@ export default function SipCalculator() {
                             SIP Calculator <span className="text-[var(--color-brand-secondary)]">Online</span>
                         </h1>
                         <p className="text-lg text-gray-300 max-w-2xl mx-auto">
-                            Plan your wealth-building journey — estimate returns, compare strategies, and build a personalised investment plan to achieve your financial goals.
+                            Plan your wealth-building journey â€” estimate returns, compare strategies, and build a personalised investment plan to achieve your financial goals.
                         </p>
                     </div>
                 </section>
@@ -123,7 +129,7 @@ export default function SipCalculator() {
                                             <div className="flex justify-between items-center mb-2">
                                                 <label className="text-sm font-semibold text-gray-700">Monthly Investment</label>
                                                 <div className="flex items-center gap-1 bg-gray-50 border border-gray-200 rounded-lg px-3 py-1.5">
-                                                    <span className="text-sm text-gray-500">₹</span>
+                                                    <span className="text-sm text-gray-500">â‚¹</span>
                                                     <input type="number" value={monthly} onChange={e => setMonthly(Math.max(100, Number(e.target.value)))}
                                                         className="w-24 text-sm font-semibold text-right bg-transparent focus:outline-none" />
                                                 </div>
@@ -134,7 +140,7 @@ export default function SipCalculator() {
                                                 {PRESETS.map(p => (
                                                     <button key={p} onClick={() => setMonthly(p)}
                                                         className={`px-3 py-1 rounded-full text-xs font-medium transition-all ${monthly === p ? 'bg-[var(--color-brand-secondary)] text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'}`}>
-                                                        ₹{p.toLocaleString('en-IN')}
+                                                        â‚¹{p.toLocaleString('en-IN')}
                                                     </button>
                                                 ))}
                                             </div>
@@ -147,7 +153,7 @@ export default function SipCalculator() {
                                         <div className="flex justify-between items-center mb-2">
                                             <label className="text-sm font-semibold text-gray-700">Lump Sum Amount</label>
                                             <div className="flex items-center gap-1 bg-gray-50 border border-gray-200 rounded-lg px-3 py-1.5">
-                                                <span className="text-sm text-gray-500">₹</span>
+                                                <span className="text-sm text-gray-500">â‚¹</span>
                                                 <input type="number" value={lumpsum} onChange={e => setLumpsum(Math.max(1000, Number(e.target.value)))}
                                                     className="w-28 text-sm font-semibold text-right bg-transparent focus:outline-none" />
                                             </div>
@@ -270,7 +276,7 @@ export default function SipCalculator() {
                         <h2 className="text-3xl md:text-4xl font-bold text-[#090a3d] mb-6">What is a SIP?</h2>
                         <div className="prose prose-gray max-w-none text-gray-600 leading-relaxed space-y-4">
                             <p>A <strong>Systematic Investment Plan (SIP)</strong> allows you to invest a fixed amount regularly in mutual funds. You contribute weekly, monthly, or quarterly, and the money grows through compounding, building value over time. It is a great investment instrument with much lower risks compared to trading stocks and better returns than bank savings.</p>
-                            <p>Imagine two friends — Asha saves ₹5,000 every month in a regular savings account. Even after five years, her balance grows only slightly because the bank offers very low interest. Rohan, on the other hand, invests the same ₹5,000 every month through a SIP. Over time, compounding makes his money grow at a much faster pace. Even though both invest the same amount, Rohan ends up with a much larger corpus because SIP harnesses the power of compounding.</p>
+                            <p>Imagine two friends â€” Asha saves â‚¹5,000 every month in a regular savings account. Even after five years, her balance grows only slightly because the bank offers very low interest. Rohan, on the other hand, invests the same â‚¹5,000 every month through a SIP. Over time, compounding makes his money grow at a much faster pace. Even though both invest the same amount, Rohan ends up with a much larger corpus because SIP harnesses the power of compounding.</p>
                         </div>
                     </div>
                 </section>
@@ -282,13 +288,13 @@ export default function SipCalculator() {
                         <div className="bg-white rounded-2xl p-6 md:p-8 shadow-lg border border-gray-100 mb-8">
                             <p className="text-gray-600 mb-4">SIP calculations are based on monthly compounding. The formula used:</p>
                             <div className="bg-gray-50 rounded-xl p-5 text-center mb-4">
-                                <p className="font-mono text-lg font-bold text-[#090a3d]">M = P × [(1 + i)<sup>n</sup> − 1] / i × (1 + i)</p>
+                                <p className="font-mono text-lg font-bold text-[#090a3d]">M = P Ã— [(1 + i)<sup>n</sup> âˆ’ 1] / i Ã— (1 + i)</p>
                             </div>
                             <ul className="space-y-2 text-sm text-gray-600">
                                 <li className="flex items-start gap-2"><span className="font-mono font-bold text-[var(--color-brand-secondary)]">M</span> = Maturity value (total future value)</li>
                                 <li className="flex items-start gap-2"><span className="font-mono font-bold text-[var(--color-brand-secondary)]">P</span> = Monthly investment amount</li>
                                 <li className="flex items-start gap-2"><span className="font-mono font-bold text-[var(--color-brand-secondary)]">n</span> = Total number of monthly installments</li>
-                                <li className="flex items-start gap-2"><span className="font-mono font-bold text-[var(--color-brand-secondary)]">i</span> = Monthly rate of return = (1 + Annual Return)<sup>1/12</sup> − 1</li>
+                                <li className="flex items-start gap-2"><span className="font-mono font-bold text-[var(--color-brand-secondary)]">i</span> = Monthly rate of return = (1 + Annual Return)<sup>1/12</sup> âˆ’ 1</li>
                             </ul>
                         </div>
                     </div>
@@ -300,12 +306,12 @@ export default function SipCalculator() {
                         <h2 className="text-3xl md:text-4xl font-bold text-[#090a3d] text-center mb-12">Types of SIP Calculator</h2>
                         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                             {[
-                                { icon: '📅', title: 'Monthly SIP', desc: 'The most common format — invest a fixed amount every month. Compounding applies monthly, making it ideal for salaried individuals.' },
-                                { icon: '📈', title: 'Step-Up SIP', desc: 'Increase your SIP amount annually (aligned with salary increments). Dramatically increases your final corpus compared to flat SIP.' },
-                                { icon: '💰', title: 'Lump Sum + SIP', desc: 'Combine a one-time lump sum investment with regular SIPs. Evaluate returns when you invest a big amount initially plus monthly SIPs.' },
-                                { icon: '🎯', title: 'Goal-Based SIP', desc: 'Plan SIP based on a financial goal — buying a house, child education, or retirement. Find required monthly SIP to reach your goal.' },
-                                { icon: '📊', title: 'SIP Return (XIRR)', desc: 'Calculate actual returns on real-life SIP investments where dates and amounts may vary. Shows actual return percentage.' },
-                                { icon: '⏰', title: 'SIP Delay Calculator', desc: 'See how delaying SIPs by even a few months affects long-term wealth. Understand the cost of starting late.' },
+                                { icon: 'ðŸ“…', title: 'Monthly SIP', desc: 'The most common format â€” invest a fixed amount every month. Compounding applies monthly, making it ideal for salaried individuals.' },
+                                { icon: 'ðŸ“ˆ', title: 'Step-Up SIP', desc: 'Increase your SIP amount annually (aligned with salary increments). Dramatically increases your final corpus compared to flat SIP.' },
+                                { icon: 'ðŸ’°', title: 'Lump Sum + SIP', desc: 'Combine a one-time lump sum investment with regular SIPs. Evaluate returns when you invest a big amount initially plus monthly SIPs.' },
+                                { icon: 'ðŸŽ¯', title: 'Goal-Based SIP', desc: 'Plan SIP based on a financial goal â€” buying a house, child education, or retirement. Find required monthly SIP to reach your goal.' },
+                                { icon: 'ðŸ“Š', title: 'SIP Return (XIRR)', desc: 'Calculate actual returns on real-life SIP investments where dates and amounts may vary. Shows actual return percentage.' },
+                                { icon: 'â°', title: 'SIP Delay Calculator', desc: 'See how delaying SIPs by even a few months affects long-term wealth. Understand the cost of starting late.' },
                             ].map((type, i) => (
                                 <div key={i} className="bg-gray-50 rounded-2xl p-6 border border-gray-100 hover:shadow-lg hover:border-amber-200 transition-all">
                                     <span className="text-3xl mb-3 block">{type.icon}</span>
@@ -323,14 +329,14 @@ export default function SipCalculator() {
                         <h2 className="text-3xl md:text-4xl font-bold text-[#090a3d] text-center mb-12">Benefits of SIP Investing</h2>
                         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
                             {[
-                                { icon: '🔄', title: 'Rupee Cost Averaging', desc: 'Investing fixed amounts during different market levels reduces the average purchase cost of units.' },
-                                { icon: '📊', title: 'Power of Compounding', desc: 'Your returns get reinvested, increasing the final value exponentially over time.' },
-                                { icon: '🎯', title: 'Goal Tracking', desc: 'Measure progress against financial targets like education, retirement, or property.' },
-                                { icon: '🛡️', title: 'No Timing Pressure', desc: 'Invest through all market conditions. Spreads risk and avoids emotional decisions.' },
-                                { icon: '💪', title: 'Saving Discipline', desc: 'Create a routine that supports long-term financial planning with regular contributions.' },
-                                { icon: '📈', title: 'Inflation Protection', desc: 'Long-term SIP returns help beat inflation when invested for extended periods.' },
-                                { icon: '💼', title: 'Salaried-Friendly', desc: 'Monthly income aligns perfectly with monthly SIP contributions from your salary.' },
-                                { icon: '🔧', title: 'Flexible & Simple', desc: 'Start with as low as ₹100/month. Increase, pause, or stop anytime without penalties.' },
+                                { icon: 'ðŸ”„', title: 'Rupee Cost Averaging', desc: 'Investing fixed amounts during different market levels reduces the average purchase cost of units.' },
+                                { icon: 'ðŸ“Š', title: 'Power of Compounding', desc: 'Your returns get reinvested, increasing the final value exponentially over time.' },
+                                { icon: 'ðŸŽ¯', title: 'Goal Tracking', desc: 'Measure progress against financial targets like education, retirement, or property.' },
+                                { icon: 'ðŸ›¡ï¸', title: 'No Timing Pressure', desc: 'Invest through all market conditions. Spreads risk and avoids emotional decisions.' },
+                                { icon: 'ðŸ’ª', title: 'Saving Discipline', desc: 'Create a routine that supports long-term financial planning with regular contributions.' },
+                                { icon: 'ðŸ“ˆ', title: 'Inflation Protection', desc: 'Long-term SIP returns help beat inflation when invested for extended periods.' },
+                                { icon: 'ðŸ’¼', title: 'Salaried-Friendly', desc: 'Monthly income aligns perfectly with monthly SIP contributions from your salary.' },
+                                { icon: 'ðŸ”§', title: 'Flexible & Simple', desc: 'Start with as low as â‚¹100/month. Increase, pause, or stop anytime without penalties.' },
                             ].map((benefit, i) => (
                                 <div key={i} className="bg-white rounded-xl p-5 border border-gray-100 hover:shadow-md transition-shadow">
                                     <span className="text-2xl mb-2 block">{benefit.icon}</span>
@@ -373,12 +379,12 @@ export default function SipCalculator() {
                         <h2 className="text-3xl md:text-4xl font-bold text-[#090a3d] text-center mb-12">Frequently Asked Questions</h2>
                         <div className="space-y-4">
                             {[
-                                { q: 'What is the minimum amount to start a SIP?', a: 'Most mutual funds in India allow SIP investments starting from ₹100 to ₹500 per month. Our calculator supports amounts from ₹500 onwards.' },
+                                { q: 'What is the minimum amount to start a SIP?', a: 'Most mutual funds in India allow SIP investments starting from â‚¹100 to â‚¹500 per month. Our calculator supports amounts from â‚¹500 onwards.' },
                                 { q: 'What return rate should I use for SIP calculations?', a: 'For equity mutual funds, 12-15% CAGR is a reasonable historical benchmark. For balanced funds, use 9-12%. For debt funds, 6-8% is standard. Past returns do not guarantee future performance.' },
                                 { q: 'Is SIP better than lump sum investing?', a: 'SIP reduces timing risk through rupee cost averaging and builds investment discipline. Lump sum can give higher returns in a consistently rising market. Many investors use a combination of both strategies.' },
-                                { q: 'What is a Step-Up SIP?', a: 'A Step-Up SIP automatically increases your monthly contribution by a fixed percentage each year — typically aligned with your salary increment. This dramatically increases your final corpus compared to a flat SIP.' },
+                                { q: 'What is a Step-Up SIP?', a: 'A Step-Up SIP automatically increases your monthly contribution by a fixed percentage each year â€” typically aligned with your salary increment. This dramatically increases your final corpus compared to a flat SIP.' },
                                 { q: 'Are SIP returns guaranteed?', a: 'No. SIP returns depend on market performance and the type of mutual fund chosen. The calculator provides estimates based on assumed return rates. Actual returns may vary.' },
-                                { q: 'Can I stop or pause my SIP anytime?', a: 'Yes. SIPs are flexible — you can increase, decrease, pause, or stop your SIP at any time without any exit penalties (though some funds may have exit loads for early redemption).' },
+                                { q: 'Can I stop or pause my SIP anytime?', a: 'Yes. SIPs are flexible â€” you can increase, decrease, pause, or stop your SIP at any time without any exit penalties (though some funds may have exit loads for early redemption).' },
                                 { q: 'How is SIP different from a recurring deposit?', a: 'SIP invests in mutual funds (market-linked, potentially higher returns), while RD invests in bank deposits (fixed returns, lower risk). SIP offers better long-term wealth creation potential but comes with market risk.' },
                             ].map((faq, i) => (
                                 <details key={i} className="group bg-white rounded-xl border border-gray-100 overflow-hidden">
@@ -408,3 +414,4 @@ export default function SipCalculator() {
         </div>
     );
 }
+

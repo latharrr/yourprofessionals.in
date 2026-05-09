@@ -1,11 +1,12 @@
-import { useState, useMemo } from 'react';
+﻿import { useState, useMemo } from 'react';
 import Header from '../components/layout/Header';
 import Footer from '../components/layout/Footer';
+import SEO from '../components/common/SEO';
 
 function formatCurrency(value: number): string {
-    if (value >= 10000000) return `₹${(value / 10000000).toFixed(2)} Cr`;
-    if (value >= 100000) return `₹${(value / 100000).toFixed(2)} L`;
-    return `₹${value.toLocaleString('en-IN', { maximumFractionDigits: 0 })}`;
+    if (value >= 10000000) return `â‚¹${(value / 10000000).toFixed(2)} Cr`;
+    if (value >= 100000) return `â‚¹${(value / 100000).toFixed(2)} L`;
+    return `â‚¹${value.toLocaleString('en-IN', { maximumFractionDigits: 0 })}`;
 }
 
 function calculateEMI(principal: number, annualRate: number, totalMonths: number) {
@@ -114,7 +115,12 @@ export default function EmiCalculator() {
 
     return (
         <div className="min-h-screen flex flex-col font-sans">
-            <Header />
+                        <SEO
+                title="Home Loan EMI Calculator – Calculate Monthly EMI"
+                description="Free home loan EMI calculator — compute your monthly EMI, total interest payable, and amortisation schedule instantly. Plan your home purchase wisely."
+                canonical="/home-loan-emi-calculator"
+            />
+<Header />
             <main className="flex-grow pt-28">
                 {/* Hero */}
                 <section className="bg-gradient-to-br from-[#090a3d] via-[#0f1163] to-[#1a1c6e] text-white py-12 md:py-20 relative overflow-hidden">
@@ -130,7 +136,7 @@ export default function EmiCalculator() {
                             Home Loan EMI Calculator <span className="text-[var(--color-brand-secondary)]">Online</span>
                         </h1>
                         <p className="text-lg text-gray-300 max-w-2xl mx-auto">
-                            Plan your home purchase confidently — calculate your monthly EMI, total interest outgo, and view a detailed year-wise amortization schedule before you sign.
+                            Plan your home purchase confidently â€” calculate your monthly EMI, total interest outgo, and view a detailed year-wise amortization schedule before you sign.
                         </p>
                     </div>
                 </section>
@@ -146,7 +152,7 @@ export default function EmiCalculator() {
                                     <div className="flex justify-between items-center mb-2">
                                         <label className="text-sm font-semibold text-gray-700">Loan Amount</label>
                                         <div className="flex items-center gap-1 bg-gray-50 border border-gray-200 rounded-lg px-3 py-1.5">
-                                            <span className="text-sm text-gray-500">₹</span>
+                                            <span className="text-sm text-gray-500">â‚¹</span>
                                             <input
                                                 type="number"
                                                 value={loanAmount}
@@ -162,7 +168,7 @@ export default function EmiCalculator() {
                                         className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-[var(--color-brand-secondary)]"
                                     />
                                     <div className="flex justify-between text-xs text-gray-400 mt-1">
-                                        <span>₹1 L</span><span>₹10 Cr</span>
+                                        <span>â‚¹1 L</span><span>â‚¹10 Cr</span>
                                     </div>
                                     <div className="flex flex-wrap gap-2 mt-3">
                                         {LOAN_PRESETS.map(p => (
@@ -300,7 +306,7 @@ export default function EmiCalculator() {
                                             return (
                                                 <div key={d.year} className="flex-1 flex flex-col items-center justify-end h-full group relative">
                                                     <div className="absolute bottom-full mb-1 bg-gray-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none z-10">
-                                                        Yr {d.year}: P {formatCurrency(d.principalPaid)} · I {formatCurrency(d.interestPaid)}
+                                                        Yr {d.year}: P {formatCurrency(d.principalPaid)} Â· I {formatCurrency(d.interestPaid)}
                                                     </div>
                                                     <div className="w-full rounded-t-sm overflow-hidden transition-all duration-300 hover:opacity-80 flex flex-col justify-end"
                                                         style={{ height: `${Math.max(4, (total / chartMax) * 100)}%` }}>
@@ -371,8 +377,8 @@ export default function EmiCalculator() {
                     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
                         <h2 className="text-3xl md:text-4xl font-bold text-[#090a3d] mb-6">What is EMI?</h2>
                         <div className="prose prose-gray max-w-none text-gray-600 leading-relaxed space-y-4">
-                            <p>An <strong>Equated Monthly Instalment (EMI)</strong> is a fixed payment you make to a lender on a specific date each month until the loan is fully repaid. Each EMI consists of two components — a portion that goes toward repaying the principal amount and another that covers the interest charged by the lender. In the early years the interest component is larger, while toward the end most of the EMI reduces your outstanding principal.</p>
-                            <p>Consider two home buyers — Priya takes a ₹50 lakh loan at 8.5% for 20 years and pays an EMI of approximately ₹43,391 every month. Over two decades she will pay around ₹54 lakh in interest on top of her ₹50 lakh principal. If she had chosen a 15-year tenure instead, her EMI would be higher at roughly ₹49,236, but her total interest cost drops to about ₹38.6 lakh — saving her more than ₹15 lakh. This illustrates why understanding your EMI before committing to a loan is critical for long-term financial planning.</p>
+                            <p>An <strong>Equated Monthly Instalment (EMI)</strong> is a fixed payment you make to a lender on a specific date each month until the loan is fully repaid. Each EMI consists of two components â€” a portion that goes toward repaying the principal amount and another that covers the interest charged by the lender. In the early years the interest component is larger, while toward the end most of the EMI reduces your outstanding principal.</p>
+                            <p>Consider two home buyers â€” Priya takes a â‚¹50 lakh loan at 8.5% for 20 years and pays an EMI of approximately â‚¹43,391 every month. Over two decades she will pay around â‚¹54 lakh in interest on top of her â‚¹50 lakh principal. If she had chosen a 15-year tenure instead, her EMI would be higher at roughly â‚¹49,236, but her total interest cost drops to about â‚¹38.6 lakh â€” saving her more than â‚¹15 lakh. This illustrates why understanding your EMI before committing to a loan is critical for long-term financial planning.</p>
                         </div>
                     </div>
                 </section>
@@ -384,7 +390,7 @@ export default function EmiCalculator() {
                         <div className="bg-white rounded-2xl p-6 md:p-8 shadow-lg border border-gray-100 mb-8">
                             <p className="text-gray-600 mb-4">Home loan EMI is computed using the standard reducing-balance formula:</p>
                             <div className="bg-gray-50 rounded-xl p-5 text-center mb-4">
-                                <p className="font-mono text-lg font-bold text-[#090a3d]">EMI = P × r × (1 + r)<sup>n</sup> / ((1 + r)<sup>n</sup> − 1)</p>
+                                <p className="font-mono text-lg font-bold text-[#090a3d]">EMI = P Ã— r Ã— (1 + r)<sup>n</sup> / ((1 + r)<sup>n</sup> âˆ’ 1)</p>
                             </div>
                             <ul className="space-y-2 text-sm text-gray-600">
                                 <li className="flex items-start gap-2"><span className="font-mono font-bold text-[var(--color-brand-secondary)]">P</span> = Principal loan amount (the total amount you borrow)</li>
@@ -396,7 +402,7 @@ export default function EmiCalculator() {
                         <div className="bg-white rounded-2xl p-6 md:p-8 shadow-lg border border-gray-100">
                             <h3 className="text-lg font-bold text-[#090a3d] mb-4">Quick Example</h3>
                             <p className="text-gray-600 text-sm leading-relaxed">
-                                For a loan of <strong>₹30,00,000</strong> at <strong>8.5%</strong> annual interest for <strong>20 years</strong> (240 months): the monthly rate r = 0.085/12 = 0.007083. Plugging into the formula, the EMI works out to approximately <strong>₹26,035</strong> per month. Over 20 years you repay a total of about ₹62.48 lakh, of which ₹32.48 lakh is interest and ₹30 lakh is your original principal.
+                                For a loan of <strong>â‚¹30,00,000</strong> at <strong>8.5%</strong> annual interest for <strong>20 years</strong> (240 months): the monthly rate r = 0.085/12 = 0.007083. Plugging into the formula, the EMI works out to approximately <strong>â‚¹26,035</strong> per month. Over 20 years you repay a total of about â‚¹62.48 lakh, of which â‚¹32.48 lakh is interest and â‚¹30 lakh is your original principal.
                             </p>
                         </div>
                     </div>
@@ -409,22 +415,22 @@ export default function EmiCalculator() {
                         <div className="grid md:grid-cols-2 gap-6">
                             {[
                                 {
-                                    icon: '📊',
+                                    icon: 'ðŸ“Š',
                                     title: 'Interest Rate',
                                     desc: 'Even a 0.5% difference in interest rate can change your total outgo by several lakhs over a 20-year loan. Floating rates move with RBI repo rate changes, while fixed rates stay constant. Always compare rates across lenders before finalising.',
                                 },
                                 {
-                                    icon: '⏳',
+                                    icon: 'â³',
                                     title: 'Loan Tenure',
-                                    desc: 'A longer tenure lowers your monthly EMI but significantly increases total interest paid. For example, choosing 20 years over 15 years may reduce EMI by ₹5,000 per month but add ₹8–10 lakh in total interest. Strike a balance that fits your monthly budget.',
+                                    desc: 'A longer tenure lowers your monthly EMI but significantly increases total interest paid. For example, choosing 20 years over 15 years may reduce EMI by â‚¹5,000 per month but add â‚¹8â€“10 lakh in total interest. Strike a balance that fits your monthly budget.',
                                 },
                                 {
-                                    icon: '💰',
+                                    icon: 'ðŸ’°',
                                     title: 'Loan Amount',
-                                    desc: 'A larger down payment means a smaller loan and lower EMI. Most lenders finance up to 75–90% of property value. Aim for at least 20% down payment to keep EMI manageable and avoid mortgage insurance requirements.',
+                                    desc: 'A larger down payment means a smaller loan and lower EMI. Most lenders finance up to 75â€“90% of property value. Aim for at least 20% down payment to keep EMI manageable and avoid mortgage insurance requirements.',
                                 },
                                 {
-                                    icon: '🔁',
+                                    icon: 'ðŸ”',
                                     title: 'Prepayment & Part-Payment',
                                     desc: 'Making occasional lump-sum payments toward your principal can dramatically shorten your loan tenure and reduce total interest. RBI guidelines prohibit prepayment penalties on floating-rate home loans, so take advantage of bonuses and windfalls.',
                                 },
@@ -445,14 +451,14 @@ export default function EmiCalculator() {
                         <h2 className="text-3xl md:text-4xl font-bold text-[#090a3d] text-center mb-12">Tips to Reduce Your Home Loan EMI</h2>
                         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
                             {[
-                                { icon: '🏦', title: 'Compare Lenders', desc: 'Do not accept the first offer. Compare interest rates from banks, housing finance companies, and NBFCs. Even a 0.25% lower rate saves lakhs.' },
-                                { icon: '💵', title: 'Increase Down Payment', desc: 'Pay 25–30% upfront instead of the minimum 10–20%. A smaller loan means a smaller EMI and less total interest over the life of the loan.' },
-                                { icon: '📉', title: 'Negotiate Your Rate', desc: 'Existing borrowers with a strong repayment track record can request a rate reduction. Banks often agree to retain good customers.' },
-                                { icon: '🔄', title: 'Refinance / Balance Transfer', desc: 'If another lender offers a significantly lower rate, transfer your home loan. Most banks charge minimal processing fees for balance transfers.' },
-                                { icon: '💸', title: 'Make Part-Prepayments', desc: 'Use annual bonuses or surplus savings to make lump-sum payments toward the principal. This directly reduces the outstanding balance and future interest.' },
-                                { icon: '📅', title: 'Choose a Shorter Tenure', desc: 'If your monthly budget allows, pick 15 years over 20. The EMI is higher but total interest drops dramatically — often saving ₹10 lakh or more.' },
-                                { icon: '⭐', title: 'Maintain a High Credit Score', desc: 'A CIBIL score above 750 qualifies you for the best interest rates. Pay all existing EMIs and credit card bills on time to keep your score high.' },
-                                { icon: '👥', title: 'Apply With a Co-Applicant', desc: 'Adding a co-borrower (spouse or parent) with stable income can help you qualify for a larger loan at a lower rate, reducing the effective EMI burden.' },
+                                { icon: 'ðŸ¦', title: 'Compare Lenders', desc: 'Do not accept the first offer. Compare interest rates from banks, housing finance companies, and NBFCs. Even a 0.25% lower rate saves lakhs.' },
+                                { icon: 'ðŸ’µ', title: 'Increase Down Payment', desc: 'Pay 25â€“30% upfront instead of the minimum 10â€“20%. A smaller loan means a smaller EMI and less total interest over the life of the loan.' },
+                                { icon: 'ðŸ“‰', title: 'Negotiate Your Rate', desc: 'Existing borrowers with a strong repayment track record can request a rate reduction. Banks often agree to retain good customers.' },
+                                { icon: 'ðŸ”„', title: 'Refinance / Balance Transfer', desc: 'If another lender offers a significantly lower rate, transfer your home loan. Most banks charge minimal processing fees for balance transfers.' },
+                                { icon: 'ðŸ’¸', title: 'Make Part-Prepayments', desc: 'Use annual bonuses or surplus savings to make lump-sum payments toward the principal. This directly reduces the outstanding balance and future interest.' },
+                                { icon: 'ðŸ“…', title: 'Choose a Shorter Tenure', desc: 'If your monthly budget allows, pick 15 years over 20. The EMI is higher but total interest drops dramatically â€” often saving â‚¹10 lakh or more.' },
+                                { icon: 'â­', title: 'Maintain a High Credit Score', desc: 'A CIBIL score above 750 qualifies you for the best interest rates. Pay all existing EMIs and credit card bills on time to keep your score high.' },
+                                { icon: 'ðŸ‘¥', title: 'Apply With a Co-Applicant', desc: 'Adding a co-borrower (spouse or parent) with stable income can help you qualify for a larger loan at a lower rate, reducing the effective EMI burden.' },
                             ].map((tip, i) => (
                                 <div key={i} className="bg-white rounded-xl p-5 border border-gray-100 hover:shadow-md transition-shadow">
                                     <span className="text-2xl mb-2 block">{tip.icon}</span>
@@ -471,23 +477,23 @@ export default function EmiCalculator() {
                         <div className="grid md:grid-cols-3 gap-6">
                             {[
                                 {
-                                    icon: '🔒',
+                                    icon: 'ðŸ”’',
                                     title: 'Fixed Rate Home Loan',
                                     desc: 'The interest rate stays constant throughout the loan tenure, regardless of market fluctuations. Your EMI remains predictable and unchanged. Best suited for borrowers who want certainty in monthly outflows and believe interest rates may rise in the future.',
                                     pros: 'Stable EMI, easy budgeting, no rate-hike risk',
-                                    cons: 'Usually 0.5–1% higher than floating rates, no benefit if rates fall',
+                                    cons: 'Usually 0.5â€“1% higher than floating rates, no benefit if rates fall',
                                 },
                                 {
-                                    icon: '📈',
+                                    icon: 'ðŸ“ˆ',
                                     title: 'Floating Rate Home Loan',
                                     desc: 'The interest rate is linked to an external benchmark such as the RBI repo rate and adjusts periodically. Your EMI changes when the benchmark moves. Most popular choice in India because floating rates are typically lower than fixed rates.',
                                     pros: 'Lower initial rate, benefits from rate cuts, no prepayment penalty',
                                     cons: 'EMI can increase unpredictably, harder to budget long-term',
                                 },
                                 {
-                                    icon: '⚖️',
+                                    icon: 'âš–ï¸',
                                     title: 'Hybrid Home Loan',
-                                    desc: 'Combines fixed and floating rates — the rate stays fixed for an initial period (typically 2–5 years) and then converts to floating for the remaining tenure. Gives you stability in the early years when cash flow is tight.',
+                                    desc: 'Combines fixed and floating rates â€” the rate stays fixed for an initial period (typically 2â€“5 years) and then converts to floating for the remaining tenure. Gives you stability in the early years when cash flow is tight.',
                                     pros: 'Initial stability, transitions to lower floating rate',
                                     cons: 'Fixed period rate may be higher than pure floating, terms vary by lender',
                                 },
@@ -497,8 +503,8 @@ export default function EmiCalculator() {
                                     <h3 className="text-lg font-bold text-[#090a3d] mb-2">{type.title}</h3>
                                     <p className="text-sm text-gray-500 leading-relaxed mb-4">{type.desc}</p>
                                     <div className="space-y-2 text-xs">
-                                        <p><span className="font-semibold text-green-600">✓ Pros:</span> <span className="text-gray-500">{type.pros}</span></p>
-                                        <p><span className="font-semibold text-red-500">✗ Cons:</span> <span className="text-gray-500">{type.cons}</span></p>
+                                        <p><span className="font-semibold text-green-600">âœ“ Pros:</span> <span className="text-gray-500">{type.pros}</span></p>
+                                        <p><span className="font-semibold text-red-500">âœ— Cons:</span> <span className="text-gray-500">{type.cons}</span></p>
                                     </div>
                                 </div>
                             ))}
@@ -539,19 +545,19 @@ export default function EmiCalculator() {
                             {[
                                 {
                                     q: 'What is the EMI formula used in this calculator?',
-                                    a: 'The calculator uses the standard reducing-balance formula: EMI = P × r × (1+r)^n / ((1+r)^n − 1), where P is the principal loan amount, r is the monthly interest rate (annual rate divided by 12 and by 100), and n is the total number of monthly instalments. This is the same formula banks use to compute your repayment schedule.',
+                                    a: 'The calculator uses the standard reducing-balance formula: EMI = P Ã— r Ã— (1+r)^n / ((1+r)^n âˆ’ 1), where P is the principal loan amount, r is the monthly interest rate (annual rate divided by 12 and by 100), and n is the total number of monthly instalments. This is the same formula banks use to compute your repayment schedule.',
                                 },
                                 {
                                     q: 'How does a higher interest rate affect my EMI?',
-                                    a: 'A higher interest rate directly increases your monthly EMI and the total interest paid over the loan tenure. For instance, on a ₹50 lakh loan for 20 years, a rate of 8.5% gives an EMI of about ₹43,391, while 9.5% raises it to ₹46,607 — an increase of over ₹3,200 per month and roughly ₹7.7 lakh more in total interest.',
+                                    a: 'A higher interest rate directly increases your monthly EMI and the total interest paid over the loan tenure. For instance, on a â‚¹50 lakh loan for 20 years, a rate of 8.5% gives an EMI of about â‚¹43,391, while 9.5% raises it to â‚¹46,607 â€” an increase of over â‚¹3,200 per month and roughly â‚¹7.7 lakh more in total interest.',
                                 },
                                 {
                                     q: 'Is a longer tenure better because it lowers the EMI?',
-                                    a: 'A longer tenure does reduce the monthly EMI, making it more affordable month-to-month. However, you end up paying significantly more in total interest. A ₹40 lakh loan at 8.5% costs about ₹28.6 lakh in interest over 15 years but roughly ₹43.3 lakh over 25 years. Choose a tenure that balances affordability with total cost.',
+                                    a: 'A longer tenure does reduce the monthly EMI, making it more affordable month-to-month. However, you end up paying significantly more in total interest. A â‚¹40 lakh loan at 8.5% costs about â‚¹28.6 lakh in interest over 15 years but roughly â‚¹43.3 lakh over 25 years. Choose a tenure that balances affordability with total cost.',
                                 },
                                 {
                                     q: 'Can I prepay my home loan to reduce interest?',
-                                    a: 'Yes. On floating-rate home loans, RBI has prohibited banks from charging prepayment or foreclosure penalties. Making part-prepayments — even small amounts — directly reduces your outstanding principal, which in turn lowers the interest charged in subsequent months. This can shorten your loan tenure by years.',
+                                    a: 'Yes. On floating-rate home loans, RBI has prohibited banks from charging prepayment or foreclosure penalties. Making part-prepayments â€” even small amounts â€” directly reduces your outstanding principal, which in turn lowers the interest charged in subsequent months. This can shorten your loan tenure by years.',
                                 },
                                 {
                                     q: 'What is the difference between flat rate and reducing balance rate?',
@@ -559,7 +565,7 @@ export default function EmiCalculator() {
                                 },
                                 {
                                     q: 'How much home loan can I afford?',
-                                    a: 'Financial experts recommend that your total EMI obligations (including home loan) should not exceed 40–50% of your monthly take-home salary. Banks typically use a similar ratio when assessing eligibility. Use this calculator to work backward — enter different loan amounts until the EMI fits comfortably within your budget.',
+                                    a: 'Financial experts recommend that your total EMI obligations (including home loan) should not exceed 40â€“50% of your monthly take-home salary. Banks typically use a similar ratio when assessing eligibility. Use this calculator to work backward â€” enter different loan amounts until the EMI fits comfortably within your budget.',
                                 },
                                 {
                                     q: 'What is an amortization schedule?',
@@ -571,7 +577,7 @@ export default function EmiCalculator() {
                                 },
                                 {
                                     q: 'Should I choose a fixed or floating interest rate?',
-                                    a: 'In India, most borrowers prefer floating rate loans because they are typically 0.5–1% lower than fixed rates and benefit from RBI rate cuts. Fixed rates offer EMI certainty but are costlier. If you expect interest rates to fall or remain stable, floating is usually better. If you want absolute predictability, fixed may suit you.',
+                                    a: 'In India, most borrowers prefer floating rate loans because they are typically 0.5â€“1% lower than fixed rates and benefit from RBI rate cuts. Fixed rates offer EMI certainty but are costlier. If you expect interest rates to fall or remain stable, floating is usually better. If you want absolute predictability, fixed may suit you.',
                                 },
                                 {
                                     q: 'How can I reduce my existing home loan EMI?',
@@ -607,3 +613,4 @@ export default function EmiCalculator() {
         </div>
     );
 }
+
