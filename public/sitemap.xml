@@ -1,185 +1,178 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-
-  <!-- Core pages -->
-  <url><loc>https://www.yourprofessional.in/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
-  <url><loc>https://www.yourprofessional.in/contact</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-
-  <!-- Calculators -->
-  <url><loc>https://www.yourprofessional.in/gst-calculator</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.yourprofessional.in/income-tax-calculator</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.yourprofessional.in/sip-calculator</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.yourprofessional.in/step-up-sip-calculator</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://www.yourprofessional.in/gst-interest-calculator</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://www.yourprofessional.in/home-loan-emi-calculator</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.yourprofessional.in/ppf-calculator</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://www.yourprofessional.in/tds-calculator</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://www.yourprofessional.in/tds-interest-calculator</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://www.yourprofessional.in/8th-pay-commission-calculator</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-
-  <!-- Company Registration -->
-  <url><loc>https://www.yourprofessional.in/company-registration</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://www.yourprofessional.in/private-limited-company-registration</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://www.yourprofessional.in/llp-registration</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://www.yourprofessional.in/public-limited-company-registration</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.yourprofessional.in/partnership-firm-registration</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.yourprofessional.in/ngo-registration</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.yourprofessional.in/trust-registration</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.yourprofessional.in/sole-proprietorship-registration</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.yourprofessional.in/one-person-company</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.yourprofessional.in/society-registration</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.yourprofessional.in/startup-india-registration</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.yourprofessional.in/startup-registration</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.yourprofessional.in/virtual-office</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.yourprofessional.in/nidhi-company-registration</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.yourprofessional.in/microfinance-company-registration</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.yourprofessional.in/producer-company-registration</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.yourprofessional.in/wordmark-registration</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://www.yourprofessional.in/psara-license</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://www.yourprofessional.in/iec-registration</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.yourprofessional.in/digital-signature-certificate</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.yourprofessional.in/class-3-digital-signature-certificate</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://www.yourprofessional.in/indian-subsidiary-registration</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.yourprofessional.in/small-scale-industries-registration</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://www.yourprofessional.in/foreign-subsidiary-company-registration</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.yourprofessional.in/foreign-company-registration</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.yourprofessional.in/barcode-registration</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-
-  <!-- Government Registrations -->
-  <url><loc>https://www.yourprofessional.in/drug-license</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.yourprofessional.in/liquor-license</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.yourprofessional.in/iso-registration</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.yourprofessional.in/ayush-license</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.yourprofessional.in/fieo-registration</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://www.yourprofessional.in/medical-device-registration</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.yourprofessional.in/isi-mark-certification</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.yourprofessional.in/professional-tax-registration</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.yourprofessional.in/ptec-registration</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://www.yourprofessional.in/rcmc-registration</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://www.yourprofessional.in/factory-license</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.yourprofessional.in/icegate-registration</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://www.yourprofessional.in/petrol-pump-license</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://www.yourprofessional.in/tec-certification</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://www.yourprofessional.in/spice-plus-form</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://www.yourprofessional.in/iso-22000-certification</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.yourprofessional.in/iso-9001-certification</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.yourprofessional.in/iso-27001-certification</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.yourprofessional.in/iso-14001-certification</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.yourprofessional.in/gmp-certification</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.yourprofessional.in/geographical-indication-registration</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-
+  <url><loc>https://www.yourprofessionals.in/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://www.yourprofessionals.in/contact-us</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.yourprofessionals.in/company-registration</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.yourprofessionals.in/sip-calculator</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.yourprofessionals.in/step-up-sip-calculator</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.yourprofessionals.in/gst-calculator</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.yourprofessionals.in/gst-interest-calculator</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.yourprofessionals.in/income-tax-calculator</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.yourprofessionals.in/home-loan-emi-calculator</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.yourprofessionals.in/ppf-calculator</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.yourprofessionals.in/tds-calculator</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.yourprofessionals.in/tds-interest-calculator</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.yourprofessionals.in/8th-pay-commission-calculator</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <!-- Registration -->
+  <url><loc>https://www.yourprofessionals.in/private-limited-company-registration</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.yourprofessionals.in/llp-registration</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.yourprofessionals.in/public-limited-company-registration</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.yourprofessionals.in/partnership-firm-registration</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.yourprofessionals.in/ngo-registration</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.yourprofessionals.in/trust-registration</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.yourprofessionals.in/sole-proprietorship-registration</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.yourprofessionals.in/one-person-company</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.yourprofessionals.in/society-registration</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.yourprofessionals.in/startup-india-registration</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.yourprofessionals.in/startup-registration</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.yourprofessionals.in/virtual-office</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.yourprofessionals.in/nidhi-company-registration</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.yourprofessionals.in/microfinance-company-registration</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.yourprofessionals.in/producer-company-registration</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.yourprofessionals.in/wordmark-registration</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.yourprofessionals.in/psara-license</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.yourprofessionals.in/iec-registration</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.yourprofessionals.in/digital-signature-certificate</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.yourprofessionals.in/class-3-digital-signature-certificate</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.yourprofessionals.in/indian-subsidiary-registration</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.yourprofessionals.in/small-scale-industries-registration</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.yourprofessionals.in/foreign-subsidiary-company-registration</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.yourprofessionals.in/foreign-company-registration</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.yourprofessionals.in/barcode-registration</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <!-- Government Registration -->
+  <url><loc>https://www.yourprofessionals.in/drug-license</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.yourprofessionals.in/liquor-license</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.yourprofessionals.in/iso-registration</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.yourprofessionals.in/ayush-license</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.yourprofessionals.in/fieo-registration</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.yourprofessionals.in/medical-device-registration</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.yourprofessionals.in/isi-mark-certification</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.yourprofessionals.in/professional-tax-registration</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.yourprofessionals.in/ptec-registration</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.yourprofessionals.in/rcmc-registration</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.yourprofessionals.in/factory-license</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.yourprofessionals.in/icegate-registration</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.yourprofessionals.in/petrol-pump-license</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.yourprofessionals.in/tec-certification</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.yourprofessionals.in/spice-plus-form</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.yourprofessionals.in/iso-22000-certification</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.yourprofessionals.in/iso-50001-certification</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.yourprofessionals.in/iso-31000-certification</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.yourprofessionals.in/iso-9001-certification</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.yourprofessionals.in/iso-27001-certification</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.yourprofessionals.in/iso-14001-certification</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.yourprofessionals.in/duns-number</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.yourprofessionals.in/geographical-indication-registration</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.yourprofessionals.in/gmp-certification</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.yourprofessionals.in/isbn-number-registration</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.yourprofessionals.in/tobacco-license</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <!-- FSSAI -->
-  <url><loc>https://www.yourprofessional.in/fssai-registration</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.yourprofessional.in/fssai-central-license</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.yourprofessional.in/fssai-state-license</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.yourprofessional.in/fssai-product-approval</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.yourprofessional.in/fssai-license-renewal</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.yourprofessional.in/halal-certification</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-
-  <!-- Trade Licence -->
-  <url><loc>https://www.yourprofessional.in/trade-licence-registration</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.yourprofessional.in/trade-licence-renewal</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-
+  <url><loc>https://www.yourprofessionals.in/fssai-registration</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.yourprofessionals.in/fssai-central-license</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.yourprofessionals.in/fssai-state-license</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.yourprofessionals.in/fssai-product-approval</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.yourprofessionals.in/fssai-license-renewal</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.yourprofessionals.in/halal-certification</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <!-- Trade -->
+  <url><loc>https://www.yourprofessionals.in/trade-licence-registration</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.yourprofessionals.in/trade-licence-renewal</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <!-- Business Certificates -->
-  <url><loc>https://www.yourprofessional.in/rera-registration</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.yourprofessional.in/nsic-registration</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://www.yourprofessional.in/apeda-registration</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://www.yourprofessional.in/ce-certification</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://www.yourprofessional.in/make-in-india-certificate</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-
+  <url><loc>https://www.yourprofessionals.in/rera-registration</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.yourprofessionals.in/nsic-registration</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.yourprofessionals.in/peso-certificate</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.yourprofessionals.in/hallmark-registration</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.yourprofessionals.in/make-in-india-certificate</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.yourprofessionals.in/apeda-registration</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.yourprofessionals.in/ce-certification</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <!-- Business Licenses -->
+  <url><loc>https://www.yourprofessionals.in/rni-registration</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.yourprofessionals.in/cdsco-registration</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.yourprofessionals.in/ad-code-registration</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.yourprofessionals.in/agmark-license</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <!-- BIS -->
-  <url><loc>https://www.yourprofessional.in/bis-certification</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.yourprofessional.in/bis-certification-power-banks</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.yourprofessional.in/bis-fmcs-certification</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://www.yourprofessional.in/bis-certification-toys</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-
+  <url><loc>https://www.yourprofessionals.in/bis-certification</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.yourprofessionals.in/bis-certification-power-banks</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.yourprofessionals.in/bis-fmcs-certification</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.yourprofessionals.in/bis-certification-toys</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <!-- NGO -->
-  <url><loc>https://www.yourprofessional.in/section-8-company-registration</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.yourprofessional.in/12a-and-80g-registration</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.yourprofessional.in/fcra-registration</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.yourprofessional.in/darpan-registration</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-
+  <url><loc>https://www.yourprofessionals.in/section-8-company-registration</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.yourprofessionals.in/darpan-registration</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.yourprofessionals.in/12a-and-80g-registration</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.yourprofessionals.in/fcra-registration</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.yourprofessionals.in/ngo-accounting</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <!-- International -->
-  <url><loc>https://www.yourprofessional.in/company-registration-in-dubai</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.yourprofessional.in/uk-company-registration</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.yourprofessional.in/singapore-company-registration</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.yourprofessional.in/usa-company-registration</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.yourprofessional.in/canada-company-registration</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.yourprofessional.in/australia-company-registration</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.yourprofessional.in/malaysia-company-registration</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.yourprofessional.in/singapore-company-registration</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-
+  <url><loc>https://www.yourprofessionals.in/company-registration-in-dubai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.yourprofessionals.in/uk-company-registration</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.yourprofessionals.in/singapore-company-registration</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.yourprofessionals.in/usa-company-registration</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.yourprofessionals.in/canada-company-registration</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.yourprofessionals.in/dubai-free-zone-company-registration</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <!-- Compliance -->
-  <url><loc>https://www.yourprofessional.in/msme-registration</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.yourprofessional.in/epf-registration</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.yourprofessional.in/shop-and-establishment-registration</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.yourprofessional.in/llp-annual-compliance</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.yourprofessional.in/annual-compliance-private-limited</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.yourprofessional.in/nidhi-company-compliance</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.yourprofessional.in/bookkeeping-and-accounting-services</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.yourprofessional.in/change-private-limited-company-name</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.yourprofessional.in/close-private-limited-company</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.yourprofessional.in/change-in-registered-office</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://www.yourprofessional.in/change-in-director</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://www.yourprofessional.in/winding-up-of-company</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.yourprofessional.in/director-appointment</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://www.yourprofessional.in/increase-authorized-capital</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://www.yourprofessional.in/transfer-of-shares</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://www.yourprofessional.in/convert-partnership-into-llp</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-
-  <!-- IPR / Trademark -->
-  <url><loc>https://www.yourprofessional.in/trademark-registration</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://www.yourprofessional.in/trademark-renewal</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.yourprofessional.in/trademark-objection</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.yourprofessional.in/trademark-opposition</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.yourprofessional.in/international-trademark-registration</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.yourprofessional.in/trademark-infringement</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.yourprofessional.in/trademark-assignment</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://www.yourprofessional.in/copyright-registration</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.yourprofessional.in/patent-registration</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.yourprofessional.in/design-registration</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-
+  <url><loc>https://www.yourprofessionals.in/msme-registration</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.yourprofessionals.in/epf-registration</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.yourprofessionals.in/shop-and-establishment-registration</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.yourprofessionals.in/llp-annual-compliance</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.yourprofessionals.in/annual-compliance-private-limited</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.yourprofessionals.in/bookkeeping-and-accounting-services</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.yourprofessionals.in/ngo-compliance</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.yourprofessionals.in/form-inc-20a</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <!-- MCA -->
+  <url><loc>https://www.yourprofessionals.in/change-private-limited-company-name</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.yourprofessionals.in/close-private-limited-company</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.yourprofessionals.in/change-in-director</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.yourprofessionals.in/dir-3-kyc-for-directors</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <!-- Event Compliance -->
+  <url><loc>https://www.yourprofessionals.in/winding-up-of-company</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.yourprofessionals.in/director-appointment</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.yourprofessionals.in/increase-authorized-capital</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.yourprofessionals.in/issue-of-shares</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.yourprofessionals.in/transfer-of-shares</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <!-- IPR -->
+  <url><loc>https://www.yourprofessionals.in/trademark-registration</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.yourprofessionals.in/trademark-renewal</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.yourprofessionals.in/trademark-objection</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.yourprofessionals.in/trademark-opposition</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.yourprofessionals.in/international-trademark-registration</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.yourprofessionals.in/trademark-infringement</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.yourprofessionals.in/copyright-registration</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.yourprofessionals.in/patent-registration</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.yourprofessionals.in/design-registration</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.yourprofessionals.in/patent-search</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <!-- Income Tax -->
-  <url><loc>https://www.yourprofessional.in/income-tax-return-filing</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://www.yourprofessional.in/tds-return-filing</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.yourprofessional.in/itr-1-form-filing</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.yourprofessional.in/itr-2-form-filing</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.yourprofessional.in/itr-7-form-filing</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.yourprofessional.in/advance-tax-calculation</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.yourprofessional.in/tax-planning-consultation</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.yourprofessional.in/dtaa</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://www.yourprofessional.in/transfer-pricing</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-
+  <url><loc>https://www.yourprofessionals.in/income-tax-return-filing</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.yourprofessionals.in/tds-return-filing</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.yourprofessionals.in/itr-2-form-filing</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.yourprofessionals.in/itr-1-form-filing</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.yourprofessionals.in/tax-planning-consultation</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.yourprofessionals.in/dtaa</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.yourprofessionals.in/transfer-pricing</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <!-- GST -->
-  <url><loc>https://www.yourprofessional.in/gst-registration</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://www.yourprofessional.in/gstr-1-filing</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.yourprofessional.in/gstr-3b-filing</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.yourprofessional.in/gstr-9-9c</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.yourprofessional.in/gst-refund</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.yourprofessional.in/gst-registration-cancellation</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.yourprofessional.in/gst-return-filing</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-
-  <!-- Consultation -->
-  <url><loc>https://www.yourprofessional.in/online-chartered-accountant-services</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.yourprofessional.in/company-secretary-services</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.yourprofessional.in/financial-consultancy-services</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.yourprofessional.in/mergers-and-acquisitions</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.yourprofessional.in/virtual-cfo-services</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-
+  <url><loc>https://www.yourprofessionals.in/gstr-1-filing</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.yourprofessionals.in/gstr-3b-filing</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.yourprofessionals.in/gstr-2b-reconciliation</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.yourprofessionals.in/gst-refund</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.yourprofessionals.in/gst-registration-cancellation</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.yourprofessionals.in/gst-registration-amendment</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <!-- CA / Consultation -->
+  <url><loc>https://www.yourprofessionals.in/online-chartered-accountant-services</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.yourprofessionals.in/mergers-and-acquisitions</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.yourprofessionals.in/financial-consultancy-services</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.yourprofessionals.in/company-secretary-services</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.yourprofessionals.in/consumer-complaint</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.yourprofessionals.in/cheque-bounce-notice</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <!-- Environmental -->
-  <url><loc>https://www.yourprofessional.in/epr-registration</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.yourprofessional.in/environmental-impact-assessment</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.yourprofessional.in/plastic-waste-authorization</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-
+  <url><loc>https://www.yourprofessionals.in/epr-registration</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.yourprofessionals.in/environmental-impact-assessment</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <!-- Agreements -->
-  <url><loc>https://www.yourprofessional.in/memorandum-of-understanding</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.yourprofessional.in/non-disclosure-agreement</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.yourprofessional.in/shareholders-agreement</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.yourprofessional.in/joint-venture-agreement</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.yourprofessional.in/franchise-agreement</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-
+  <url><loc>https://www.yourprofessionals.in/memorandum-of-understanding</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.yourprofessionals.in/non-disclosure-agreement</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.yourprofessionals.in/franchise-agreement</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.yourprofessionals.in/shareholders-agreement</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.yourprofessionals.in/founders-agreement</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.yourprofessionals.in/legal-heir-certificate</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <!-- Regulatory -->
-  <url><loc>https://www.yourprofessional.in/nbfc-registration</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.yourprofessional.in/payment-gateway-license</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-
+  <url><loc>https://www.yourprofessionals.in/nbfc-registration</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.yourprofessionals.in/nbfc-compliance</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.yourprofessionals.in/payment-gateway-license</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.yourprofessionals.in/legal-notice</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
 </urlset>

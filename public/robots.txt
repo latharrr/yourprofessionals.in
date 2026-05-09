@@ -6,4 +6,4 @@ Disallow: /admin/
 Disallow: /api/
 
 # Sitemap location
-Sitemap: https://www.yourprofessional.in/sitemap.xml
+Sitemap: https://www.yourprofessionals.in/sitemap.xml

@@ -2,6 +2,7 @@ import { lazy, Suspense } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import ScrollToTop from './components/common/ScrollToTop';
 import SEO from './components/common/SEO';
+import MobileOverlay from './components/common/MobileOverlay';
 import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
 import HeroSection from './components/home/HeroSection';
@@ -114,6 +115,7 @@ function HomePage() {
 function App() {
   return (
     <BrowserRouter>
+      <MobileOverlay />
       <ScrollToTop />
       <Suspense fallback={<PageLoader />}>
         <Routes>
