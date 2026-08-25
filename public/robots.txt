@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Block admin/internal paths if any are added later
+Disallow: /admin/
+Disallow: /api/
+
+# Sitemap location
+Sitemap: https://www.yourprofessionals.in/sitemap.xml

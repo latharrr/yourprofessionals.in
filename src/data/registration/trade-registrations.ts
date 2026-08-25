@@ -1,0 +1,273 @@
+import type { ServiceData } from '../services';
+
+export const TRADE_REGISTRATIONS: Record<string, ServiceData> = {
+
+    'trade-licence-registration': {
+        slug: 'trade-licence-registration',
+        title: 'Trade Licence Registration',
+        subtitle:
+            'A Trade License is an official document or certificate issued by a local government body, most commonly the Municipal Corporation of your city or state.',
+        heroFeatures: [
+            'Avoid Penalties',
+            'Business Credibility',
+            'Access to Banking Facilities',
+            'Pre-requisite for Other Registrations',
+            'Ensures Safety',
+        ],
+        overview: {
+            heading: 'What is a Trade License?',
+            paragraphs: [
+                'A Trade License is an official document or certificate issued by a local government body, most commonly the Municipal Corporation of your city or state. This license grants you the legal permission to start and operate a particular trade or business within a specific, designated area.',
+                'It is important to understand that this license regulates your business activity to ensure it aligns with local laws. It is not a document that grants you ownership of the property where you operate. Instead, it certifies that the business you are conducting is permissible at that location.',
+                'The main purpose of a trade license is to ensure your business follows local safety, health, and zoning rules. This system was introduced to protect the general public from any potential nuisance or health hazards that could arise from commercial activities.',
+            ],
+            highlights: [
+                { icon: '📋', text: 'Avoid Penalties: It helps you avoid penalties, fines, or forced closure, giving you peace of mind to run your business confidently.' },
+                { icon: '📊', text: 'Business Credibility: Displaying a valid trade license boosts your business’s credibility. Customers, vendors, and investors view it as a sign of professionalism, ethical conduct, and legal legitimacy' },
+                { icon: '💰', text: 'Access to Banking Facilities' },
+                { icon: '⚖️', text: 'Pre-requisite for Other Registrations: A trade license often becomes a prerequisite for obtaining other business licenses and registrations, such as GST, FSSAI, or factory licenses.' },
+                { icon: '🔍', text: 'Ensures Safety' },
+                { icon: '📅', text: 'Industrial License: For small to medium-scale manufacturing and industrial units.' },
+            ],
+        },
+        types: [
+            { title: 'Industrial License', desc: 'For small to medium-scale manufacturing and industrial units.' },
+            { title: 'Shops and Establishment License', desc: 'For general shops, offices, and commercial establishments.' },
+            { title: 'FSSAI License', desc: 'For businesses that prepare, handle, or sell food products.' },
+            { title: 'Professional License', desc: 'For individuals practicing regulated professions like doctors, lawyers, or engineers.' },
+            { title: 'Health Trade License', desc: 'For businesses that impact public health (e.g., restaurants, cafes, hotels, clinics).' },
+            { title: 'Miscellaneous Licenses', desc: 'This is a broad category for specific trades that do not fall into the above but still require regulation.' },
+            { title: 'Liquor License', desc: 'For sale/distribution of alcohol.' },
+            { title: 'Tourism & Travel License', desc: 'For travel agencies and tour operators.' },
+            { title: 'Import-Export License', desc: 'For cross-border trade operations.' },
+            { title: 'E-commerce License', desc: 'For online sales and digital businesses.' },
+        ],
+        eligibility: [
+            'The applicant must be a legal adult, meaning they must be 18 years of age or older.',
+            'The applicant must not have any prior criminal convictions or records.',
+            'The business activity for which the license is sought must be legally permissible under Indian law. The business cannot engage in any unlawful activities.',
+            'The trade must fall under the jurisdiction of the local municipal authority issuing the license.',
+            'The business must comply with local zoning laws, meaning the activity should be allowed in the area where it is being conducted.',
+            'Shop Owners and Retailers:Anyone running a grocery store, clothing outlet, electronics shop, or any form of retail business.',
+            'Service Providers:Businesses offering services like salons, repair workshops, fitness centers, coaching institutes, etc.',
+            'Manufacturing Units and Factories:Small-scale or large-scale manufacturers and industrial units operating within city limits.',
+            'Food Establishments:Owners of restaurants, cafes, food stalls, bakeries, sweet shops, etc., must obtain a trade license, in addition to FSSAI.',
+            'Home-Based Businesses:If the activity involves public interaction or use of machinery (e.g., baking, tailoring, or repair services), a trade license may be required.',
+            'Warehouses and Storage Units:Businesses operating godowns or storage spaces for goods.',
+            'E-commerce Warehouses:Any physical premises used for online order processing or delivery hubs.',
+        ],
+        documents: [
+            {
+                category: '1. Identity and Address Proof',
+                items: [
+                    'Aadhaar Card',
+                    'Passport',
+                    'Voter ID',
+                    'Driving License',
+                    'Lease/Rent Agreement',
+                    'Property Tax Receipt',
+                    'Utility Bill (in the name of the business owner or entity)',
+                    'PAN Card of the applicant/company',
+                ],
+            },
+            {
+                category: '2. Proof of Business Ownership',
+                items: [
+                    'Certificate of Incorporation',
+                    'Memorandum of Association (MOA)',
+                    'Articles of Association (AOA)',
+                    'Partnership Deed',
+                    'Registration Certificate (if applicable)',
+                    'Proprietorship Declaration or Certificate',
+                    'Any government-issued document acknowledging proprietorship',
+                ],
+            },
+            {
+                category: '3. Proof of Business Premises',
+                items: [
+                    'Lease Agreement:Required if the business premises are rented.',
+                    'Property Tax Receipt:Required if the premises are owned by the applicant/entity.',
+                    'NOC (No Objection Certificate):May be required from the property owner (if rented), neighbors, or local authority (depending on the nature of the business)',
+                ],
+            },
+            {
+                category: '4. Other Supporting Documents',
+                items: [
+                    'Occupancy Certificate:Proof that the premises are legally occupied.',
+                    'Business Plan:A  Brief document outlining the nature and scope of the business operations.',
+                    'Layout Plan:Certified layout map of the premises.',
+                    'Khata Certificate/Extract:Issued by the local municipal body verifying property records.',
+                    'Affidavit or Declaration:In some cases, an affidavit stating the legitimacy of the business may be required.',
+                ],
+            },
+            {
+                category: '5. State-Specific (e.g., Haryana) Additional Requirements',
+                items: [
+                    'Family ID (Parivar Pehchan Patra):Required for individual applicants in Haryana.',
+                    'Bank Details of the Entity:',
+                    'GST Registration Certificate:Optional, but may be needed based on the nature of the business.',
+                    'Police Clearance Report:A Report from SP (SB)/SP (Traffic) may be necessary for specific types of businesses.',
+                ],
+            },
+        ],
+        process: [
+            { title: 'Online Application Process', desc: 'Visit the Portal:Go to the official website of your local Municipal Corporation. For example, this would be mcdonline.nic.in for Delhi or bbmp.gov.in for Bengaluru. Register or Login:If you are a new user, create an account by providing basic details like your mobile number and email ID. If you already have an account, simply log in. Fill the Application Form:Navigate to the section for licenses a' },
+            { title: 'Offline Application Process', desc: 'Visit the Municipal Office:Go to the licensing department of the Municipal Corporation office in your zone or area. Collect the Application Form:Request the physical application form for a Trade License (this is often referred to as Form 353 in some municipalities). Fill the Form:Carefully fill out the form in block letters, ensuring all information is correct and legible.' },
+            { title: 'How to Check Application Status Online', desc: 'Most municipal portals offer a feature to track your application. Visit the same website where you submitted your application. Look for a link titled "Check Application Status," "Track Status," or something similar.' },
+        ],
+        fees: [
+            { item: 'State and City', cost: 'Fees in a metro city like Mumbai will be different from those in a smaller town.' },
+            { item: 'Type of Businesses', cost: 'High-risk or high-impact businesses (like large factories or restaurants) typically have higher fees than small retail shops.' },
+            { item: 'Size of Premises', cost: 'The fee is often calculated based on the area of your establishment in square meters.' },
+            { item: 'Location', cost: 'Fees may differ for businesses located in designated commercial areas versus those in non-conforming or residential areas.' },
+            { item: 'Penalty for Not Having a License', cost: 'If your business is found to be operating without a valid Trade License, the municipal authorities can impose heavy fines. These fines are often substantially higher than the license fee. In addition to financial penalties, authorities can issue a legal notice and, in serious cases, order the immediate closure or sealing of your business. This leads to a complete halt in operations and revenue.' },
+            { item: 'Penalty for Late Renewal', cost: 'Operating with an expired license is legally considered the same as operating without one. If you fail to renew your license on time, a late fee will be charged. This penalty is often calculated on a per-day or per-month basis for the period of delay. Continued non-renewal can lead to the same consequences as not having a license at all, including fines and potential closure.' },
+        ],
+        penalties: [
+            { violation: 'Penalty for Not Having a License', penalty: 'If your business is found to be operating without a valid Trade License, the municipal authorities can impose heavy fines. These fines are often substantially higher than the license fee. In addition to financial penalties, authorities can issue a legal notice and, in serious cases, order the immediate closure or sealing of your business. This leads to a complete halt in operations and revenue.' },
+            { violation: 'Penalty for Late Renewal', penalty: 'Operating with an expired license is legally considered the same as operating without one. If you fail to renew your license on time, a late fee will be charged. This penalty is often calculated on a per-day or per-month basis for the period of delay. Continued non-renewal can lead to the same consequences as not having a license at all, including fines and potential closure.' },
+        ],
+        advantages: [
+            { icon: '✅', title: 'Avoid Penalties', desc: 'It helps you avoid penalties, fines, or forced closure, giving you peace of mind to run your business confidently.' },
+            { icon: '🏛️', title: 'Business Credibility', desc: 'Displaying a valid trade license boosts your business’s credibility. Customers, vendors, and investors view it as a sign of professionalism, ethical conduct, and legal legitimacy.' },
+            { icon: '🤝', title: 'Access to Banking Facilities', desc: 'Most banks and financial institutions require a trade license when approving business loans or opening current accounts. It acts as a legal validation of your business’s existence and operational integrity.' },
+            { icon: '📈', title: 'Pre-requisite for Other Registrations', desc: 'A trade license often becomes a prerequisite for obtaining other business licenses and registrations, such as GST, FSSAI, or factory licenses.' },
+            { icon: '🔒', title: 'Ensures Safety', desc: 'Licensing ensures that your business meets key safety and environmental standards. Whether it’s fire safety, hygiene in food handling, or pollution control, compliance protects your customers, employees, and the broader community.' },
+        ],
+        compliance: [
+            { area: 'How to Change the Address in a Trade License', details: 'A Trade License is tied to a specific location. Therefore, you cannot simply "update" the address if you move your business. A change of address is treated as the closure of the business at the old location and the commencement of a new business at the new location. As a result, you are typically required to: Apply for a new Trade License for the new address, and' },
+            { area: 'How to Change the Name in a Trade License', details: 'Changing the name on your Trade License requires a formal amendment process. In most cases, a change in business name is treated as a new application since the trade license is directly tied to the business name. After initiating the new application, you may be required to formally surrender or cancel the existing trade license to avoid duplication or future liabilities.' },
+        ],
+        faqs: [
+            { q: 'How to get a trade license?', a: 'You can get a trade license by applying to your local Municipal Corporation. This can be done either online through the municipalitys official website or offline by visiting the licensing department office in person.' },
+            { q: 'How to apply trade license online in India?', a: 'For detailed information about how to apply trade license online in india, please contact Your Professionals. Our experts provide comprehensive guidance tailored to your specific requirements.' },
+            { q: 'What is the cost of a trade license in India?', a: 'For detailed information about what is the cost of a trade license in india, please contact Your Professionals. Our experts provide comprehensive guidance tailored to your specific requirements.' },
+            { q: 'What are the documents required for a trade license?', a: 'For detailed information about what are the documents required for a trade license, please contact Your Professionals. Our experts provide comprehensive guidance tailored to your specific requirements.' },
+            { q: 'How to renew a trade license online?', a: 'For detailed information about how to renew a trade license online, please contact Your Professionals. Our experts provide comprehensive guidance tailored to your specific requirements.' },
+            { q: 'What is the penalty for not renewing the trade license?', a: 'For detailed information about what is the penalty for not renewing the trade license, please contact Your Professionals. Our experts provide comprehensive guidance tailored to your specific requirements.' },
+            { q: 'What is the duration of time required to get a trade license certificate?', a: 'For detailed information about what is the duration of time required to get a trade license certificate, please contact Your Professionals. Our experts provide comprehensive guidance tailored to your specific requirements.' },
+            { q: 'Is a trade license mandatory for an online business?', a: 'For detailed information about is a trade license mandatory for an online business, please contact Your Professionals. Our experts provide comprehensive guidance tailored to your specific requirements.' },
+            { q: 'Is a trade license mandatory for GST registration?', a: 'For detailed information about is a trade license mandatory for gst registration, please contact Your Professionals. Our experts provide comprehensive guidance tailored to your specific requirements.' },
+            { q: 'Who is eligible for a trade license in India?', a: 'For detailed information about who is eligible for a trade license in india, please contact Your Professionals. Our experts provide comprehensive guidance tailored to your specific requirements.' },
+            { q: 'How many types of trade licenses are there?', a: 'For detailed information about how many types of trade licenses are there, please contact Your Professionals. Our experts provide comprehensive guidance tailored to your specific requirements.' },
+            { q: 'How to cancel a trade license?', a: 'For detailed information about how to cancel a trade license, please contact Your Professionals. Our experts provide comprehensive guidance tailored to your specific requirements.' },
+            { q: 'How to find the trade license number?', a: 'For detailed information about how to find the trade license number, please contact Your Professionals. Our experts provide comprehensive guidance tailored to your specific requirements.' },
+            { q: 'Are commercial license and trade license the same?', a: 'For detailed information about are commercial license and trade license the same, please contact Your Professionals. Our experts provide comprehensive guidance tailored to your specific requirements.' },
+            { q: 'Is a trade license required for a private limited company & proprietorship?', a: 'For detailed information about is a trade license required for a private limited company & proprietorship, please contact Your Professionals. Our experts provide comprehensive guidance tailored to your specific requirements.' },
+        ],
+        cta: {
+            heading: 'Need Help With Trade Licence Registration?',
+            subheading: 'Let Your Professionals handle your trade licence registration requirements with expert guidance and end-to-end support.',
+            features: [
+                'Expert Professional Guidance',
+                'Complete Documentation Support',
+                'Dedicated Support Manager',
+                'Transparent Pricing',
+            ],
+        },
+    },
+
+    'trade-licence-renewal': {
+        slug: 'trade-licence-renewal',
+        title: 'Trade Licence Renewal',
+        subtitle:
+            'A Gumasta License is the official permission required for any business to operate legally in Maharashtra under the Shops and Establishments Act.',
+        heroFeatures: [
+            'Mandatory for All Businesses',
+        ],
+        overview: {
+            heading: 'What is a Gumasta License?',
+            paragraphs: [
+                'A Gumasta License is the official permission required for any business to operate legally in Maharashtra under the Shops and Establishments Act. It serves as proof that your shop, office, or commercial establishment is registered with the local municipal authority. Whether you’re starting a small shop, a private office, or running a service-based business, getting a Gumasta License is a must to stay compliant and avoid penalties.',
+                'It is important to note that the term "Gumasta License" is specifically used in Maharashtra. Other states in India, such as Delhi, Karnataka, or Gujarat, have their versions of theShops and Establishments Act, which serve the same purpose of regulating working conditions and employment in commercial establishments. While the fundamental objective is similar, the specific rules, application processes, and nomenclature may vary from state to state.',
+            ],
+            highlights: [
+                { icon: '📋', text: 'Mandatory for All Businesses' },
+            ],
+        },
+        eligibility: [
+            'Mandatory for All Businesses:The Gumasta license is not limited to specific business types or sizes. It applies to all commercial establishments, including shops, hotels, restaurants, and service providers in Maharashtra. Businesses with 10 or more employees require a formal registration certificate, while those with fewer than 10 employees need to provide an intimation to the Facilitator.',
+        ],
+        documents: [
+            {
+                category: 'General Documents (For Most Businesses)',
+                items: [
+                    'Identity Proof –Aadhaar Card, PAN Card, Driving License, or Passport.',
+                    'Address Proof –Electricity bill, water bill, telephone bill, or similar utility bill.',
+                    'Proof of Premises –Property ownership document or rent agreement.',
+                    'Photographs –Passport-size photos of the applicant/key person, and photos of the shop/business premises.',
+                    'Application Letter –In the prescribed format.',
+                    'Authority Letter –If applying through a representative.',
+                    'Tax Registration Proof –If applicable.',
+                    'Affidavit/Declaration –Confirming the accuracy of the information provided.',
+                ],
+            },
+            {
+                category: 'Additional Documents Based on Business Type',
+                items: [
+                    'Sole Proprietorship — - Aadhaar Card & PAN Card of proprietor- Proprietor’s passport-size photograph- Address proof of business premises- Application letter (prescribed format)- Authority letter (if applicable)- Proof of property ownership or rent agreement',
+                    'Partnership Firm — - Partnership Deed- PAN Card of the partnership firm- Aadhaar Card & PAN Card of all partners- Address proof for each partner- Details of all partners',
+                    'Private Limited Company — - Memorandum of Association (MoA) & Articles of Association (AoA)- Certificate of Incorporation- Identity & address proof of all directors- Name of the Manager (if applicable)',
+                    'Charitable Trust — - RBI Letter copy- Trust Registration Certificate',
+                ],
+            },
+        ],
+        process: [
+            { title: 'Step 1', desc: 'Go to www.lms.mahaonline.gov.in.' },
+            { title: 'Step 2', desc: 'Click on New User Registration.' },
+            { title: 'Step 3', desc: 'Choose whether you are applying as an Individual or an Organization.' },
+            { title: 'Step 4', desc: 'Enter your mobile number to get an OTP for verification.' },
+            { title: 'Step 5', desc: 'Provide your email ID, create a password, and fill in all mandatory fields.' },
+            { title: 'Step 6', desc: 'Submit the form to complete your registration.' },
+            { title: 'Step 7', desc: 'You’ll receive a verification email (check your spam/junk folder if needed).' },
+            { title: 'Step 8', desc: 'Click the link in the email to activate your account.' },
+            { title: 'Step 9', desc: 'Log in using your email ID (User ID) and password.' },
+            { title: 'Step 10', desc: 'From the list of services, choose “New Registration of Shops and Establishment”.' },
+        ],
+        fees: [
+            { item: '1 – 5 employees', cost: '1,640' },
+            { item: '6 – 10 employees', cost: '3,080' },
+            { item: '11 – 20 employees', cost: '5,000' },
+            { item: '21 – 50 employees', cost: '9,800' },
+            { item: '51 – 100 employees', cost: '17,000' },
+            { item: 'More than 100 employees', cost: '21,800' },
+        ],
+        penalties: [
+            { violation: 'Fines up to ₹1,00,000', penalty: 'Fines up to ₹1,00,000' },
+            { violation: 'Additional fines for continuing contraventions', penalty: 'Additional fines for continuing contraventions' },
+        ],
+        advantages: [
+            { icon: '✅', title: 'Legal Compliance', desc: 'The Gumasta license ensures your business adheres to the Maharashtra Shops and Establishments Act, which helps avoid legal penalties and potential closure by authorities.' },
+            { icon: '🏛️', title: 'Proof of Legitimacy', desc: 'It provides official recognition of your business, building trust with customers, vendors, and other stakeholders.' },
+            { icon: '🤝', title: 'Access to Financial Services', desc: 'Most banks require a Gumasta license to open a business bank account and to process loan applications.' },
+            { icon: '📈', title: 'GST Registration', desc: 'In Maharashtra, a Gumasta license is often a prerequisite for obtaining GST registration, which is essential for businesses involved in interstate trade.' },
+            { icon: '🔒', title: 'Government Benefits', desc: 'Registered businesses can potentially benefit from state government schemes, subsidies, and tax incentives.' },
+            { icon: '💼', title: 'Employee Welfare', desc: 'Compliance with the Shops and Establishments Act, which the license ensures, helps protect employee rights and promotes a safe working environment.' },
+        ],
+        faqs: [
+            { q: 'What is the main purpose of a Gumasta License?', a: 'The main purpose of a Gumasta License is to legally register businesses in Maharashtra and ensure they comply with state labor laws regarding working conditions, employee rights, and operational standards.' },
+            { q: 'Is a Gumasta License mandatory for all businesses?', a: 'For detailed information about is a gumasta license mandatory for all businesses, please contact Your Professionals. Our experts provide comprehensive guidance tailored to your specific requirements.' },
+            { q: 'How long does it take to get a Gumasta License online?', a: 'For detailed information about how long does it take to get a gumasta license online, please contact Your Professionals. Our experts provide comprehensive guidance tailored to your specific requirements.' },
+            { q: 'Can I operate my business while my Gumasta application is in process?', a: 'For detailed information about can i operate my business while my gumasta application is in process, please contact Your Professionals. Our experts provide comprehensive guidance tailored to your specific requirements.' },
+            { q: 'What is the difference between a Gumasta License and a Trade License?', a: 'For detailed information about what is the difference between a gumasta license and a trade license, please contact Your Professionals. Our experts provide comprehensive guidance tailored to your specific requirements.' },
+            { q: 'Do I need a separate Gumasta License for each branch of my business?', a: 'For detailed information about do i need a separate gumasta license for each branch of my business, please contact Your Professionals. Our experts provide comprehensive guidance tailored to your specific requirements.' },
+            { q: 'What are the penalties for not obtaining a Gumasta License?', a: 'For detailed information about what are the penalties for not obtaining a gumasta license, please contact Your Professionals. Our experts provide comprehensive guidance tailored to your specific requirements.' },
+            { q: 'Is a Gumasta License required for a home-based business in Maharashtra?', a: 'For detailed information about is a gumasta license required for a home-based business in maharashtra, please contact Your Professionals. Our experts provide comprehensive guidance tailored to your specific requirements.' },
+            { q: 'Does an online business need a Gumasta License in Maharashtra?', a: 'For detailed information about does an online business need a gumasta license in maharashtra, please contact Your Professionals. Our experts provide comprehensive guidance tailored to your specific requirements.' },
+            { q: 'Does a Gumasta License help in getting business loans?', a: 'For detailed information about does a gumasta license help in getting business loans, please contact Your Professionals. Our experts provide comprehensive guidance tailored to your specific requirements.' },
+            { q: 'What documents are needed for Gumasta License renewal?', a: 'For detailed information about what documents are needed for gumasta license renewal, please contact Your Professionals. Our experts provide comprehensive guidance tailored to your specific requirements.' },
+            { q: 'Is the Gumasta License valid for a lifetime for all businesses?', a: 'For detailed information about is the gumasta license valid for a lifetime for all businesses, please contact Your Professionals. Our experts provide comprehensive guidance tailored to your specific requirements.' },
+        ],
+        cta: {
+            heading: 'Need Help With Trade Licence Renewal?',
+            subheading: 'Let Your Professionals handle your trade licence renewal requirements with expert guidance and end-to-end support.',
+            features: [
+                'Expert Professional Guidance',
+                'Complete Documentation Support',
+                'Dedicated Support Manager',
+                'Transparent Pricing',
+            ],
+        },
+    },
+
+};

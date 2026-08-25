@@ -1,0 +1,1262 @@
+import { useState } from 'react';
+import Header from '../components/layout/Header';
+import Footer from '../components/layout/Footer';
+import OtherServiceModal from '../components/common/OtherServiceModal';
+
+const SERVICES_LIST = [
+    "Private Limited Company Registration",
+    "One Person Company Registration (OPC)",
+    "LLP Registration",
+    "Partnership Firm Registration",
+    "Sole Proprietorship Registration",
+    "Startup India Registration",
+    "Section 8 Company Registration",
+    "Nidhi Company Registration",
+    "Producer Company Registration",
+];
+
+const COUNTRY_CODES = ["+91", "+1", "+44"];
+
+/* ───────────────── Reusable Section Wrapper ───────────────── */
+function renderProfessionalIcon(emoji: string, isDarkMode = false) {
+    const cleanEmoji = emoji.trim().replace(/[︀-️]/g, '');
+    const wrapperClass = isDarkMode
+        ? "w-12 h-12 rounded-xl flex items-center justify-center shrink-0 shadow-sm bg-white/10 text-white border border-white/20"
+        : "w-12 h-12 rounded-xl flex items-center justify-center shrink-0 shadow-sm bg-gray-50 border border-gray-100";
+
+    const getSvg = () => {
+        switch (cleanEmoji) {
+            case '📋':
+            case '📂':
+            case '📑':
+                return (
+                    <svg className="w-6 h-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+                    </svg>
+                );
+            case '📊':
+            case '📈':
+            case '📉':
+                return (
+                    <svg className="w-6 h-6 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                    </svg>
+                );
+            case '💰':
+            case '💸':
+            case '🪙':
+            case '💵':
+            case '🏦':
+                return (
+                    <svg className="w-6 h-6 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M12 16V15m0 1v-8" />
+                    </svg>
+                );
+            case '⚖':
+                return (
+                    <svg className="w-6 h-6 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3" />
+                    </svg>
+                );
+            case '🔍':
+            case '🔎':
+                return (
+                    <svg className="w-6 h-6 text-amber-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                    </svg>
+                );
+            case '📅':
+            case '📆':
+                return (
+                    <svg className="w-6 h-6 text-teal-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                    </svg>
+                );
+            case '✅':
+            case '✔️':
+                return (
+                    <svg className="w-6 h-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                    </svg>
+                );
+            case '🏛':
+                return (
+                    <svg className="w-6 h-6 text-sky-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                    </svg>
+                );
+            case '🤝':
+                return (
+                    <svg className="w-6 h-6 text-rose-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                    </svg>
+                );
+            case '🔒':
+            case '🔐':
+                return (
+                    <svg className="w-6 h-6 text-cyan-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                    </svg>
+                );
+            case '🏢':
+                return (
+                    <svg className="w-6 h-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                    </svg>
+                );
+            case '👥':
+                return (
+                    <svg className="w-6 h-6 text-pink-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                    </svg>
+                );
+            case '🛡':
+            case '🛡y':
+                return (
+                    <svg className="w-6 h-6 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                    </svg>
+                );
+            case '🌐':
+            case '🌎':
+            case '🌏':
+                return (
+                    <svg className="w-6 h-6 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
+                    </svg>
+                );
+            case '📝':
+            case '✍️':
+                return (
+                    <svg className="w-6 h-6 text-yellow-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                    </svg>
+                );
+            case '💡':
+                return (
+                    <svg className="w-6 h-6 text-yellow-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                    </svg>
+                );
+            case '🔄':
+                return (
+                    <svg className="w-6 h-6 text-teal-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 1121.21 7.89M9 11l3-3 3 3m0 0l-3 3-3-3" />
+                    </svg>
+                );
+            case '⚡':
+                return (
+                    <svg className="w-6 h-6 text-amber-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    </svg>
+                );
+            case '💼':
+                return (
+                    <svg className="w-6 h-6 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                );
+            case '✨':
+                return (
+                    <svg className="w-6 h-6 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+                    </svg>
+                );
+            case '🚀':
+                return (
+                    <svg className="w-6 h-6 text-orange-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+                    </svg>
+                );
+            case '🎯':
+                return (
+                    <svg className="w-6 h-6 text-rose-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                    </svg>
+                );
+            case '👨‍💼':
+            case '🧑‍💼':
+            case '👤':
+                return (
+                    <svg className="w-6 h-6 text-sky-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                    </svg>
+                );
+            case '🏆':
+                return (
+                    <svg className="w-6 h-6 text-amber-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 14l9-5-9-5-9 5 9 5zm0 0l9-5-9-5-9 5 9 5zM5 10v10a5 5 0 0010 0V10" />
+                    </svg>
+                );
+            case '📞':
+                return (
+                    <svg className="w-6 h-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                    </svg>
+                );
+            case '❤️':
+                return (
+                    <svg className="w-6 h-6 text-rose-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                    </svg>
+                );
+            case '🌾':
+                return (
+                    <svg className="w-6 h-6 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                    </svg>
+                );
+            case '🏘️':
+            case '🏠':
+                return (
+                    <svg className="w-6 h-6 text-slate-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                    </svg>
+                );
+            case '💻':
+                return (
+                    <svg className="w-6 h-6 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                );
+            case '❌':
+            case '🚫':
+                return (
+                    <svg className="w-6 h-6 text-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                );
+            case '🏷️':
+            case '🏷':
+                return (
+                    <svg className="w-6 h-6 text-amber-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M7 7h.01M6 20h12a2 2 0 002-2V8a2 2 0 00-2-2H6a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                );
+            case '🇮🇳':
+                return (
+                    <svg className="w-6 h-6 text-orange-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 002 2h2a2.5 2.5 0 002.5-2.5V9a2 2 0 012-2h.09M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                );
+            case '⏰':
+                return (
+                    <svg className="w-6 h-6 text-teal-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                );
+            case '💎':
+                return (
+                    <svg className="w-6 h-6 text-cyan-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+                    </svg>
+                );
+            case '🔢':
+                return (
+                    <svg className="w-6 h-6 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M7 20l4-16m2 16l4-16M6 9h14M4 15h14" />
+                    </svg>
+                );
+            case '♾️':
+            case '♾':
+                return (
+                    <svg className="w-6 h-6 text-slate-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M18.364 5.636a9 9 0 010 12.728m0 0l-2.829-2.829m2.829 2.829a9 9 0 01-12.728 0m0 0l2.829-2.829m-2.829 2.829a9 9 0 010-12.728m0 0l2.829 2.829m-2.829-2.829a9 9 0 0112.728 0" />
+                    </svg>
+                );
+            case '⭐':
+                return (
+                    <svg className="w-6 h-6 text-amber-400 fill-current" viewBox="0 0 24 24">
+                        <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                    </svg>
+                );
+            case '📍':
+            case '🗺️':
+                return (
+                    <svg className="w-6 h-6 text-slate-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                );
+            default:
+                return (
+                    <svg className="w-5 h-5 text-[var(--color-brand-secondary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                    </svg>
+                );
+        }
+    };
+
+    return (
+        <div className={wrapperClass}>
+            {getSvg()}
+        </div>
+    );
+}
+
+function Section({ id, children, className = '' }: { id?: string; children: React.ReactNode; className?: string }) {
+    return (
+        <section id={id} className={`py-16 px-4 md:px-8 ${className}`}>
+            <div className="container mx-auto max-w-6xl">{children}</div>
+        </section>
+    );
+}
+
+function SectionTitle({ badge, title }: { badge?: string; title: string }) {
+    return (
+        <div className="text-center mb-12">
+            {badge && (
+                <span className="text-[var(--color-brand-secondary)] font-bold tracking-widest text-sm uppercase mb-2 block">
+                    {badge}
+                </span>
+            )}
+            <h2 className="text-3xl md:text-4xl font-bold text-[#090a3d]">{title}</h2>
+        </div>
+    );
+}
+
+/* ───────────────── Page Table of Contents ───────────────── */
+const TOC_ITEMS = [
+    { id: 'overview', label: 'Overview' },
+    { id: 'types', label: 'Company Types' },
+    { id: 'prime-types', label: 'Prime Types' },
+    { id: 'how-to-choose', label: 'Business Structure' },
+    { id: 'eligibility', label: 'Eligibility' },
+    { id: 'checklist', label: 'Checklist' },
+    { id: 'documents', label: 'Documents Required' },
+    { id: 'company-name', label: 'Company Name' },
+    { id: 'process', label: 'Process' },
+    { id: 'fees', label: 'Fees' },
+    { id: 'validity', label: 'Validity' },
+    { id: 'advantages', label: 'Advantages' },
+    { id: 'certificate', label: 'Certificate' },
+    { id: 'compliances', label: 'Compliances' },
+    { id: 'faq', label: 'FAQs' },
+];
+
+/* ───────────────── Main Page ───────────────── */
+export default function CompanyRegistration() {
+    return (
+        <div className="min-h-screen flex flex-col font-sans">
+            <Header />
+            <main className="flex-grow">
+                <HeroSection />
+                <TableOfContents />
+                <OverviewSection />
+                <TypesSection />
+                <PrimeTypesTable />
+                <HowToChooseSection />
+                <EligibilitySection />
+                <ChecklistSection />
+                <DocumentsSection />
+                <CompanyNameSection />
+                <ProcessSection />
+                <FeesSection />
+                <ValiditySection />
+                <AdvantagesSection />
+                <CertificateSection />
+                <CompliancesSection />
+                <FAQSection />
+                <WhyChooseUsSection />
+            </main>
+            <Footer />
+        </div>
+    );
+}
+
+/* ═══════════════════════════════════════════════════════════
+   HERO SECTION with consultation form
+   ═══════════════════════════════════════════════════════════ */
+function HeroSection() {
+    const [phoneError, setPhoneError] = useState('');
+    const [emailError, setEmailError] = useState('');
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [submitSuccess, setSubmitSuccess] = useState(false);
+    const [formError, setFormError] = useState('');
+    const [otherModalOpen, setOtherModalOpen] = useState(false);
+    const [formData, setFormData] = useState({ name: '', phoneCode: '+91', phone: '', email: '', service: '', customService: '' });
+
+    const handleFormSubmit = async (e: React.SyntheticEvent) => {
+        e.preventDefault();
+        setFormError('');
+        if (phoneError || emailError || !formData.name || !formData.phone || !formData.email || !formData.service) {
+            setFormError('Please fill all fields correctly before submitting.');
+            return;
+        }
+        setIsSubmitting(true);
+        try {
+            const GOOGLE_SCRIPT_URL = import.meta.env.VITE_GOOGLE_SCRIPT_URL;
+            const fullService = (formData.service === 'Need help with Other Services' || formData.service === 'Other Service') && formData.customService
+                ? `Other: ${formData.customService}`
+                : formData.service;
+
+            if (GOOGLE_SCRIPT_URL) {
+                const params = new URLSearchParams();
+                params.append('Name', formData.name);
+                params.append('Phone', `${formData.phoneCode} ${formData.phone}`);
+                params.append('Email', formData.email);
+                params.append('Service', fullService);
+                await fetch(`${GOOGLE_SCRIPT_URL}?${params.toString()}`, { method: 'POST', mode: 'no-cors' });
+            }
+
+            await fetch('/api/send-email', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    name: formData.name,
+                    phone: `${formData.phoneCode} ${formData.phone}`,
+                    email: formData.email,
+                    service: fullService
+                })
+            }).catch(() => {});
+
+            setSubmitSuccess(true);
+            setFormData({ name: '', phoneCode: '+91', phone: '', email: '', service: '', customService: '' });
+            setTimeout(() => setSubmitSuccess(false), 5000);
+        } catch {
+            setFormError('Something went wrong. Please try again.');
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
+
+    return (
+        <section className="bg-[#090a3d] pt-32 lg:pt-40 pb-16 lg:pb-24 px-4 md:px-8 relative overflow-hidden text-white flex flex-col items-center">
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-4xl h-96 bg-[var(--color-brand-secondary)] opacity-10 blur-[120px] rounded-full z-0" />
+            <div className="container mx-auto flex flex-col lg:flex-row items-center relative z-10 max-w-6xl gap-12">
+                {/* Left content */}
+                <div className="flex-1 text-center lg:text-left">
+                    <h1 className="text-4xl md:text-5xl lg:text-[56px] font-extrabold text-white leading-tight mb-6">
+                        Company Registration Online in India
+                    </h1>
+                    <p className="text-lg md:text-xl text-gray-300 max-w-2xl mb-8">
+                        Register your company online with Your Professionals. Our experts simplify incorporation, handle approvals, and ensure compliance for a stress‑free experience.
+                    </p>
+                    <div className="flex flex-wrap gap-4 mb-6 justify-center lg:justify-start">
+                        {[
+                            'Fast Incorporation within 7–15 Business Days',
+                            'PAN, TAN & DIN Provided with Certificate',
+                            'Professional Drafting of MoA & AoA',
+                            'GST Registration Assistance',
+                            'Complete Post-registration Compliance Support',
+                        ].map((item) => (
+                            <div key={item} className="flex items-center gap-2 text-sm text-gray-200">
+                                <span className="text-green-400 text-lg">✓</span>
+                                {item}
+                            </div>
+                        ))}
+                    </div>
+                </div>
+
+                {/* Right form */}
+                <div className="w-full max-w-md">
+                    <div className="bg-white/95 backdrop-blur-md rounded-2xl p-6 md:p-8 shadow-[0_0_60px_rgba(199,145,0,0.2)] border border-gray-400">
+                        <h3 className="text-[#090a3d] font-bold text-lg mb-4 text-center">Get Free Consultation</h3>
+                        {submitSuccess && (
+                            <div className="mb-4 p-3 bg-green-100 border border-green-400 text-green-700 rounded text-sm font-semibold text-center">
+                                Thank you. We'll contact you shortly.
+                            </div>
+                        )}
+                        {formError && (
+                            <div className="mb-4 p-3 bg-red-50 border border-red-300 text-red-700 rounded text-sm font-semibold text-center">
+                                {formError}
+                            </div>
+                        )}
+                        <form className="flex flex-col gap-4" onSubmit={handleFormSubmit}>
+                            <input
+                                type="text" placeholder="Full Name" required value={formData.name}
+                                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                                className="w-full bg-white border border-gray-400 rounded-lg px-4 py-3 text-black placeholder-gray-500 focus:outline-none focus:border-[var(--color-brand-secondary)] focus:ring-1 focus:ring-[var(--color-brand-secondary)]"
+                            />
+                            <div>
+                                <div className={`flex rounded-lg border bg-white overflow-hidden focus-within:ring-1 ${phoneError ? 'border-red-500 focus-within:ring-red-500' : 'border-gray-400 focus-within:border-[var(--color-brand-secondary)] focus-within:ring-[var(--color-brand-secondary)]'}`}>
+                                    <select className="bg-gray-100 border-r border-gray-400 px-3 py-3 text-black focus:outline-none cursor-pointer" value={formData.phoneCode} onChange={(e) => setFormData({ ...formData, phoneCode: e.target.value })}>
+                                        {COUNTRY_CODES.map((c) => <option key={c} value={c}>{c}</option>)}
+                                    </select>
+                                    <input type="tel" placeholder="Phone Number" maxLength={10} required value={formData.phone}
+                                        onChange={(e) => {
+                                            const val = e.target.value.replace(/[^0-9]/g, '');
+                                            setPhoneError(/[^0-9]/.test(e.target.value) ? 'Numbers only' : '');
+                                            setFormData({ ...formData, phone: val });
+                                        }}
+                                        className="w-full bg-transparent px-4 py-3 text-black placeholder-gray-500 focus:outline-none"
+                                    />
+                                </div>
+                                {phoneError && <p className="text-red-500 text-xs mt-1">{phoneError}</p>}
+                            </div>
+                            <div>
+                                <input type="email" placeholder="Email Address" required value={formData.email}
+                                    onChange={(e) => {
+                                        const val = e.target.value;
+                                        setEmailError(val.length > 0 && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val) ? 'Enter a valid email' : '');
+                                        setFormData({ ...formData, email: val });
+                                    }}
+                                    className={`w-full bg-white border rounded-lg px-4 py-3 text-black placeholder-gray-500 focus:outline-none focus:ring-1 ${emailError ? 'border-red-500 focus:ring-red-500' : 'border-gray-400 focus:border-[var(--color-brand-secondary)] focus:ring-[var(--color-brand-secondary)]'}`}
+                                />
+                                {emailError && <p className="text-red-500 text-xs mt-1">{emailError}</p>}
+                            </div>
+                            <select required value={formData.service}
+                                onChange={(e) => {
+                                    const val = e.target.value;
+                                    setFormData({ ...formData, service: val });
+                                    if (val === 'Need help with Other Services' || val === 'Other Service') {
+                                        setOtherModalOpen(true);
+                                    }
+                                }}
+                                className="w-full bg-white border border-gray-400 rounded-lg px-4 py-3 text-black focus:outline-none focus:border-[var(--color-brand-secondary)] focus:ring-1 focus:ring-[var(--color-brand-secondary)] cursor-pointer text-sm">
+                                <option value="" disabled>Select Registration Type</option>
+                                {SERVICES_LIST.map((s) => <option key={s} value={s}>{s}</option>)}
+                            </select>
+
+                            {/* Custom Service Summary / Status */}
+                            {(formData.service === 'Need help with Other Services' || formData.service === 'Other Service') && (
+                                <div className="flex items-center justify-between gap-2 bg-amber-50/60 border border-amber-200 rounded-lg px-3.5 py-2.5">
+                                    <span className="text-xs text-gray-700 truncate">
+                                        {formData.customService ? <><span className="font-semibold">Your requirement:</span> {formData.customService}</> : 'No requirement noted yet.'}
+                                    </span>
+                                    <button type="button" onClick={() => setOtherModalOpen(true)} className="text-xs font-bold text-[var(--color-brand-secondary)] hover:underline shrink-0 cursor-pointer">
+                                        {formData.customService ? 'Edit' : 'Add details'}
+                                    </button>
+                                </div>
+                            )}
+                            <button type="submit" disabled={isSubmitting}
+                                className={`w-full bg-[var(--color-brand-secondary)] hover:bg-[#a17500] text-white font-bold rounded-lg px-4 py-3 transition-colors uppercase tracking-wide text-sm shadow-md ${isSubmitting ? 'opacity-70 cursor-not-allowed' : ''}`}>
+                                {isSubmitting ? 'Submitting...' : 'Claim Your Free Consultation'}
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <OtherServiceModal
+                isOpen={otherModalOpen}
+                initialValue={formData.customService}
+                onClose={() => setOtherModalOpen(false)}
+                onSave={(value) => setFormData({ ...formData, customService: value })}
+            />
+        </section>
+    );
+}
+
+/* ═══════════════════════════════════════════════════════════
+   TABLE OF CONTENTS (Sticky Nav Bar)
+   ═══════════════════════════════════════════════════════════ */
+function TableOfContents() {
+    return (
+        <div className="sticky top-20 z-40 bg-white border-b border-gray-200 shadow-sm">
+            <div className="container mx-auto max-w-6xl overflow-x-auto scrollbar-hide">
+                <nav className="flex items-center gap-1 py-3 px-4 min-w-max">
+                    {TOC_ITEMS.map((item) => (
+                        <a key={item.id} href={`#${item.id}`}
+                            className="px-4 py-2 text-sm font-medium text-gray-600 hover:text-[var(--color-brand-secondary)] hover:bg-amber-50 rounded-full transition-colors whitespace-nowrap">
+                            {item.label}
+                        </a>
+                    ))}
+                </nav>
+            </div>
+        </div>
+    );
+}
+
+/* ═══════════════════════════════════════════════════════════
+   OVERVIEW
+   ═══════════════════════════════════════════════════════════ */
+function OverviewSection() {
+    return (
+        <Section id="overview">
+            <SectionTitle title="What is Company Registration in India?" />
+            <div className="prose prose-lg max-w-none text-gray-700 space-y-4">
+                <p>
+                    Company registration in India legally establishes a business under applicable laws for its structure.
+                    Depending on the structure, a business may gain a separate legal identity (such as Private Limited Companies,
+                    LLPs, or OPCs) or operate as an extension of the owner (such as Sole Proprietorships and traditional Partnerships).
+                </p>
+                <p>Registered companies with a separate legal identity can:</p>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 my-6">
+                    {[
+                        { icon: '📝', text: 'Enter into contracts' },
+                        { icon: '🏠', text: 'Hold property' },
+                        { icon: '🏦', text: 'Open bank accounts' },
+                        { icon: '📋', text: 'Apply for licenses like GST, MSME, and FSSAI' },
+                    ].map((item) => (
+                        <div key={item.text} className="flex items-center gap-3 bg-gray-50 p-4 rounded-xl border border-gray-100">
+                            {renderProfessionalIcon(item.icon)}
+                            <span className="text-gray-800 font-medium">{item.text}</span>
+                        </div>
+                    ))}
+                </div>
+                <p>
+                    Registration also limits liability, protecting the personal assets of owners. It improves credibility
+                    with customers, regulators, and investors. It also provides access to government schemes such as
+                    Startup India and Make in India, which offer tax benefits and funding opportunities.
+                </p>
+            </div>
+        </Section>
+    );
+}
+
+/* ═══════════════════════════════════════════════════════════
+   TYPES OF COMPANY REGISTRATION
+   ═══════════════════════════════════════════════════════════ */
+const COMPANY_TYPES = [
+    {
+        title: 'Private Limited Company',
+        icon: '🏢',
+        description: 'The most popular business structure under the Companies Act, 2013. Offers limited liability and a separate legal identity. Ideal for startups and growing businesses for raising funds and scaling quickly.',
+    },
+    {
+        title: 'Limited Liability Partnership (LLP)',
+        icon: '🤝',
+        description: 'Combines the flexibility of a partnership with the security of limited liability. Regulated by the LLP Act, 2008. Ideal for professionals and service providers seeking low compliance and shared management.',
+    },
+    {
+        title: 'One Person Company (OPC)',
+        icon: '👤',
+        description: 'Allows a single entrepreneur to run a business with limited liability. Merges the benefits of a Private Limited Company and a Sole Proprietorship. Great for solo founders.',
+    },
+    {
+        title: 'Public Limited Company',
+        icon: '🏛️',
+        description: 'Governed by the Companies Act, 2013. Provides limited liability and the ability to raise funds from the public by issuing shares. Used by large businesses and corporations.',
+    },
+    {
+        title: 'Sole Proprietorship',
+        icon: '🧑‍💼',
+        description: 'The simplest form of business setup. A single owner is personally liable for all debts. Best for freelancers, traders, and local businesses with minimal compliance.',
+    },
+    {
+        title: 'Partnership Firm',
+        icon: '👥',
+        description: 'Managed under the Indian Partnership Act, 1932. Two or more partners share profits, responsibilities, and liabilities. Suits small businesses and professional services.',
+    },
+    {
+        title: 'Section 8 Company',
+        icon: '❤️',
+        description: 'Meant for non-profit organizations. Formed under the Companies Act, 2013. Used by NGOs, charities, and social enterprises to promote education, culture, and social welfare.',
+    },
+    {
+        title: 'Nidhi Company',
+        icon: '🏦',
+        description: 'Under Section 406 of the Companies Act, 2013. Promotes savings among members and provides loans at reasonable rates. Suitable for small-scale finance businesses within a closed group.',
+    },
+    {
+        title: 'Producer Company',
+        icon: '🌾',
+        description: 'Available for farmers and producers. Allows agricultural producers to pool resources, process goods, and sell collectively. Improves bargaining power and ensures fair returns.',
+    },
+];
+
+function TypesSection() {
+    return (
+        <Section id="types" className="bg-gray-50/50">
+            <SectionTitle badge="Business Structures" title="Different Types of Company Registration in India" />
+            <p className="text-center text-gray-600 max-w-3xl mx-auto mb-12">
+                Choosing the right business structure is the first step in starting a company in India. Each type is governed by laws such as the Companies Act, 2013, or the Indian Partnership Act, 1932.
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {COMPANY_TYPES.map((type) => (
+                    <div key={type.title} className="bg-white p-6 rounded-xl border border-gray-100 shadow-sm hover:shadow-lg transition-all duration-300 group">
+                        {renderProfessionalIcon(type.icon)}
+                        <h3 className="text-lg font-bold text-[#090a3d] mb-2 mt-4">{type.title}</h3>
+                        <p className="text-gray-600 text-sm leading-relaxed">{type.description}</p>
+                    </div>
+                ))}
+            </div>
+        </Section>
+    );
+}
+
+/* ═══════════════════════════════════════════════════════════
+   PRIME TYPES COMPARISON TABLE
+   ═══════════════════════════════════════════════════════════ */
+function PrimeTypesTable() {
+    const data = [
+        { type: 'Private Limited Company', features: 'Separate legal entity, higher credibility, easy to raise funds', liability: 'Limited to shares held', idealFor: 'Startups and growth-focused businesses', taxation: 'Corporate tax on profits; eligible for deductions & exemptions' },
+        { type: 'One Person Company (OPC)', features: 'Owned by a single person, separate legal status', liability: 'Limited to investment', idealFor: 'Solo entrepreneurs', taxation: 'Corporate tax on profits; simple compliance' },
+        { type: 'LLP', features: 'Partnership flexibility with limited liability', liability: 'Limited to contribution', idealFor: 'Professionals and service firms', taxation: 'Profits taxed at LLP level; no DDT' },
+        { type: 'Partnership Firm', features: 'Two or more owners share profits', liability: 'Unlimited liability', idealFor: 'Small businesses and services', taxation: 'Profits taxed at firm level; partners taxed on share' },
+        { type: 'Sole Proprietorship', features: 'Single owner, easy setup, minimal compliance', liability: 'Unlimited liability', idealFor: 'Freelancers, traders, small shops', taxation: 'Income taxed under personal income tax' },
+    ];
+
+    return (
+        <Section id="prime-types">
+            <SectionTitle badge="Quick Comparison" title="5 Prime Company Registrations in India" />
+            <div className="overflow-x-auto">
+                <table className="w-full text-sm border-collapse">
+                    <thead>
+                        <tr className="bg-[#090a3d] text-white">
+                            <th className="py-4 px-4 text-left font-semibold rounded-tl-lg">Company Type</th>
+                            <th className="py-4 px-4 text-left font-semibold">Key Features</th>
+                            <th className="py-4 px-4 text-left font-semibold">Liability</th>
+                            <th className="py-4 px-4 text-left font-semibold">Ideal For</th>
+                            <th className="py-4 px-4 text-left font-semibold rounded-tr-lg">Taxation</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {data.map((row, i) => (
+                            <tr key={row.type} className={i % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
+                                <td className="py-4 px-4 font-semibold text-[#090a3d]">{row.type}</td>
+                                <td className="py-4 px-4 text-gray-600">{row.features}</td>
+                                <td className="py-4 px-4 text-gray-600">{row.liability}</td>
+                                <td className="py-4 px-4 text-gray-600">{row.idealFor}</td>
+                                <td className="py-4 px-4 text-gray-600">{row.taxation}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+        </Section>
+    );
+}
+
+/* ═══════════════════════════════════════════════════════════
+   HOW TO CHOOSE
+   ═══════════════════════════════════════════════════════════ */
+function HowToChooseSection() {
+    const factors = [
+        { icon: '📋', title: 'Compliance Requirements', desc: 'A sole proprietorship files only income tax returns, while a private limited company files annual returns and ITR with the ROC.' },
+        { icon: '👥', title: 'Ownership Structure', desc: 'Pick a model based on how many partners or owners are involved.' },
+        { icon: '💰', title: 'Initial Investment', desc: 'Consider your starting capital before choosing between a proprietorship, partnership, LLP, OPC, or private limited company.' },
+        { icon: '📈', title: 'Growth Opportunities', desc: 'LLPs and private limited companies attract investors and make fundraising easier.' },
+        { icon: '🛡️', title: 'Risk and Liability', desc: 'Sole proprietorships and partnerships carry unlimited liability, while company structures provide limited liability protection.' },
+    ];
+
+    return (
+        <Section id="how-to-choose" className="bg-gray-50/50">
+            <SectionTitle badge="Decision Guide" title="How to Choose the Right Business Structure" />
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {factors.map((f) => (
+                    <div key={f.title} className="bg-white p-6 rounded-xl border border-gray-100 shadow-sm">
+                        {renderProfessionalIcon(f.icon)}
+                        <h3 className="font-bold text-[#090a3d] mb-2 mt-4">{f.title}</h3>
+                        <p className="text-gray-600 text-sm leading-relaxed">{f.desc}</p>
+                    </div>
+                ))}
+            </div>
+        </Section>
+    );
+}
+
+/* ═══════════════════════════════════════════════════════════
+   ELIGIBILITY
+   ═══════════════════════════════════════════════════════════ */
+function EligibilitySection() {
+    const criteria = [
+        'At least one director must be a resident of India (stayed 182 days in the previous calendar year).',
+        'Every proposed director must obtain a Director Identification Number (DIN) and a Digital Signature Certificate (DSC).',
+        'Directors and shareholders must be at least 18 years old and legally capable of entering contracts.',
+        'Foreign nationals can act as directors/shareholders with notarized and apostilled identity & address proofs.',
+        'Indian applicants must provide PAN, Aadhaar, and a recent address proof (not older than 60 days).',
+        'The proposed company name must be unique — use MCA\'s RUN service to check availability.',
+        'The company\'s objectives must be lawful and follow Indian regulatory rules.',
+    ];
+
+    return (
+        <Section id="eligibility">
+            <SectionTitle badge="Requirements" title="Eligibility Criteria for Company Registration" />
+            <div className="max-w-4xl mx-auto">
+                <div className="space-y-4">
+                    {criteria.map((c, i) => (
+                        <div key={i} className="flex items-start gap-4 bg-white p-5 rounded-xl border border-gray-100 shadow-sm">
+                            <span className="flex-shrink-0 w-8 h-8 rounded-full bg-[var(--color-brand-secondary)] text-white font-bold flex items-center justify-center text-sm">
+                                {i + 1}
+                            </span>
+                            <p className="text-gray-700">{c}</p>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </Section>
+    );
+}
+
+/* ═══════════════════════════════════════════════════════════
+   CHECKLIST
+   ═══════════════════════════════════════════════════════════ */
+function ChecklistSection() {
+    const checklists = [
+        {
+            title: 'Pre-Incorporation Requirements',
+            icon: '📋',
+            items: [
+                'Choose a business structure: Pick Pvt Ltd, LLP, or OPC based on capital, liability, and team size.',
+                'Reserve a unique company name: Use MCA\'s RUN (Reserve Unique Name) service to avoid conflicts with existing companies or trademarks.',
+                'Define business activity: Draft the Memorandum of Association (MoA) with clear objectives that follow industrial classifications.',
+                'Finalize capital and ownership: Decide on authorized share capital and shareholding among promoters or partners.',
+                'Appoint resident Indian director: At least one director must have lived in India for 182 days in the previous year (Section 149(3)).',
+                'Collect KYC documents: Include PAN, Aadhaar (or passport for foreign nationals), address proof (not older than 60 days), and passport-sized photographs.',
+            ],
+        },
+        {
+            title: 'Digital and Legal Setup',
+            icon: '💻',
+            items: [
+                'Apply for DSC: Required to digitally sign incorporation documents.',
+                'Obtain DIN: Mandatory for all directors before company registration.',
+                'Draft incorporation documents: Prepare Articles of Association (AoA) alongside the MoA.',
+                'Set up registered office: Submit proof such as utility bill, rent agreement, or No Objection Certificate (NOC) if the office is rented.',
+            ],
+        },
+        {
+            title: 'Company Incorporation Process',
+            icon: '📝',
+            items: [
+                'Submit SPICe+ Form (Parts A & B): Complete name reservation, incorporation, PAN, and TAN applications in a single online form on the MCA portal.',
+                'Receive Certificate of Incorporation (COI): MCA issues COI, PAN, and TAN digitally after approval.',
+            ],
+        },
+        {
+            title: 'Post-Incorporation Essentials',
+            icon: '✅',
+            items: [
+                'Open corporate bank account: Use COI, PAN, and AoA to activate the account.',
+                'Apply for GST registration: Mandatory if turnover exceeds the limit or for inter-state/e-commerce businesses.',
+                'Appoint statutory auditor: Private Limited companies must appoint an auditor within 30 days (Section 139).',
+                'Register for Startup India recognition: Optional, but offers tax benefits, funding access, and compliance relaxations.',
+                'Protect intellectual property: Register trademarks, brand names, or logos to secure your identity and brand credibility.',
+            ],
+        },
+    ];
+
+    return (
+        <Section id="checklist">
+            <SectionTitle badge="Preparation" title="Checklist for Company Registration in India" />
+            <p className="text-center text-gray-600 max-w-3xl mx-auto mb-12">
+                Registering a company in India under the Companies Act, 2013, requires careful planning. Follow this step-by-step checklist to complete all legal, digital, and regulatory requirements efficiently.
+            </p>
+            <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
+                {checklists.map((checklist) => (
+                    <div key={checklist.title} className="bg-white p-6 rounded-xl border border-gray-100 shadow-sm">
+                        <div className="flex items-center gap-3 mb-4">
+                            {renderProfessionalIcon(checklist.icon)}
+                            <h3 className="font-bold text-[#090a3d] text-lg">{checklist.title}</h3>
+                        </div>
+                        <ul className="space-y-3">
+                            {checklist.items.map((item) => (
+                                <li key={item} className="flex items-start gap-2 text-sm text-gray-600">
+                                    <span className="text-[var(--color-brand-secondary)] mt-0.5 flex-shrink-0">✓</span>
+                                    <span>{item}</span>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                ))}
+            </div>
+        </Section>
+    );
+}
+
+/* ═══════════════════════════════════════════════════════════
+   DOCUMENTS REQUIRED
+   ═══════════════════════════════════════════════════════════ */
+function DocumentsSection() {
+    const docs = [
+        {
+            type: 'Private Limited Company',
+            items: ['PAN and Aadhaar of directors & shareholders', 'Address proof of directors & registered office', 'Passport-sized photographs', 'Memorandum of Association (MoA) & Articles of Association (AoA)', 'Digital Signature Certificates (DSC) & Director Identification Numbers (DIN)'],
+        },
+        {
+            type: 'One Person Company (OPC)',
+            items: ['PAN and Aadhaar of the sole owner', 'Address proof of owner & registered office', 'Passport-sized photograph', 'MoA & AoA', 'DSC and DIN of the owner'],
+        },
+        {
+            type: 'LLP',
+            items: ['PAN and Aadhaar of partners', 'Address proof of partners & registered office', 'Passport-sized photographs of partners', 'LLP Agreement signed by all partners', 'DSC for designated partners'],
+        },
+        {
+            type: 'Partnership Firm',
+            items: ['PAN and Aadhaar of all partners', 'Partnership deed signed by all partners', 'Address proof of partners & registered office', 'Passport-sized photographs', 'Utility bill or rent agreement as proof of office'],
+        },
+        {
+            type: 'Sole Proprietorship',
+            items: ['PAN and Aadhaar of the proprietor', 'Proof of business address (rent agreement or utility bill)', 'Bank account proof', 'Passport-sized photograph', 'Business license or GST registration (if applicable)'],
+        },
+    ];
+
+    const [openIndex, setOpenIndex] = useState<number | null>(0);
+
+    return (
+        <Section id="documents" className="bg-gray-50/50">
+            <SectionTitle badge="Documentation" title="Documents Required for Company Registration" />
+            <div className="max-w-4xl mx-auto space-y-3">
+                {docs.map((doc, i) => (
+                    <div key={doc.type} className="bg-white rounded-xl border border-gray-100 shadow-sm overflow-hidden">
+                        <button className="w-full flex items-center justify-between p-5 text-left" onClick={() => setOpenIndex(openIndex === i ? null : i)}>
+                            <span className="font-bold text-[#090a3d]">{doc.type}</span>
+                            <span className={`text-gray-400 transition-transform duration-200 ${openIndex === i ? 'rotate-180' : ''}`}>▼</span>
+                        </button>
+                        {openIndex === i && (
+                            <div className="px-5 pb-5">
+                                <ul className="space-y-2">
+                                    {doc.items.map((item) => (
+                                        <li key={item} className="flex items-start gap-2 text-gray-600 text-sm">
+                                            <span className="text-[var(--color-brand-secondary)] mt-1">✓</span>
+                                            {item}
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        )}
+                    </div>
+                ))}
+            </div>
+        </Section>
+    );
+}
+
+/* ═══════════════════════════════════════════════════════════
+   HOW TO SECURE YOUR COMPANY NAME
+   ═══════════════════════════════════════════════════════════ */
+function CompanyNameSection() {
+    const steps = [
+        { icon: '🎯', text: 'Reflect your business activity: Ensure the name represents your main business purpose.' },
+        { icon: '🚫', text: 'Avoid prohibited words: Do not use words restricted under the Names and Emblems Act.' },
+        { icon: '🔍', text: 'Check uniqueness: The name should not match or closely resemble existing registered companies.' },
+        { icon: '📄', text: 'Apply via SPICe+: Use the SPICe+ form on the MCA portal. You can propose up to two names.' },
+        { icon: '✅', text: 'Wait for ROC approval: The Registrar of Companies (ROC) will verify and approve your name.' },
+        { icon: '📅', text: 'Note the reservation period: Once approved, the name is reserved for 20 days.' },
+        { icon: '📝', text: 'File SPICe+ Form Part B: Submit this form within 20 days to confirm registration.' },
+        { icon: '🔄', text: 'Restart if missed: If you miss the deadline, the application is rejected and you must begin again.' },
+    ];
+
+    return (
+        <Section id="company-name">
+            <SectionTitle badge="Brand Identity" title="How to Secure Your Company Name?" />
+            <p className="text-center text-gray-600 max-w-3xl mx-auto mb-12">
+                Your company name is the first impression of your business. Choosing a unique and compliant name is essential to establishing your brand and meeting legal requirements.
+            </p>
+            <div className="max-w-4xl mx-auto">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {steps.map((step, i) => (
+                        <div key={i} className="flex items-center gap-4 bg-white p-5 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+                            {renderProfessionalIcon(step.icon)}
+                            <p className="text-gray-700 text-sm leading-relaxed">{step.text}</p>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </Section>
+    );
+}
+
+/* ═══════════════════════════════════════════════════════════
+   STEP-BY-STEP PROCESS
+   ═══════════════════════════════════════════════════════════ */
+function ProcessSection() {
+    const steps = [
+        { title: 'Choose the Right Business Structure', desc: 'Select from Pvt Ltd, LLP, OPC, Sole Proprietorship, or Partnership based on your needs.', time: '' },
+        { title: 'Obtain Director Identification Number (DIN)', desc: 'DIN is mandatory under Section 153 of the Companies Act, 2013 for every director.', time: '1 working day' },
+        { title: 'Get a Digital Signature Certificate (DSC)', desc: 'A DSC allows directors to sign electronic documents filed with the MCA.', time: '1–2 working days' },
+        { title: 'Reserve a Unique Company Name', desc: 'Check availability using MCA\'s RUN service. Once approved the name is reserved for 20 days.', time: '1–2 working days' },
+        { title: 'Draft MoA & AoA', desc: 'The Memorandum of Association states business objectives; the Articles of Association governs internal procedures.', time: '' },
+        { title: 'Gather Legal Consents & Declarations', desc: 'Prepare INC-9 (subscriber declaration) and DIR-2 (director consent).', time: '' },
+        { title: 'File SPICe+ Form on MCA Portal', desc: 'Integrates name reservation (Part A) and incorporation (Part B). Also file AGILE-PRO-S for GST, EPFO, ESIC.', time: '' },
+        { title: 'Pay Statutory Fees', desc: 'Pay government fees on the MCA portal based on company type and authorized share capital.', time: '' },
+        { title: 'Receive Certificate of Incorporation', desc: 'Once RoC approves, you receive the CoI confirming your company\'s legal existence.', time: '' },
+    ];
+
+    return (
+        <Section id="process">
+            <SectionTitle badge="Step-by-Step" title="How to Register a Company in India" />
+            <div className="max-w-4xl mx-auto">
+                <div className="relative">
+                    {/* Timeline line */}
+                    <div className="absolute left-6 top-0 bottom-0 w-0.5 bg-gray-200 hidden md:block" />
+                    <div className="space-y-6">
+                        {steps.map((step, i) => (
+                            <div key={i} className="flex items-start gap-6 relative">
+                                <div className="flex-shrink-0 w-12 h-12 rounded-full bg-[var(--color-brand-secondary)] text-white font-bold flex items-center justify-center text-sm z-10 relative">
+                                    {i + 1}
+                                </div>
+                                <div className="bg-white p-5 rounded-xl border border-gray-100 shadow-sm flex-1">
+                                    <h3 className="font-bold text-[#090a3d] mb-1">{step.title}</h3>
+                                    <p className="text-gray-600 text-sm">{step.desc}</p>
+                                    {step.time && (
+                                        <span className="inline-block mt-2 text-xs bg-amber-50 text-[var(--color-brand-secondary)] font-semibold px-3 py-1 rounded-full">
+                                            ⏱ {step.time}
+                                        </span>
+                                    )}
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </div>
+        </Section>
+    );
+}
+
+/* ═══════════════════════════════════════════════════════════
+   FEES
+   ═══════════════════════════════════════════════════════════ */
+function FeesSection() {
+    const fees = [
+        { type: 'Private Limited Company', govt: '₹5,000 – ₹15,000', professional: '₹5,000 – ₹10,000', additional: '₹1,000 – ₹5,000' },
+        { type: 'LLP', govt: '₹500 – ₹5,000', professional: '₹6,000 – ₹15,000', additional: '₹1,000 – ₹3,000' },
+        { type: 'One Person Company (OPC)', govt: '₹1,000 – ₹10,000', professional: '₹5,000 – ₹15,000', additional: '₹1,500 – ₹4,000' },
+    ];
+
+    return (
+        <Section id="fees" className="bg-gray-50/50">
+            <SectionTitle badge="Pricing" title="Company Registration Fees in India" />
+            <div className="overflow-x-auto">
+                <table className="w-full text-sm border-collapse max-w-4xl mx-auto">
+                    <thead>
+                        <tr className="bg-[#090a3d] text-white">
+                            <th className="py-4 px-4 text-left font-semibold rounded-tl-lg">Company Type</th>
+                            <th className="py-4 px-4 text-left font-semibold">Government Fees</th>
+                            <th className="py-4 px-4 text-left font-semibold">Professional Fees</th>
+                            <th className="py-4 px-4 text-left font-semibold rounded-tr-lg">Additional Fees</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {fees.map((row, i) => (
+                            <tr key={row.type} className={i % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
+                                <td className="py-4 px-4 font-semibold text-[#090a3d]">{row.type}</td>
+                                <td className="py-4 px-4 text-gray-600">{row.govt}</td>
+                                <td className="py-4 px-4 text-gray-600">{row.professional}</td>
+                                <td className="py-4 px-4 text-gray-600">{row.additional}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+            <p className="text-center text-gray-500 text-xs mt-4">
+                * Costs vary depending on company type, authorized capital, and state of registration.
+            </p>
+        </Section>
+    );
+}
+
+/* ═══════════════════════════════════════════════════════════
+   VALIDITY
+   ═══════════════════════════════════════════════════════════ */
+function ValiditySection() {
+    const data = [
+        { aspect: 'Certificate of Incorporation (CoI)', details: 'Valid indefinitely if the company complies with regulatory requirements.' },
+        { aspect: 'Compliance Requirements', details: 'File annual returns, maintain statutory registers, and hold AGMs to remain valid.' },
+        { aspect: 'Consequences of Non-Compliance', details: 'Penalties, fines, or removal from the register can invalidate the registration.' },
+    ];
+
+    return (
+        <Section id="validity">
+            <SectionTitle badge="Duration" title="Company Registration Validity" />
+            <p className="text-center text-gray-600 max-w-3xl mx-auto mb-12">
+                Once your company is incorporated, the Certificate of Incorporation confirms its legal existence. To keep it valid, the company must meet all annual filing, record-keeping, and compliance requirements under the Companies Act, 2013.
+            </p>
+            <div className="max-w-4xl mx-auto overflow-x-auto">
+                <table className="w-full text-sm border-collapse">
+                    <thead>
+                        <tr className="bg-[#090a3d] text-white">
+                            <th className="py-4 px-6 text-left font-semibold rounded-tl-lg w-1/3">Aspect</th>
+                            <th className="py-4 px-6 text-left font-semibold rounded-tr-lg">Details</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {data.map((row, i) => (
+                            <tr key={row.aspect} className={i % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
+                                <td className="py-4 px-6 font-semibold text-[#090a3d]">{row.aspect}</td>
+                                <td className="py-4 px-6 text-gray-600">{row.details}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+        </Section>
+    );
+}
+
+/* ═══════════════════════════════════════════════════════════
+   ADVANTAGES
+   ═══════════════════════════════════════════════════════════ */
+function AdvantagesSection() {
+    const advantages = [
+        { icon: '⚖️', title: 'Separate Legal Identity', desc: 'The company can own property, sign contracts, and operate independently of its owners.' },
+        { icon: '🛡️', title: 'Limited Liability Protection', desc: 'Shareholders\' personal assets are safe from company debts and risks.' },
+        { icon: '🏛️', title: 'Access to Government Schemes', desc: 'Programs like Startup India and Make in India provide tax exemptions and funding support.' },
+        { icon: '💰', title: 'Tax Benefits', desc: 'Corporate tax rates of 25–30%, with concessional rates as low as 15–22% for new companies and startups.' },
+        { icon: '⭐', title: 'Increased Credibility', desc: 'Registered companies are trusted by investors, clients, and vendors.' },
+        { icon: '♾️', title: 'Perpetual Succession', desc: 'The company continues to exist even if shareholders or directors change.' },
+        { icon: '🔄', title: 'Ease of Ownership Transfer', desc: 'Shares can be sold or transferred, simplifying leadership transitions.' },
+        { icon: '🌍', title: 'Global Opportunities', desc: 'Incorporation allows access to international markets and foreign investment.' },
+        { icon: '📊', title: 'Ability to Raise Capital', desc: 'Companies can issue shares or debentures to raise funds from investors or financial institutions.' },
+    ];
+
+    return (
+        <Section id="advantages">
+            <SectionTitle badge="Benefits" title="Advantages of Company Incorporation in India" />
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {advantages.map((a) => (
+                    <div key={a.title} className="bg-white p-6 rounded-xl border border-gray-100 shadow-sm hover:shadow-lg transition-all duration-300">
+                        {renderProfessionalIcon(a.icon)}
+                        <h3 className="font-bold text-[#090a3d] mb-2 mt-4">{a.title}</h3>
+                        <p className="text-gray-600 text-sm leading-relaxed">{a.desc}</p>
+                    </div>
+                ))}
+            </div>
+        </Section>
+    );
+}
+
+/* ═══════════════════════════════════════════════════════════
+   CERTIFICATE OF INCORPORATION
+   ═══════════════════════════════════════════════════════════ */
+function CertificateSection() {
+    const certificateIncludes = [
+        { icon: '🏢', label: 'Company Name', desc: 'As approved during SPICe+ filing.' },
+        { icon: '🔢', label: 'Corporate Identification Number (CIN)', desc: 'Unique ID assigned by the MCA.' },
+        { icon: '📅', label: 'Date of Incorporation', desc: 'Legal formation date of the company.' },
+        { icon: '📋', label: 'PAN and TAN', desc: 'Issued if applied during incorporation.' },
+        { icon: '🏷️', label: 'Company Type', desc: 'Private Limited, LLP, OPC, etc.' },
+        { icon: '📍', label: 'Registered Office Address', desc: 'Legal address of the company.' },
+    ];
+
+    const howToGet = [
+        'Complete the SPICe+ Form: Part A for name reservation, Part B for incorporation.',
+        'Upload required documents: MoA, AoA, identity and address proofs, DSC and DIN.',
+        'Await RoC approval: After verification, the CoI is issued digitally.',
+        'Download your certificate from the MCA portal. No physical copy is provided.',
+    ];
+
+    return (
+        <Section id="certificate" className="bg-gray-50/50">
+            <SectionTitle badge="Legal Document" title="What is a Company Registration Certificate?" />
+            <div className="max-w-4xl mx-auto space-y-8">
+                <div className="prose prose-lg max-w-none text-gray-700">
+                    <p>
+                        A Company Registration Certificate, also called the Certificate of Incorporation (CoI), is a government-issued document that legally confirms the formation of a company in India under the Companies Act, 2013. The RoC issues it digitally via the Ministry of Corporate Affairs (MCA) after verifying your incorporation documents.
+                    </p>
+                    <p>The certificate proves that your business is a separate legal entity. It allows the company to own assets, open bank accounts, apply for statutory registrations, raise funds, sign contracts, and participate in tenders.</p>
+                </div>
+
+                <div>
+                    <h3 className="font-bold text-xl text-[#090a3d] mb-6">What Does the Certificate Include?</h3>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                        {certificateIncludes.map((item) => (
+                            <div key={item.label} className="bg-white p-4 rounded-xl border border-gray-100 shadow-sm">
+                                {renderProfessionalIcon(item.icon)}
+                                <h4 className="font-semibold text-[#090a3d] text-sm mb-1 mt-3">{item.label}</h4>
+                                <p className="text-gray-500 text-xs">{item.desc}</p>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+
+                <div>
+                    <h3 className="font-bold text-xl text-[#090a3d] mb-6">How to Get the Certificate of Incorporation?</h3>
+                    <div className="space-y-3">
+                        {howToGet.map((step, i) => (
+                            <div key={i} className="flex items-start gap-4 bg-white p-4 rounded-xl border border-gray-100 shadow-sm">
+                                <span className="flex-shrink-0 w-8 h-8 rounded-full bg-[var(--color-brand-secondary)] text-white font-bold flex items-center justify-center text-sm">{i + 1}</span>
+                                <p className="text-gray-700 text-sm">{step}</p>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </div>
+        </Section>
+    );
+}
+
+/* ═══════════════════════════════════════════════════════════
+   POST-INCORPORATION COMPLIANCES
+   ═══════════════════════════════════════════════════════════ */
+function CompliancesSection() {
+    const compliances = [
+        { icon: '📊', title: 'Annual Compliance', desc: 'File annual returns, conduct statutory audits, and meet ROC and tax-related requirements.' },
+        { icon: '📒', title: 'Accounting & Bookkeeping', desc: 'Maintain financial records, follow accounting standards, file income tax returns, and ensure GST compliance.' },
+        { icon: '📋', title: 'Other Registrations', desc: 'Obtain necessary licenses such as MSME, IEC, ISO, FSSAI, APEDA RCMC, or other applicable registrations.' },
+        { icon: '🏛️', title: 'Corporate Secretarial', desc: 'Hold meetings, follow governance norms, complete regulatory filings, and consult expert board advisors.' },
+        { icon: '💸', title: 'TDS Compliance', desc: 'Deduct and deposit Tax Deducted at Source for salaries, contractor payments, and professional fees.' },
+        { icon: '👥', title: 'Employee Compliances', desc: 'Register employees under EPF, ESIC, and professional tax; maintain payroll and statutory records.' },
+        { icon: '⚖️', title: 'Labour Law Compliance', desc: 'Follow applicable labour laws, including the Shop & Establishment Act, minimum wages, and leave policies.' },
+        { icon: '📝', title: 'Other Statutory Filings', desc: 'Comply with ROC and other authority requirements under Companies (Appointment & Remuneration of Managerial Personnel) Rules, 2014.' },
+    ];
+
+    return (
+        <Section id="compliances">
+            <SectionTitle badge="After Registration" title="Post-Incorporation Compliances" />
+            <p className="text-center text-gray-600 max-w-3xl mx-auto mb-12">
+                After registering your company in India, you must follow all post-incorporation compliances. These ensure your business stays legally active and avoids penalties. Compliance requirements vary based on your company type.
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 max-w-6xl mx-auto">
+                {compliances.map((c) => (
+                    <div key={c.title} className="bg-white p-5 rounded-xl border border-gray-100 shadow-sm hover:shadow-lg transition-all duration-300">
+                        {renderProfessionalIcon(c.icon)}
+                        <h3 className="font-bold text-[#090a3d] text-sm mb-2 mt-4">{c.title}</h3>
+                        <p className="text-gray-600 text-xs leading-relaxed">{c.desc}</p>
+                    </div>
+                ))}
+            </div>
+        </Section>
+    );
+}
+
+/* ═══════════════════════════════════════════════════════════
+   FAQ
+   ═══════════════════════════════════════════════════════════ */
+function FAQSection() {
+    const faqs = [
+        { q: 'Is there a minimum capital requirement for company registration in India?', a: 'No, there is no mandatory minimum capital requirement. Earlier, private limited companies needed ₹1 lakh, but this requirement has been removed. You can start with any amount of capital.' },
+        { q: 'How many days does it take to register a company in India?', a: 'Typically 7–15 business days, depending on the type of company and the completeness of documents. With professional assistance the process can be faster.' },
+        { q: 'Can a foreigner or NRI register a company in India?', a: 'Yes. Foreign nationals and NRIs can act as directors or shareholders. They must submit notarized and apostilled identity/address proofs including passport and utility bill.' },
+        { q: 'Can I register a company online through the MCA?', a: 'Yes. Company registration in India is fully online through the MCA portal using the SPICe+ form, which integrates name reservation, incorporation, and PAN/TAN applications.' },
+        { q: 'Is GST registration mandatory for new companies?', a: 'GST registration is mandatory if your turnover exceeds the threshold limit, or if you are involved in inter-state supply or e-commerce.' },
+        { q: 'What is a Certificate of Incorporation?', a: 'The Certificate of Incorporation (CoI) is a government-issued document that legally confirms the formation of your company. It includes the company name, CIN, date of incorporation, PAN, TAN, and registered office address.' },
+        { q: 'Can I use a virtual office address for company registration?', a: 'Yes, you can use a virtual office address for company registration in India, provided it meets the requirements set by the MCA for a registered office.' },
+        { q: 'What happens if a company does not comply with ROC filings?', a: 'Non-compliance can result in penalties, fines, or even removal from the register. It is important to file annual returns and maintain statutory records on time.' },
+    ];
+
+    const [openIndex, setOpenIndex] = useState<number | null>(0);
+
+    return (
+        <Section id="faq" className="bg-gray-50/50">
+            <SectionTitle badge="Got Questions?" title="Frequently Asked Questions" />
+            <div className="max-w-4xl mx-auto space-y-3">
+                {faqs.map((faq, i) => (
+                    <div key={i} className="bg-white rounded-xl border border-gray-100 shadow-sm overflow-hidden">
+                        <button className="w-full flex items-center justify-between p-5 text-left gap-4" onClick={() => setOpenIndex(openIndex === i ? null : i)}>
+                            <span className="font-semibold text-[#090a3d]">{faq.q}</span>
+                            <span className={`text-gray-400 transition-transform duration-200 flex-shrink-0 ${openIndex === i ? 'rotate-180' : ''}`}>▼</span>
+                        </button>
+                        {openIndex === i && (
+                            <div className="px-5 pb-5">
+                                <p className="text-gray-600 text-sm leading-relaxed">{faq.a}</p>
+                            </div>
+                        )}
+                    </div>
+                ))}
+            </div>
+        </Section>
+    );
+}
+
+/* ═══════════════════════════════════════════════════════════
+   WHY CHOOSE US
+   ═══════════════════════════════════════════════════════════ */
+function WhyChooseUsSection() {
+    const reasons = [
+        { icon: '🇮🇳', title: 'Pan-India Expertise', desc: 'We register all company types — Pvt Ltd, LLP, OPC, Public Ltd — across India with full compliance under the Companies Act, 2013.' },
+        { icon: '📍', title: 'State-Specific Compliance', desc: 'We handle local rules like stamp duty, Shops & Establishment registration, and state taxes.' },
+        { icon: '⏰', title: 'Timely Filings', desc: 'We track all deadlines for SPICe+, DIN, DSC, and annual filings to prevent penalties.' },
+        { icon: '🔄', title: 'End-to-End Assistance', desc: 'From name approval and MoA/AoA drafting to PAN/TAN, bank account setup, and statutory registrations.' },
+        { icon: '💎', title: 'Transparent Pricing', desc: 'Clear pricing, dedicated compliance expert, and professional support with no hidden charges.' },
+        { icon: '🚀', title: 'Growth-Focused Approach', desc: 'We structure your company to attract investors and support long-term growth.' },
+    ];
+
+    return (
+        <Section>
+            <SectionTitle badge="Why Us" title="Why Choose Your Professionals for Company Registration?" />
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {reasons.map((r) => (
+                    <div key={r.title} className="bg-gradient-to-br from-[#090a3d] to-[#1a1b5e] text-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
+                        {renderProfessionalIcon(r.icon, true)}
+                        <h3 className="font-bold text-lg mb-2 mt-4">{r.title}</h3>
+                        <p className="text-gray-300 text-sm leading-relaxed">{r.desc}</p>
+                    </div>
+                ))}
+            </div>
+        </Section>
+    );
+}
