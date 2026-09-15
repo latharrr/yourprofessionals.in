@@ -93,6 +93,7 @@ export default function Blogs() {
                 title="Business & Tax Compliance Blogs – Your Professionals"
                 description="Expert guides on company incorporation, GST return filing, trademark registration, and corporate compliance in India."
                 canonical="/blogs"
+                schema={{ '@context': 'https://schema.org', '@type': 'Blog', name: 'Your Professionals Blog', url: 'https://www.yourprofessionals.in/blogs', publisher: { '@id': 'https://www.yourprofessionals.in/#organization' } }}
             />
             <Header />
 

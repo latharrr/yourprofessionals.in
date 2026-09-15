@@ -32,8 +32,11 @@ const COUNTRY_CODES = ["+91", "+1", "+44", "+971", "+65", "+61"];
 
 export default function BlogPost() {
     const { slug } = useParams<{ slug: string }>();
-    const [blog, setBlog] = useState<BlogPostItem | null>(null);
-    const [allBlogs, setAllBlogs] = useState<BlogPostItem[]>([]);
+    const [blog, setBlog] = useState<BlogPostItem | null>(() => {
+        const stored = getStoredBlogs();
+        return stored.find(b => b.slug === slug || b.id === slug) || stored[0] || null;
+    });
+    const [allBlogs, setAllBlogs] = useState<BlogPostItem[]>(() => getStoredBlogs());
 
     // Full Lead form inside article sidebar
     const [phoneError, setPhoneError] = useState('');

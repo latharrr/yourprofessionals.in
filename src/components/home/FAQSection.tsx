@@ -114,9 +114,10 @@ export default function FAQSection() {
                         </div>
 
                         {/* ACCORDION ITEMS */}
-                        <div className="space-y-3">
-                            {currentCategory.items.map((item, idx) => {
-                                const isOpen = openIdx === idx;
+                        {FAQ_DATA.map((category) => (
+                        <div key={category.id} className="space-y-3" hidden={category.id !== currentCategory.id}>
+                            {category.items.map((item, idx) => {
+                                const isOpen = category.id === currentCategory.id && openIdx === idx;
                                 return (
                                     <div
                                         key={idx}
@@ -149,15 +150,14 @@ export default function FAQSection() {
                                             </span>
                                         </button>
 
-                                        {isOpen && (
-                                            <div className="px-6 pb-5 pt-3 text-gray-600 text-xs sm:text-sm leading-relaxed border-t border-gray-100/80 ml-12 whitespace-pre-line">
-                                                {item.answer}
-                                            </div>
-                                        )}
+                                        <div hidden={!isOpen} className="px-6 pb-5 pt-3 text-gray-600 text-xs sm:text-sm leading-relaxed border-t border-gray-100/80 ml-12 whitespace-pre-line">
+                                            {item.answer}
+                                        </div>
                                     </div>
                                 );
                             })}
                         </div>
+                        ))}
 
                         {/* STILL HAVE QUESTIONS BOTTOM BANNER */}
                         <div className="bg-slate-100/90 rounded-2xl p-5 border border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-4 mt-8">

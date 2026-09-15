@@ -124,6 +124,7 @@ export default function PayCommissionCalculator() {
                 title="8th Pay Commission Salary Calculator 2025"
                 description="Free 8th Pay Commission Salary Calculator — estimate your revised basic pay, HRA, TA and gross salary under the 8th Pay Commission recommendations for 2025."
                 canonical="/8th-pay-commission-calculator"
+                schema={{ '@context': 'https://schema.org', '@type': 'WebApplication', name: '8th Pay Commission Salary Calculator', url: 'https://www.yourprofessionals.in/8th-pay-commission-calculator', applicationCategory: 'FinanceApplication', operatingSystem: 'Any', isAccessibleForFree: true, offers: { '@type': 'Offer', price: '0', priceCurrency: 'INR' }, provider: { '@id': 'https://www.yourprofessionals.in/#organization' } }}
             />
 <Header />
       <main className="flex-grow pt-28">

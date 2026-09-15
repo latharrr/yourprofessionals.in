@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import heroBg from '../../assets/hero-bg.png';
-import heroMobile from '../../assets/hero-mobile.png';
+import heroBg from '../../assets/hero-bg.webp';
+import heroMobile from '../../assets/hero-mobile.webp';
 import OtherServiceModal from '../common/OtherServiceModal';
 
 const SERVICES_LIST = [

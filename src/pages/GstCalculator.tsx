@@ -30,6 +30,7 @@ export default function GstCalculator() {
                 title="GST Calculator – Calculate GST Online Free"
                 description="Free online GST Calculator — compute GST for all tax slabs (5%, 12%, 18%, 28%) instantly. Calculate GST-inclusive and GST-exclusive amounts for your business."
                 canonical="/gst-calculator"
+                schema={{ '@context': 'https://schema.org', '@type': 'WebApplication', name: 'GST Calculator', url: 'https://www.yourprofessionals.in/gst-calculator', applicationCategory: 'FinanceApplication', operatingSystem: 'Any', isAccessibleForFree: true, offers: { '@type': 'Offer', price: '0', priceCurrency: 'INR' }, provider: { '@id': 'https://www.yourprofessionals.in/#organization' } }}
             />
 <Header />
             <main className="flex-grow pt-28">

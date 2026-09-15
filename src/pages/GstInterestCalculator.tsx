@@ -100,6 +100,7 @@ export default function GstInterestCalculator() {
                 title="GST Interest & Penalty Calculator – Calculate Online"
                 description="Calculate GST interest and penalty on late returns and tax payments. Free online tool for accurate GST interest computation as per GST Act."
                 canonical="/gst-interest-calculator"
+                schema={{ '@context': 'https://schema.org', '@type': 'WebApplication', name: 'GST Interest & Penalty Calculator', url: 'https://www.yourprofessionals.in/gst-interest-calculator', applicationCategory: 'FinanceApplication', operatingSystem: 'Any', isAccessibleForFree: true, offers: { '@type': 'Offer', price: '0', priceCurrency: 'INR' }, provider: { '@id': 'https://www.yourprofessionals.in/#organization' } }}
             />
 <Header />
             <main className="flex-grow pt-28">

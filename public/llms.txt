@@ -63,3 +63,4 @@ Hours: Monday–Saturday, 9:00 AM–7:00 PM IST
 ## Full sitemap
 
 - [sitemap.xml](https://www.yourprofessionals.in/sitemap.xml): Complete list of indexable pages.
+- [llms-full.txt](https://www.yourprofessionals.in/llms-full.txt): Full plain-text content of every service page, FAQ and guide.

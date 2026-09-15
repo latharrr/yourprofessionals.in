@@ -245,6 +245,7 @@ export default function StepUpSipCalculator() {
                 title="Step Up SIP Calculator – Boost Your Wealth Faster"
                 description="Free Step Up SIP Calculator — calculate returns on a step-up (increasing) SIP. See how incrementally raising your investment each year dramatically grows your corpus."
                 canonical="/step-up-sip-calculator"
+                schema={{ '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Step Up SIP Calculator', url: 'https://www.yourprofessionals.in/step-up-sip-calculator', applicationCategory: 'FinanceApplication', operatingSystem: 'Any', isAccessibleForFree: true, offers: { '@type': 'Offer', price: '0', priceCurrency: 'INR' }, provider: { '@id': 'https://www.yourprofessionals.in/#organization' } }}
             />
 <Header />
 

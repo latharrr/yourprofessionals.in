@@ -372,6 +372,7 @@ export default function IncomeTaxCalculator({ isEmbedded = false }: { isEmbedded
                 title="Income Tax Calculator FY 2025-26 – Compute Tax Online"
                 description="Free online income tax calculator for FY 2025-26 / AY 2026-27. Compare old vs new tax regime. Calculate your exact income tax liability in seconds."
                 canonical="/income-tax-calculator"
+                schema={{ '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Income Tax Calculator', url: 'https://www.yourprofessionals.in/income-tax-calculator', applicationCategory: 'FinanceApplication', operatingSystem: 'Any', isAccessibleForFree: true, offers: { '@type': 'Offer', price: '0', priceCurrency: 'INR' }, provider: { '@id': 'https://www.yourprofessionals.in/#organization' } }}
             />
 <Header />
             <main className="flex-grow pt-28">

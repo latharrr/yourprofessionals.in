@@ -278,8 +278,8 @@ export default function Header() {
             <div className="px-3 md:px-6 py-3 flex justify-between items-center h-16 relative gap-2">
                 {/* Logo */}
                 <Link to="/" className={`flex items-center gap-2 md:gap-3 font-bold text-xl transition-opacity duration-300 text-[#090a3d] shrink min-w-0 ${isSearchOpen ? 'opacity-0 md:opacity-100' : 'opacity-100'}`}>
-                    <img src={image_logo} alt="Your Professionals Logo" className="h-7 md:h-10 w-auto object-contain transition-all duration-300 shrink-0" width={1263} height={517} decoding="async" />
-                    <img src={text_logo} alt="Your Professionals" className="h-5 md:h-10 w-auto object-contain transition-all duration-300 max-w-[120px] md:max-w-none" width={2400} height={327} decoding="async" />
+                    <img src={image_logo} alt="Your Professionals Logo" className="h-7 md:h-10 w-auto object-contain transition-all duration-300 shrink-0" width={293} height={120} decoding="async" />
+                    <img src={text_logo} alt="Your Professionals" className="h-5 md:h-10 w-auto object-contain transition-all duration-300 max-w-[120px] md:max-w-none" width={881} height={120} decoding="async" />
                 </Link>
 
                 {/* Desktop Nav - Centered */}

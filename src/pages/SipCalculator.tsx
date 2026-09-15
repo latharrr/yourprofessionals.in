@@ -80,6 +80,7 @@ export default function SipCalculator() {
                 title="SIP Calculator – Plan Mutual Fund Investments Free"
                 description="Free SIP Calculator online — calculate the future value of your Systematic Investment Plan with monthly contributions. Plan your wealth creation with accurate projections."
                 canonical="/sip-calculator"
+                schema={{ '@context': 'https://schema.org', '@type': 'WebApplication', name: 'SIP Calculator', url: 'https://www.yourprofessionals.in/sip-calculator', applicationCategory: 'FinanceApplication', operatingSystem: 'Any', isAccessibleForFree: true, offers: { '@type': 'Offer', price: '0', priceCurrency: 'INR' }, provider: { '@id': 'https://www.yourprofessionals.in/#organization' } }}
             />
 <Header />
             <main className="flex-grow pt-28">

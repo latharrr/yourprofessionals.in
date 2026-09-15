@@ -119,6 +119,7 @@ export default function EmiCalculator() {
                 title="Home Loan EMI Calculator – Calculate Monthly EMI"
                 description="Free home loan EMI calculator — compute your monthly EMI, total interest payable, and amortisation schedule instantly. Plan your home purchase wisely."
                 canonical="/home-loan-emi-calculator"
+                schema={{ '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Home Loan EMI Calculator', url: 'https://www.yourprofessionals.in/home-loan-emi-calculator', applicationCategory: 'FinanceApplication', operatingSystem: 'Any', isAccessibleForFree: true, offers: { '@type': 'Offer', price: '0', priceCurrency: 'INR' }, provider: { '@id': 'https://www.yourprofessionals.in/#organization' } }}
             />
 <Header />
             <main className="flex-grow pt-28">

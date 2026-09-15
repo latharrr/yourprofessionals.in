@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Header from '../components/layout/Header';
 import Footer from '../components/layout/Footer';
 import OtherServiceModal from '../components/common/OtherServiceModal';
+import SEO from '../components/common/SEO';
 
 const SERVICES_LIST = [
     "Private Limited Company Registration",
@@ -339,6 +340,18 @@ const TOC_ITEMS = [
 export default function CompanyRegistration() {
     return (
         <div className="min-h-screen flex flex-col font-sans">
+            <SEO
+                title="Company Registration Online in India – Pvt Ltd, OPC & LLP"
+                description="Register your company online with Your Professionals. Experts handle incorporation, MoA & AoA drafting, PAN, TAN & DIN and post-registration compliance, with incorporation in 7–15 business days."
+                canonical="/company-registration"
+                schema={[
+                    { '@context': 'https://schema.org', '@type': 'Service', name: 'Company Registration Online in India', serviceType: 'Company Registration', areaServed: 'IN', url: 'https://www.yourprofessionals.in/company-registration', provider: { '@id': 'https://www.yourprofessionals.in/#organization' } },
+                    { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
+                        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.yourprofessionals.in/' },
+                        { '@type': 'ListItem', position: 2, name: 'Company Registration', item: 'https://www.yourprofessionals.in/company-registration' },
+                    ] },
+                ]}
+            />
             <Header />
             <main className="flex-grow">
                 <HeroSection />

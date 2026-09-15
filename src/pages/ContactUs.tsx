@@ -52,7 +52,8 @@ export default function ContactUs() {
             <SEO
                 title="Contact Us – Talk to Our Business Experts"
                 description="Get instant support from Your Professionals. Call, WhatsApp, or email our CA & CS experts for company registration, GST, trademark, compliance and more. Free consultation available."
-                canonical="/contact"
+                canonical="/contact-us"
+                schema={{ '@context': 'https://schema.org', '@type': 'ContactPage', name: 'Contact Your Professionals', url: 'https://www.yourprofessionals.in/contact-us', publisher: { '@id': 'https://www.yourprofessionals.in/#organization' } }}
             />
             <Header />
             <main className="flex-grow pt-28">

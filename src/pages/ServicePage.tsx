@@ -542,16 +542,14 @@ function DocumentsSection({ data }: { data: ServiceData }) {
                             <span className="font-semibold text-[#090a3d]">{cat.category}</span>
                             <svg className={`w-5 h-5 text-gray-500 transition-transform ${openIdx === idx ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
                         </button>
-                        {openIdx === idx && (
-                            <div className="p-5 grid grid-cols-1 sm:grid-cols-2 gap-3">
-                                {cat.items.map((item, i) => (
-                                    <div key={i} className="flex items-start gap-2">
-                                        <span className="text-green-500 mt-0.5">✓</span>
-                                        <span className="text-gray-700 text-sm">{item}</span>
-                                    </div>
-                                ))}
-                            </div>
-                        )}
+                        <div hidden={openIdx !== idx} className="p-5 grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            {cat.items.map((item, i) => (
+                                <div key={i} className="flex items-start gap-2">
+                                    <span className="text-green-500 mt-0.5">✓</span>
+                                    <span className="text-gray-700 text-sm">{item}</span>
+                                </div>
+                            ))}
+                        </div>
                     </div>
                 ))}
             </div>
@@ -653,11 +651,9 @@ function FAQSection({ data }: { data: ServiceData }) {
                             <span className="font-semibold text-[#090a3d] pr-4">{faq.q}</span>
                             <svg className={`w-5 h-5 text-gray-500 flex-shrink-0 transition-transform ${openIdx === idx ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
                         </button>
-                        {openIdx === idx && (
-                            <div className="px-5 pb-5 text-gray-600 leading-relaxed">
-                                {cleanAnswer(faq.a, faq.q)}
-                            </div>
-                        )}
+                        <div hidden={openIdx !== idx} className="px-5 pb-5 text-gray-600 leading-relaxed">
+                            {cleanAnswer(faq.a, faq.q)}
+                        </div>
                     </div>
                 ))}
             </div>
@@ -698,6 +694,9 @@ export default function RegistrationPage() {
 
     if (!data) return <Navigate to="/" replace />;
 
+    // Some URLs reuse another service's content object; point search engines at that page.
+    const canonicalSlug = SERVICES[data.slug] ? data.slug : slug;
+
     const serviceSchema = {
         '@context': 'https://schema.org',
         '@type': 'Service',
@@ -712,7 +711,7 @@ export default function RegistrationPage() {
         },
         'areaServed': 'IN',
         'serviceType': data.title,
-        'url': `https://www.yourprofessionals.in/${slug}`,
+        'url': `https://www.yourprofessionals.in/${canonicalSlug}`,
     };
 
     const faqSchema = data.faqs.length > 0 ? {
@@ -730,7 +729,7 @@ export default function RegistrationPage() {
         '@type': 'BreadcrumbList',
         'itemListElement': [
             { '@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': 'https://www.yourprofessionals.in/' },
-            { '@type': 'ListItem', 'position': 2, 'name': data.title, 'item': `https://www.yourprofessionals.in/${slug}` },
+            { '@type': 'ListItem', 'position': 2, 'name': data.title, 'item': `https://www.yourprofessionals.in/${canonicalSlug}` },
         ],
     };
 
@@ -741,7 +740,7 @@ export default function RegistrationPage() {
             <SEO
                 title={`${data.title} – Fast & Reliable | Your Professionals`}
                 description={`${data.subtitle} Expert CA & CS support. Transparent pricing. Free consultation. Get started today with Your Professionals.`}
-                canonical={`/${slug}`}
+                canonical={`/${canonicalSlug}`}
                 schema={schemas}
             />
             <Header />

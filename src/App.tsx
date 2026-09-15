@@ -46,12 +46,39 @@ function PageLoader() {
   );
 }
 
+const websiteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  '@id': 'https://www.yourprofessionals.in/#website',
+  'name': 'Your Professionals',
+  'url': 'https://www.yourprofessionals.in',
+  'inLanguage': 'en-IN',
+  'publisher': { '@id': 'https://www.yourprofessionals.in/#organization' },
+};
+
 const orgSchema = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
+  '@id': 'https://www.yourprofessionals.in/#organization',
   'name': 'Your Professionals',
   'url': 'https://www.yourprofessionals.in',
   'logo': 'https://www.yourprofessionals.in/logo.svg',
+  'image': 'https://www.yourprofessionals.in/og-image.jpg',
+  'description': 'Firm of Chartered Accountants, Company Secretaries and legal professionals providing business registration, GST, income tax, trademark, licensing and corporate compliance services across India.',
+  'areaServed': { '@type': 'Country', 'name': 'India' },
+  'knowsAbout': [
+    'Company Registration', 'Private Limited Company Registration', 'LLP Registration',
+    'GST Registration', 'GST Return Filing', 'Income Tax Return Filing', 'TDS Return Filing',
+    'Trademark Registration', 'Copyright Registration', 'FSSAI Registration', 'MSME Registration',
+    'ROC Annual Compliance', 'Bookkeeping and Accounting', 'NGO and Section 8 Company Registration',
+  ],
+  'contactPoint': {
+    '@type': 'ContactPoint',
+    'telephone': '+91-7011936958',
+    'email': 'info@yourprofessionals.in',
+    'contactType': 'customer service',
+    'areaServed': 'IN',
+  },
   'telephone': '+91-7011936958',
   'email': 'info@yourprofessionals.in',
   'address': {
@@ -114,7 +141,7 @@ function HomePage() {
         title="Your Professionals – India's Fastest Business Registration & Compliance Service"
         description="Register your company, trademark, GST, FSSAI and more with India's trusted CA & CS professionals. Fast turnaround, transparent pricing, free consultation. 500+ businesses served."
         canonical="/"
-        schema={[orgSchema, localBusinessSchema, faqSchema]}
+        schema={[websiteSchema, orgSchema, localBusinessSchema, faqSchema]}
       />
       <Header />
       <main className="flex-grow">
@@ -179,9 +206,9 @@ function ScrollToTopFAB() {
   );
 }
 
-function App() {
+export function AppContent() {
   return (
-    <BrowserRouter>
+    <>
       <ScrollToTop />
       <DueDatesTicker />
       <Suspense fallback={<PageLoader />}>
@@ -214,6 +241,14 @@ function App() {
       <AIAgentWidget />
       <ScrollToTopFAB />
       <LeadPopup />
+    </>
+  );
+}
+
+function App() {
+  return (
+    <BrowserRouter>
+      <AppContent />
     </BrowserRouter>
   );
 }

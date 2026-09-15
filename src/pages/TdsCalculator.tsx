@@ -96,6 +96,7 @@ export default function TdsCalculator() {
                 title="TDS Calculator – Calculate TDS on Salary & Payments"
                 description="Free TDS Calculator — calculate Tax Deducted at Source on salary, professional fees, rent, and contractor payments. Know your exact TDS liability."
                 canonical="/tds-calculator"
+                schema={{ '@context': 'https://schema.org', '@type': 'WebApplication', name: 'TDS Calculator', url: 'https://www.yourprofessionals.in/tds-calculator', applicationCategory: 'FinanceApplication', operatingSystem: 'Any', isAccessibleForFree: true, offers: { '@type': 'Offer', price: '0', priceCurrency: 'INR' }, provider: { '@id': 'https://www.yourprofessionals.in/#organization' } }}
             />
 <Header />
             <main className="flex-grow pt-28">

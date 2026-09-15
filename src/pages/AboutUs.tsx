@@ -9,6 +9,7 @@ export default function AboutUs() {
                 title="About Us – Your Professionals"
                 description="Learn more about India's trusted business registration, legal licensing, and compliance platform. Driven by expert CA, CS, and corporate law consultants."
                 canonical="/about-us"
+                schema={{ '@context': 'https://schema.org', '@type': 'AboutPage', name: 'About Your Professionals', url: 'https://www.yourprofessionals.in/about-us', publisher: { '@id': 'https://www.yourprofessionals.in/#organization' } }}
             />
             <Header />
             <main className="flex-grow pt-28">

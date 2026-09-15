@@ -146,17 +146,17 @@ const staticRoutes = [
 
 const dynamicRoutes = serviceRoutes.map((s) => `/${s}`)
 
-export default defineConfig({
+export default defineConfig(({ isSsrBuild }) => ({
   plugins: [
     react(),
     tailwindcss(),
-    sitemap({
+    ...(isSsrBuild ? [] : [sitemap({
       hostname: DOMAIN,
       dynamicRoutes: [...staticRoutes, ...dynamicRoutes],
       generateRobotsTxt: false,
-    }),
+    })]),
   ],
-  build: {
+  build: isSsrBuild ? {} : {
     rollupOptions: {
       output: {
         manualChunks: {
@@ -167,4 +167,4 @@ export default defineConfig({
     },
     chunkSizeWarningLimit: 1000,
   },
-})
+}))

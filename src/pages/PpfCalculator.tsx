@@ -119,6 +119,7 @@ export default function PpfCalculator() {
                 title="PPF Calculator – Public Provident Fund Returns Calculator"
                 description="Free PPF Calculator — calculate your Public Provident Fund maturity amount, interest earned, and year-wise balance. Plan your long-term tax-saving investments."
                 canonical="/ppf-calculator"
+                schema={{ '@context': 'https://schema.org', '@type': 'WebApplication', name: 'PPF Calculator', url: 'https://www.yourprofessionals.in/ppf-calculator', applicationCategory: 'FinanceApplication', operatingSystem: 'Any', isAccessibleForFree: true, offers: { '@type': 'Offer', price: '0', priceCurrency: 'INR' }, provider: { '@id': 'https://www.yourprofessionals.in/#organization' } }}
             />
 <Header />
       <main className="flex-grow pt-28">
