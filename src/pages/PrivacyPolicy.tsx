@@ -21,6 +21,15 @@ const privacyPolicySchema = {
     },
 };
 
+const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.yourprofessionals.in/' },
+        { '@type': 'ListItem', position: 2, name: 'Privacy Policy', item: 'https://www.yourprofessionals.in/privacy-policy' },
+    ],
+};
+
 function Section({ number, title, children }: { number: number; title: string; children: React.ReactNode }) {
     return (
         <section className="scroll-mt-28" id={`section-${number}`}>
@@ -55,7 +64,7 @@ export default function PrivacyPolicy() {
                 title="Privacy Policy – Your Professionals"
                 description="Read Your Professionals' Privacy Policy to understand how we collect, use, store, protect and share your personal information across our website, enquiry forms, Meta and Google Ads lead forms, and other communication channels."
                 canonical="/privacy-policy"
-                schema={privacyPolicySchema}
+                schema={[privacyPolicySchema, breadcrumbSchema]}
             />
             <Header />
             <main className="flex-grow pt-28">

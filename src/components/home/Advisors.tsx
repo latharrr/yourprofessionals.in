@@ -18,10 +18,14 @@ export default function Advisors() {
 
                 <div className="max-w-2xl mx-auto bg-gray-50 rounded-3xl p-8 border border-gray-100 shadow-sm flex flex-col md:flex-row items-center gap-8 hover:shadow-lg transition-shadow duration-300">
                     <div className="w-40 h-40 rounded-2xl overflow-hidden shrink-0 border-4 border-white shadow-md">
-                        <img 
-                            src={joelImg} 
-                            alt="Joel D'souza" 
+                        <img
+                            src={joelImg}
+                            alt="Joel D'souza"
                             className="w-full h-full object-cover"
+                            width={1024}
+                            height={1024}
+                            loading="lazy"
+                            decoding="async"
                             onError={(e) => {
                                 // fallback if image fails to load
                                 (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=300&h=300";

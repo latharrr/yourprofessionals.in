@@ -26,6 +26,8 @@ export default function SEO({ title, description, canonical, ogImage, schema, no
             <meta name="description" content={description} />
             {noindex && <meta name="robots" content="noindex,nofollow" />}
             {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
+            {canonicalUrl && <link rel="alternate" hrefLang="en-in" href={canonicalUrl} />}
+            {canonicalUrl && <link rel="alternate" hrefLang="x-default" href={canonicalUrl} />}
 
             {/* Open Graph */}
             <meta property="og:title" content={fullTitle} />

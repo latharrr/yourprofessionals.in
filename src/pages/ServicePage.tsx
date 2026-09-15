@@ -725,7 +725,16 @@ export default function RegistrationPage() {
         })),
     } : null;
 
-    const schemas = faqSchema ? [serviceSchema, faqSchema] : [serviceSchema];
+    const breadcrumbSchema = {
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        'itemListElement': [
+            { '@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': 'https://www.yourprofessionals.in/' },
+            { '@type': 'ListItem', 'position': 2, 'name': data.title, 'item': `https://www.yourprofessionals.in/${slug}` },
+        ],
+    };
+
+    const schemas = faqSchema ? [serviceSchema, breadcrumbSchema, faqSchema] : [serviceSchema, breadcrumbSchema];
 
     return (
         <div className="min-h-screen flex flex-col font-sans">

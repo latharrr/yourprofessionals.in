@@ -63,9 +63,10 @@ const orgSchema = {
     'addressCountry': 'IN',
   },
   'sameAs': [
-    'https://www.facebook.com/yourprofessionals',
-    'https://www.instagram.com/yourprofessionals',
-    'https://www.linkedin.com/company/yourprofessionals',
+    'https://www.facebook.com/YourProfessionals.in',
+    'https://www.instagram.com/yourprofessionals.in/',
+    'https://www.linkedin.com/company/your-professionals15/',
+    'https://x.com/YP_Compliance',
   ],
 };
 
@@ -98,6 +99,12 @@ const localBusinessSchema = {
     'reviewCount': '500',
     'bestRating': '5',
   },
+  'sameAs': [
+    'https://www.facebook.com/YourProfessionals.in',
+    'https://www.instagram.com/yourprofessionals.in/',
+    'https://www.linkedin.com/company/your-professionals15/',
+    'https://x.com/YP_Compliance',
+  ],
 };
 
 function HomePage() {
@@ -111,6 +118,7 @@ function HomePage() {
       />
       <Header />
       <main className="flex-grow">
+        <h1 className="sr-only">Your Professionals – India's Fastest Business Registration &amp; Compliance Service</h1>
         <HeroSection />
         <Services />
         <WhyChooseUs />

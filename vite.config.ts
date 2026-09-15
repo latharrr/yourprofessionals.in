@@ -135,6 +135,13 @@ const staticRoutes = [
   '/tds-calculator',
   '/tds-interest-calculator',
   '/8th-pay-commission-calculator',
+  '/about-us',
+  '/pricing',
+  '/privacy-policy',
+  '/blogs',
+  '/blog/guide-to-private-limited-company-registration-india',
+  '/blog/gst-return-filing-due-dates-and-penalty-structure',
+  '/blog/how-to-file-trademark-registration-protect-brand-name',
 ]
 
 const dynamicRoutes = serviceRoutes.map((s) => `/${s}`)

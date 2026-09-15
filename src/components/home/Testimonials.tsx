@@ -247,6 +247,8 @@ export default function Testimonials() {
                                                                 src={item.avatar}
                                                                 alt={item.name}
                                                                 className="w-full h-full rounded-full object-cover"
+                                                                loading="lazy"
+                                                                decoding="async"
                                                             />
                                                         </div>
                                                     ) : (

@@ -205,7 +205,7 @@ export default function BlogPost() {
                             {/* Feature Image */}
                             {blog.image && (
                                 <div className="rounded-3xl overflow-hidden shadow-lg border border-gray-200 bg-white">
-                                    <img src={blog.image} alt={blog.title} className="w-full h-auto max-h-[460px] object-cover" />
+                                    <img src={blog.image} alt={blog.title} className="w-full h-auto max-h-[460px] object-cover" decoding="async" />
                                 </div>
                             )}
 
@@ -410,7 +410,7 @@ export default function BlogPost() {
                                         <div>
                                             {rel.image && (
                                                 <div className="h-44 overflow-hidden">
-                                                    <img src={rel.image} alt={rel.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                                                    <img src={rel.image} alt={rel.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy" decoding="async" />
                                                 </div>
                                             )}
                                             <div className="p-5">

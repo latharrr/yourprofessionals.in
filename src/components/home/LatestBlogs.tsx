@@ -76,6 +76,8 @@ export default function LatestBlogs() {
                                     src={blog.image}
                                     alt={blog.title}
                                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                    loading="lazy"
+                                    decoding="async"
                                 />
                                 <span className="absolute top-4 left-4 bg-[var(--color-brand-secondary)] text-white text-[10px] font-extrabold uppercase tracking-wider px-3 py-1 rounded-full shadow-md">
                                     {blog.category}

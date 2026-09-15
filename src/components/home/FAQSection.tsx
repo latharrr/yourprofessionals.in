@@ -82,6 +82,10 @@ export default function FAQSection() {
                                 src={faqIllustration}
                                 alt="Frequently Asked Questions - Your Professionals CA & Legal Advisory"
                                 className="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-500"
+                                width={1024}
+                                height={1024}
+                                loading="lazy"
+                                decoding="async"
                             />
                         </div>
                     </div>

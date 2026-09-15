@@ -119,12 +119,20 @@ export default function HeroSection() {
                             src={heroBg}
                             alt="India's Fastest Business Registration Service Provider — Your Professionals"
                             className="hidden sm:block w-full h-auto xl:h-full object-contain object-center select-none xl:-translate-y-14"
+                            width={1300}
+                            height={700}
+                            fetchPriority="high"
+                            decoding="async"
                         />
                         {/* Mobile Poster Image */}
                         <img
                             src={heroMobile}
                             alt="India's Fastest Business Registration Service Provider — Your Professionals"
                             className="sm:hidden w-full h-auto object-cover select-none"
+                            width={1080}
+                            height={1080}
+                            fetchPriority="high"
+                            decoding="async"
                         />
                     </div>
 
