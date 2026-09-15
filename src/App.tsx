@@ -12,6 +12,7 @@ import Services from './components/home/Services';
 import WhyChooseUs from './components/home/WhyChooseUs';
 import FeaturedIn from './components/home/FeaturedIn';
 import FAQSection from './components/home/FAQSection';
+import { faqSchema } from './data/faq';
 import LatestBlogs from './components/home/LatestBlogs';
 import Testimonials from './components/home/Testimonials';
 
@@ -20,6 +21,7 @@ const ServicePage = lazy(() => import('./pages/ServicePage'));
 const ContactUs = lazy(() => import('./pages/ContactUs'));
 const Pricing = lazy(() => import('./pages/Pricing'));
 const AboutUs = lazy(() => import('./pages/AboutUs'));
+const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'));
 const Blogs = lazy(() => import('./pages/Blogs'));
 const BlogPost = lazy(() => import('./pages/BlogPost'));
 const SipCalculator = lazy(() => import('./pages/SipCalculator'));
@@ -105,7 +107,7 @@ function HomePage() {
         title="Your Professionals – India's Fastest Business Registration & Compliance Service"
         description="Register your company, trademark, GST, FSSAI and more with India's trusted CA & CS professionals. Fast turnaround, transparent pricing, free consultation. 500+ businesses served."
         canonical="/"
-        schema={[orgSchema, localBusinessSchema]}
+        schema={[orgSchema, localBusinessSchema, faqSchema]}
       />
       <Header />
       <main className="flex-grow">
@@ -185,6 +187,7 @@ function App() {
           <Route path="/about-us" element={<AboutUs />} />
           <Route path="/contact" element={<ContactUs />} />
           <Route path="/contact-us" element={<ContactUs />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/sip-calculator" element={<SipCalculator />} />
           <Route path="/step-up-sip-calculator" element={<StepUpSipCalculator />} />
           <Route path="/gst-calculator" element={<GstCalculator />} />
