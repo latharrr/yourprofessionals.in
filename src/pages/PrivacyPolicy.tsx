@@ -8,7 +8,7 @@ const privacyPolicySchema = {
     name: 'Privacy Policy',
     url: 'https://www.yourprofessionals.in/privacy-policy',
     description: "Your Professionals' Privacy Policy explaining how we collect, use, store, protect and share personal information collected via our website, enquiry forms, Meta/Facebook/Instagram lead ads, Google Ads lead forms, telephone and email.",
-    dateModified: '2026-09-14',
+    dateModified: '2026-09-15',
     isPartOf: {
         '@type': 'WebSite',
         name: 'Your Professionals',
@@ -71,7 +71,7 @@ export default function PrivacyPolicy() {
                         </span>
                         <h1 className="text-3xl md:text-5xl font-bold mb-4 leading-tight">Privacy Policy</h1>
                         <p className="text-gray-300 text-sm md:text-base">
-                            Effective Date: 14 September 2026 &nbsp;·&nbsp; Last Updated: 14 September 2026
+                            Effective Date: 15 September 2026 &nbsp;·&nbsp; Last Updated: 15 September 2026
                         </p>
                     </div>
                 </section>
