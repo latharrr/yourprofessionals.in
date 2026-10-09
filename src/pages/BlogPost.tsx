@@ -4,31 +4,10 @@ import Header from '../components/layout/Header';
 import Footer from '../components/layout/Footer';
 import SEO from '../components/common/SEO';
 import OtherServiceModal from '../components/common/OtherServiceModal';
+import { LEAD_SERVICES, COUNTRY_CODES, isOtherService, isValidPhone, resolveServiceLabel } from '../data/leadServices';
+import { submitLead } from '../lib/submitLead';
 import { getStoredBlogs } from '../data/blogs';
 import type { BlogPostItem } from '../data/blogs';
-
-const SERVICES_LIST = [
-    "Private Limited Company Registration",
-    "One Person Company Registration (OPC)",
-    "LLP Registration",
-    "Partnership Firm Registration",
-    "Sole Proprietorship Registration",
-    "Startup India Registration",
-    "Virtual Office",
-    "Compliance Services",
-    "Trademark Registration",
-    "Copyright Registration",
-    "GST Registration",
-    "Section 8 Company Registration",
-    "GST Return Filing",
-    "FSSAI Registration",
-    "BIS Registration",
-    "NGO Registration",
-    "Need A Job",
-    "Need help with Other Services"
-];
-
-const COUNTRY_CODES = ["+91", "+1", "+44", "+971", "+65", "+61"];
 
 export default function BlogPost() {
     const { slug } = useParams<{ slug: string }>();
@@ -100,36 +79,22 @@ export default function BlogPost() {
             setFormError('Please fill all fields correctly before submitting.');
             return;
         }
-        if ((formData.service === 'Need help with Other Services' || formData.service === 'Other Service') && !formData.customService) {
+        if (!isValidPhone(formData.phoneCode, formData.phone)) {
+            setFormError('Please enter a valid mobile number.');
+            return;
+        }
+        if (isOtherService(formData.service) && !formData.customService.trim()) {
             setFormError('Please specify your required service.');
             return;
         }
         setIsSubmitting(true);
         try {
-            const GOOGLE_SCRIPT_URL = import.meta.env.VITE_GOOGLE_SCRIPT_URL;
-            const fullService = (formData.service === 'Need help with Other Services' || formData.service === 'Other Service') && formData.customService
-                ? `Other: ${formData.customService}`
-                : formData.service;
-
-            if (GOOGLE_SCRIPT_URL) {
-                const params = new URLSearchParams();
-                params.append('Name', formData.name);
-                params.append('Phone', `${formData.phoneCode} ${formData.phone}`);
-                params.append('Email', formData.email);
-                params.append('Service', fullService);
-                await fetch(`${GOOGLE_SCRIPT_URL}?${params.toString()}`, { method: 'POST', mode: 'no-cors' });
-            }
-
-            await fetch('/api/send-email', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    name: formData.name,
-                    phone: `${formData.phoneCode} ${formData.phone}`,
-                    email: formData.email,
-                    service: fullService
-                })
-            }).catch(() => {});
+            await submitLead({
+                name: formData.name,
+                phone: `${formData.phoneCode} ${formData.phone}`,
+                email: formData.email,
+                service: resolveServiceLabel(formData.service, formData.customService),
+            });
 
             setSubmitSuccess(true);
             setFormData({ name: '', phoneCode: '+91', phone: '', email: '', service: '', customService: '' });
@@ -235,7 +200,7 @@ export default function BlogPost() {
                                     <h4 className="font-bold text-base text-[#090a3d]">{blog.author}</h4>
                                     <p className="text-xs text-gray-500">Corporate Law &amp; Taxation Specialist at Your Professionals</p>
                                     <p className="text-xs text-gray-600 pt-1 leading-relaxed">
-                                        Helped over 500+ Indian startups and SMEs navigate business incorporation, MCA compliance, GST filings, and intellectual property.
+                                        Helped over 100+ Indian startups and SMEs navigate business incorporation, MCA compliance, GST filings, and intellectual property.
                                     </p>
                                 </div>
                             </div>
@@ -335,21 +300,21 @@ export default function BlogPost() {
                                             onChange={(e) => {
                                                 const val = e.target.value;
                                                 setFormData({ ...formData, service: val });
-                                                if (val === 'Need help with Other Services' || val === 'Other Service') {
+                                                if (isOtherService(val)) {
                                                     setOtherModalOpen(true);
                                                 }
                                             }}
                                             required
                                         >
                                             <option value="" disabled className="bg-[#090a3d] text-gray-300">Select your service *</option>
-                                            {SERVICES_LIST.map((s) => (
+                                            {LEAD_SERVICES.map((s) => (
                                                 <option key={s} value={s} className="bg-[#090a3d] text-white">{s}</option>
                                             ))}
                                         </select>
                                     </div>
 
                                     {/* Custom Service Summary / Status */}
-                                    {(formData.service === 'Need help with Other Services' || formData.service === 'Other Service') && (
+                                    {isOtherService(formData.service) && (
                                         <div className="flex items-center justify-between gap-2 bg-white/10 border border-amber-400/60 rounded-xl px-3 py-2.5">
                                             <span className="text-[11px] text-gray-200 truncate">
                                                 {formData.customService ? <><span className="font-semibold text-white">Your requirement:</span> {formData.customService}</> : 'No requirement noted yet.'}

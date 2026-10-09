@@ -3,6 +3,8 @@ import Header from '../components/layout/Header';
 import Footer from '../components/layout/Footer';
 import SEO from '../components/common/SEO';
 import OtherServiceModal from '../components/common/OtherServiceModal';
+import { LEAD_SERVICES, isOtherService, resolveServiceLabel } from '../data/leadServices';
+import { submitLead } from '../lib/submitLead';
 
 export default function ContactUs() {
     const [formData, setFormData] = useState({
@@ -20,27 +22,28 @@ export default function ContactUs() {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
+    const [formError, setFormError] = useState('');
+
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        const fullService = formData.service === 'other' && formData.customService
-            ? `Other: ${formData.customService}`
-            : formData.service;
-
-        const GOOGLE_SCRIPT_URL = import.meta.env.VITE_GOOGLE_SCRIPT_URL;
-        if (GOOGLE_SCRIPT_URL) {
-            const params = new URLSearchParams();
-            params.append('Name', formData.name);
-            params.append('Phone', formData.phone);
-            params.append('Email', formData.email);
-            params.append('Service', fullService);
-            await fetch(`${GOOGLE_SCRIPT_URL}?${params.toString()}`, { method: 'POST', mode: 'no-cors' }).catch(() => {});
+        setFormError('');
+        if (isOtherService(formData.service) && !formData.customService.trim()) {
+            setFormError('Please tell us which service you need.');
+            setOtherModalOpen(true);
+            return;
         }
-
-        await fetch('/api/send-email', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ name: formData.name, phone: formData.phone, email: formData.email, service: fullService, message: formData.message })
-        }).catch(() => {});
+        try {
+            await submitLead({
+                name: formData.name,
+                phone: formData.phone,
+                email: formData.email,
+                service: resolveServiceLabel(formData.service, formData.customService) || 'General Inquiry',
+                message: formData.message,
+            });
+        } catch {
+            setFormError('Something went wrong. Please try again or message us on WhatsApp.');
+            return;
+        }
 
         setSubmitted(true);
         setTimeout(() => setSubmitted(false), 4000);
@@ -65,9 +68,6 @@ export default function ContactUs() {
                     </div>
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                         <div className="text-center max-w-3xl mx-auto">
-                            <span className="inline-block bg-white/10 text-amber-300 text-sm font-semibold px-4 py-1.5 rounded-full mb-6 backdrop-blur-sm border border-white/10">
-                                Trusted by 10,000+ Clients
-                            </span>
                             <h1 className="text-3xl md:text-5xl font-bold mb-6 leading-tight">
                                 Get Instant Support from <span className="text-[var(--color-brand-secondary)]">Our Experts</span>
                             </h1>
@@ -129,26 +129,19 @@ export default function ContactUs() {
                                             <label className="block text-sm font-semibold text-gray-700 mb-1.5">Service Required</label>
                                             <select name="service" value={formData.service} onChange={(e) => {
                                                 handleChange(e);
-                                                if (e.target.value === 'other') {
+                                                if (isOtherService(e.target.value)) {
                                                     setOtherModalOpen(true);
                                                 }
                                             }}
                                                 className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[var(--color-brand-secondary)] focus:ring-2 focus:ring-[var(--color-brand-secondary)]/20 transition-all bg-white">
                                                 <option value="">Select a service</option>
-                                                <option value="company-registration">Company Registration</option>
-                                                <option value="gst-registration">GST Registration</option>
-                                                <option value="trademark">Trademark Registration</option>
-                                                <option value="compliance">Compliance Services</option>
-                                                <option value="income-tax">Income Tax Filing</option>
-                                                <option value="fssai">FSSAI Registration</option>
-                                                <option value="iso">ISO Certification</option>
-                                                <option value="other">Other Service</option>
+                                                {LEAD_SERVICES.map((svc) => <option key={svc} value={svc}>{svc}</option>)}
                                             </select>
                                         </div>
                                     </div>
 
                                     {/* Custom Service Summary / Status */}
-                                    {(formData.service === 'other') && (
+                                    {isOtherService(formData.service) && (
                                         <div className="flex items-center justify-between gap-2 bg-amber-50/60 border border-amber-200 rounded-xl px-3.5 py-2.5">
                                             <span className="text-xs text-gray-700 truncate">
                                                 {formData.customService ? <><span className="font-semibold">Your requirement:</span> {formData.customService}</> : 'No requirement noted yet.'}
@@ -164,6 +157,9 @@ export default function ContactUs() {
                                         <textarea name="message" value={formData.message} onChange={handleChange} rows={4}
                                             className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[var(--color-brand-secondary)] focus:ring-2 focus:ring-[var(--color-brand-secondary)]/20 transition-all resize-none" placeholder="Tell us about your requirements..." />
                                     </div>
+                                    {formError && (
+                                        <div role="alert" className="p-3 bg-red-50 border border-red-200 text-red-700 rounded-xl text-xs font-bold text-center">{formError}</div>
+                                    )}
                                     <button type="submit"
                                         className="w-full bg-[var(--color-brand-secondary)] hover:bg-[#a17500] text-white font-bold py-3.5 rounded-xl transition-all shadow-md hover:shadow-lg text-sm">
                                         Submit Inquiry

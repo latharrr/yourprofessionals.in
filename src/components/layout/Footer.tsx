@@ -219,7 +219,7 @@ export default function Footer() {
                     </div>
                     <div className="flex items-center justify-center gap-2 text-xs text-gray-300">
                         <span className="w-7 h-7 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-[var(--color-brand-secondary)] font-bold text-xs">⭐</span>
-                        <span>4.9/5 Rated (500+ Clients)</span>
+                        <span>4.9/5 Rated (100+ Clients)</span>
                     </div>
                     <div className="flex items-center justify-center gap-2 text-xs text-gray-300">
                         <span className="w-7 h-7 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-[var(--color-brand-secondary)] font-bold text-xs">🛡️</span>

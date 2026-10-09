@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 
 interface OtherServiceModalProps {
     isOpen: boolean;
@@ -7,14 +8,26 @@ interface OtherServiceModalProps {
     onSave: (value: string) => void;
 }
 
-export default function OtherServiceModal({ isOpen, initialValue, onClose, onSave }: OtherServiceModalProps) {
+export default function OtherServiceModal(props: OtherServiceModalProps) {
+    if (!props.isOpen || typeof document === 'undefined') return null;
+    // Mounted only while open, so the textarea always starts from the saved value.
+    return <ModalBody {...props} />;
+}
+
+function ModalBody({ initialValue, onClose, onSave }: OtherServiceModalProps) {
     const [value, setValue] = useState(initialValue);
 
     useEffect(() => {
-        if (isOpen) setValue(initialValue);
-    }, [isOpen, initialValue]);
-
-    if (!isOpen) return null;
+        // Capture phase + stopImmediatePropagation: Escape closes only this modal,
+        // not the consultation popup underneath it.
+        const onKey = (e: KeyboardEvent) => {
+            if (e.key !== 'Escape') return;
+            e.stopImmediatePropagation();
+            onClose();
+        };
+        window.addEventListener('keydown', onKey, true);
+        return () => window.removeEventListener('keydown', onKey, true);
+    }, [onClose]);
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
@@ -23,9 +36,12 @@ export default function OtherServiceModal({ isOpen, initialValue, onClose, onSav
         onClose();
     };
 
-    return (
+    return createPortal(
         <div
-            className="fixed inset-0 z-[80] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Tell us what you need"
+            className="fixed inset-0 z-[200] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
             onClick={onClose}
         >
             <div
@@ -62,6 +78,7 @@ export default function OtherServiceModal({ isOpen, initialValue, onClose, onSav
                     </button>
                 </form>
             </div>
-        </div>
+        </div>,
+        document.body
     );
 }

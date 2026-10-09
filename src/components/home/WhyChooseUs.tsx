@@ -11,7 +11,7 @@ export default function WhyChooseUs() {
                 </div>
             ),
             color: "bg-amber-50/50 border-amber-100",
-            description: "Highly rated by over 500+ business owners across India for exceptional compliance service."
+            description: "Highly rated by over 100+ business owners across India for exceptional compliance service."
         },
         {
             value: "300+",

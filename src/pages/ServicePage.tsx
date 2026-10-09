@@ -4,22 +4,10 @@ import Header from '../components/layout/Header';
 import Footer from '../components/layout/Footer';
 import SEO from '../components/common/SEO';
 import OtherServiceModal from '../components/common/OtherServiceModal';
+import { COMPANY_TYPE_SERVICES, COUNTRY_CODES, isOtherService, isValidPhone, resolveServiceLabel } from '../data/leadServices';
+import { submitLead } from '../lib/submitLead';
 import { SERVICES, type ServiceData } from '../data/services';
 import { IncomeTaxCalculatorWidget } from './IncomeTaxCalculator';
-
-const SERVICES_LIST = [
-    "Private Limited Company Registration",
-    "One Person Company Registration (OPC)",
-    "LLP Registration",
-    "Partnership Firm Registration",
-    "Sole Proprietorship Registration",
-    "Startup India Registration",
-    "Section 8 Company Registration",
-    "Nidhi Company Registration",
-    "Producer Company Registration",
-];
-
-const COUNTRY_CODES = ["+91", "+1", "+44"];
 
 /* ───────── Reusable UI ───────── */
 function renderProfessionalIcon(emoji: string, isDarkMode = false) {
@@ -333,32 +321,22 @@ function HeroSection({ data }: { data: ServiceData }) {
             setFormError('Please fill all fields correctly before submitting.');
             return;
         }
+        if (!isValidPhone(formData.phoneCode, formData.phone)) {
+            setFormError('Please enter a valid mobile number.');
+            return;
+        }
+        if (isOtherService(formData.service) && !formData.customService.trim()) {
+            setFormError('Please specify your required service.');
+            return;
+        }
         setIsSubmitting(true);
         try {
-            const GOOGLE_SCRIPT_URL = import.meta.env.VITE_GOOGLE_SCRIPT_URL;
-            const fullService = (formData.service === 'Need help with Other Services' || formData.service === 'Other Service') && formData.customService
-                ? `Other: ${formData.customService}`
-                : formData.service;
-
-            if (GOOGLE_SCRIPT_URL) {
-                const params = new URLSearchParams();
-                params.append('Name', formData.name);
-                params.append('Phone', `${formData.phoneCode} ${formData.phone}`);
-                params.append('Email', formData.email);
-                params.append('Service', fullService);
-                await fetch(`${GOOGLE_SCRIPT_URL}?${params.toString()}`, { method: 'POST', mode: 'no-cors' });
-            }
-
-            await fetch('/api/send-email', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    name: formData.name,
-                    phone: `${formData.phoneCode} ${formData.phone}`,
-                    email: formData.email,
-                    service: fullService
-                })
-            }).catch(() => {});
+            await submitLead({
+                name: formData.name,
+                phone: `${formData.phoneCode} ${formData.phone}`,
+                email: formData.email,
+                service: resolveServiceLabel(formData.service, formData.customService),
+            });
 
             setSubmitSuccess(true);
             setFormData({ name: '', phoneCode: '+91', phone: '', email: '', service: '', customService: '' });
@@ -425,17 +403,17 @@ function HeroSection({ data }: { data: ServiceData }) {
                             <select required value={formData.service} onChange={(e) => {
                                 const val = e.target.value;
                                 setFormData({ ...formData, service: val });
-                                if (val === 'Need help with Other Services' || val === 'Other Service') {
+                                if (isOtherService(val)) {
                                     setOtherModalOpen(true);
                                 }
                             }}
                                 className="w-full bg-white border border-gray-400 rounded-lg px-4 py-3 text-black focus:outline-none focus:border-[var(--color-brand-secondary)] focus:ring-1 focus:ring-[var(--color-brand-secondary)] cursor-pointer text-sm">
                                 <option value="" disabled>Select Registration Type</option>
-                                {SERVICES_LIST.map((s) => <option key={s} value={s}>{s}</option>)}
+                                {COMPANY_TYPE_SERVICES.map((s) => <option key={s} value={s}>{s}</option>)}
                             </select>
 
                             {/* Custom Service Summary / Status */}
-                            {(formData.service === 'Need help with Other Services' || formData.service === 'Other Service') && (
+                            {isOtherService(formData.service) && (
                                 <div className="flex items-center justify-between gap-2 bg-amber-50/60 border border-amber-200 rounded-lg px-3.5 py-2.5">
                                     <span className="text-xs text-gray-700 truncate">
                                         {formData.customService ? <><span className="font-semibold">Your requirement:</span> {formData.customService}</> : 'No requirement noted yet.'}
