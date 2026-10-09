@@ -40,19 +40,19 @@ export default function HeroSection() {
                         Pill + 3-line headline + shared LeadForm (see LeadForm.tsx),
                         matching the approved "Receive Your Personalized Quote" design
                         ═══════════════════════════════════════════════════════ */}
-                    <div className="xl:col-span-5 2xl:col-span-4 bg-gradient-to-b from-slate-50 to-white px-4 pt-6 pb-8 sm:px-8 xl:pt-2 xl:pb-6 flex items-start justify-center border-t xl:border-t-0 xl:border-l border-gray-200">
-                        <div className="w-full max-w-md bg-white rounded-3xl shadow-[0_20px_60px_-20px_rgba(9,10,61,0.25)] border border-gray-100 px-6 py-7 sm:px-9 sm:py-8">
+                    <div className="xl:col-span-5 2xl:col-span-4 bg-gradient-to-b from-slate-50 to-white px-4 pt-5 pb-6 sm:px-8 xl:pt-1 xl:pb-4 flex items-start justify-center border-t xl:border-t-0 xl:border-l border-gray-200">
+                        <div className="w-full max-w-md bg-white rounded-3xl shadow-[0_20px_60px_-20px_rgba(9,10,61,0.25)] border border-gray-100 px-6 py-5 sm:px-8 sm:py-5 [@media(max-height:700px)]:py-3">
 
                             {/* Badge */}
-                            <div className="text-center">
-                                <span className="inline-block bg-amber-50 text-[var(--color-brand-secondary)] font-extrabold text-[11px] sm:text-xs uppercase tracking-wider px-4 py-2 rounded-full border border-amber-200">
+                            <div className="text-center [@media(max-height:620px)]:hidden">
+                                <span className="inline-block bg-amber-50 text-[var(--color-brand-secondary)] font-extrabold text-[11px] sm:text-xs uppercase tracking-wider px-3.5 py-1.5 rounded-full border border-amber-200">
                                     FREE CONSULTATION &amp; INSTANT QUOTE
                                 </span>
                             </div>
 
                             {/* Headline */}
                             <h2
-                                className="text-center text-[28px] sm:text-[32px] font-extrabold leading-[1.15] text-[#090a3d] mt-4 mb-6"
+                                className="text-center text-2xl sm:text-[26px] font-extrabold leading-[1.15] text-[#090a3d] mt-3 mb-4 [@media(max-height:700px)]:text-xl [@media(max-height:700px)]:mt-1 [@media(max-height:700px)]:mb-3"
                                 style={{ fontFamily: 'var(--font-sans)' }}
                             >
                                 Receive Your<br />
@@ -60,7 +60,7 @@ export default function HeroSection() {
                                 Instantly
                             </h2>
 
-                            <LeadForm />
+                            <LeadForm compact />
                         </div>
                     </div>
 

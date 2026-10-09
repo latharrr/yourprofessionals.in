@@ -5,8 +5,11 @@ import { FAQ_DATA } from '../../data/faq';
 export default function FAQSection() {
     const [activeTab, setActiveTab] = useState<string>('company-registration');
     const [openIdx, setOpenIdx] = useState<number | null>(0);
+    const [showAll, setShowAll] = useState(false);
 
     const currentCategory = FAQ_DATA.find(c => c.id === activeTab) || FAQ_DATA[0];
+    // Long categories show the first few questions; the rest stay in the page (hidden) for crawlers.
+    const VISIBLE_COUNT = 8;
 
     const renderIcon = (type: string) => {
         switch (type) {
@@ -101,6 +104,7 @@ export default function FAQSection() {
                                     onClick={() => {
                                         setActiveTab(cat.id);
                                         setOpenIdx(0);
+                                        setShowAll(false);
                                     }}
                                     className={`px-4 py-2.5 rounded-xl text-xs font-extrabold transition-all cursor-pointer ${
                                         activeTab === cat.id
@@ -121,6 +125,7 @@ export default function FAQSection() {
                                 return (
                                     <div
                                         key={idx}
+                                        hidden={!showAll && idx >= VISIBLE_COUNT}
                                         className={`bg-white border rounded-2xl overflow-hidden transition-all duration-300 ${
                                             isOpen
                                                 ? 'border-[var(--color-brand-secondary)] shadow-md'
@@ -158,6 +163,22 @@ export default function FAQSection() {
                             })}
                         </div>
                         ))}
+
+                        {currentCategory.items.length > VISIBLE_COUNT && (
+                            <div className="flex justify-center">
+                                <button
+                                    type="button"
+                                    onClick={() => {
+                                        if (showAll) setOpenIdx(null);
+                                        setShowAll(!showAll);
+                                    }}
+                                    aria-expanded={showAll}
+                                    className="px-6 py-3 rounded-xl border border-[#090a3d]/15 bg-white hover:bg-slate-50 text-[#090a3d] font-extrabold text-xs shadow-sm transition-all cursor-pointer"
+                                >
+                                    {showAll ? 'Show fewer questions' : `Show all ${currentCategory.items.length} questions`}
+                                </button>
+                            </div>
+                        )}
 
                         {/* STILL HAVE QUESTIONS BOTTOM BANNER */}
                         <div className="bg-slate-100/90 rounded-2xl p-5 border border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-4 mt-8">
