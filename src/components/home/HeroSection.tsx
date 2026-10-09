@@ -17,7 +17,7 @@ export default function HeroSection() {
                         <img
                             src={heroBg}
                             alt="India's Fastest Business Registration Service Provider — Your Professionals"
-                            className="hidden sm:block w-full h-auto xl:h-full object-contain object-center select-none xl:-translate-y-14"
+                            className="hidden sm:block w-full h-auto xl:h-full object-contain object-center xl:object-top select-none"
                             width={1300}
                             height={700}
                             fetchPriority="high"

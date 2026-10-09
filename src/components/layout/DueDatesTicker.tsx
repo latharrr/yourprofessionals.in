@@ -2,7 +2,6 @@ export default function DueDatesTicker() {
   const dates = [
     { label: "GSTR-1 (Monthly)", date: "11th of every month" },
     { label: "GSTR-3B (Monthly)", date: "20th of every month" },
-    { label: "ITR Filing (Individuals)", date: "31st July 2026" },
     { label: "AOC-4 (ROC Annual Filing)", date: "30th October 2026" },
     { label: "MGT-7 (ROC Annual Return)", date: "29th November 2026" },
   ];
