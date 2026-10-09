@@ -1,7 +1,9 @@
+import { RATING_VALUE, CLIENT_COUNT_LABEL } from '../../data/siteStats';
+
 export default function WhyChooseUs() {
     const reasons = [
         {
-            value: "4.9★",
+            value: `${RATING_VALUE}★`,
             title: "Client Rating",
             icon: (
                 <div className="flex gap-0.5 text-amber-500 justify-center">
@@ -11,7 +13,7 @@ export default function WhyChooseUs() {
                 </div>
             ),
             color: "bg-amber-50/50 border-amber-100",
-            description: "Highly rated by over 100+ business owners across India for exceptional compliance service."
+            description: `Highly rated by ${CLIENT_COUNT_LABEL} business owners across India for exceptional compliance service.`
         },
         {
             value: "300+",

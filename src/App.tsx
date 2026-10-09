@@ -15,6 +15,7 @@ import FAQSection from './components/home/FAQSection';
 import { faqSchema } from './data/faq';
 import LatestBlogs from './components/home/LatestBlogs';
 import Testimonials from './components/home/Testimonials';
+import { RATING_VALUE, CLIENT_COUNT, CLIENT_COUNT_LABEL } from './data/siteStats';
 
 const CompanyRegistration = lazy(() => import('./pages/CompanyRegistration'));
 const ServicePage = lazy(() => import('./pages/ServicePage'));
@@ -122,8 +123,8 @@ const localBusinessSchema = {
   }],
   'aggregateRating': {
     '@type': 'AggregateRating',
-    'ratingValue': '4.9',
-    'reviewCount': '100',
+    'ratingValue': RATING_VALUE,
+    'reviewCount': String(CLIENT_COUNT),
     'bestRating': '5',
   },
   'sameAs': [
@@ -139,7 +140,7 @@ function HomePage() {
     <div className="min-h-screen flex flex-col font-sans">
       <SEO
         title="Your Professionals – India's Fastest Business Registration & Compliance Service"
-        description="Register your company, trademark, GST, FSSAI and more with India's trusted CA & CS professionals. Fast turnaround, transparent pricing, free consultation. 100+ businesses served."
+        description={`Register your company, trademark, GST, FSSAI and more with India's trusted CA & CS professionals. Fast turnaround, transparent pricing, free consultation. ${CLIENT_COUNT_LABEL} businesses served.`}
         canonical="/"
         schema={[websiteSchema, orgSchema, localBusinessSchema, faqSchema]}
       />

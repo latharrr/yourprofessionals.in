@@ -646,7 +646,7 @@ function WhyChooseUsSection() {
         { icon: '⚡', title: 'Fast Processing', desc: 'Quick turnaround with dedicated support at every step.' },
         { icon: '💰', title: 'Transparent Pricing', desc: 'No hidden charges. Know exactly what you pay for.' },
         { icon: '🔒', title: '100% Data Security', desc: 'Your documents and data are encrypted and confidential.' },
-        { icon: '🏆', title: 'Trusted by Thousands', desc: 'Thousands of businesses registered successfully.' },
+        { icon: '🏆', title: 'Trusted by 100+ Clients', desc: '100+ businesses served successfully across India.' },
         { icon: '📞', title: '24/7 Support', desc: 'Dedicated relationship manager and customer support.' },
     ];
     return (
