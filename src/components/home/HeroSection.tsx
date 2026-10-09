@@ -40,8 +40,8 @@ export default function HeroSection() {
                         Pill + 3-line headline + shared LeadForm (see LeadForm.tsx),
                         matching the approved "Receive Your Personalized Quote" design
                         ═══════════════════════════════════════════════════════ */}
-                    <div className="xl:col-span-5 2xl:col-span-4 bg-gradient-to-b from-slate-50 to-white px-4 py-8 sm:px-8 lg:py-10 flex items-center justify-center border-t xl:border-t-0 xl:border-l border-gray-200">
-                        <div className="w-full max-w-md bg-white rounded-3xl shadow-[0_20px_60px_-20px_rgba(9,10,61,0.25)] border border-gray-100 px-6 py-8 sm:px-9 sm:py-10">
+                    <div className="xl:col-span-5 2xl:col-span-4 bg-gradient-to-b from-slate-50 to-white px-4 pt-6 pb-8 sm:px-8 xl:pt-2 xl:pb-6 flex items-start justify-center border-t xl:border-t-0 xl:border-l border-gray-200">
+                        <div className="w-full max-w-md bg-white rounded-3xl shadow-[0_20px_60px_-20px_rgba(9,10,61,0.25)] border border-gray-100 px-6 py-7 sm:px-9 sm:py-8">
 
                             {/* Badge */}
                             <div className="text-center">
@@ -52,7 +52,7 @@ export default function HeroSection() {
 
                             {/* Headline */}
                             <h2
-                                className="text-center text-[28px] sm:text-[32px] font-extrabold leading-[1.15] text-[#090a3d] mt-5 mb-7"
+                                className="text-center text-[28px] sm:text-[32px] font-extrabold leading-[1.15] text-[#090a3d] mt-4 mb-6"
                                 style={{ fontFamily: 'var(--font-sans)' }}
                             >
                                 Receive Your<br />
